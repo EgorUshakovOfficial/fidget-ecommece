@@ -1,14 +1,16 @@
-import logo from './logo.svg';
 import ShoppingGallery from './components/ShoppingGallery'; 
-import Header from './components/Header'; 
+import Layout from './containers/Layout'; 
+import CartSlider from './components/CartSlider'; 
 import './App.css';
 import './assets/styles/globals.css'; 
 
 function App() {
   return (
     <div className="App">
-      <Header />
-      <ShoppingGallery />
+      <Layout>
+        <ShoppingGallery />
+        <CartSlider />
+      </Layout>
     </div>
   );
 }

@@ -11,6 +11,7 @@ import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import ShoppingCart from "@mui/icons-material/ShoppingCart";
+import { Badge } from "@mui/material";
 
 const pages = ["Catalog", "About", "Contact"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
@@ -149,7 +150,9 @@ export default function Header() {
 
           <Box sx={{ flexGrow: 0 }}>
             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <ShoppingCart  />
+                <Badge badgeContent={4} color="error">
+                  <ShoppingCart  />
+                </Badge>
             </IconButton>
           </Box>
         </Toolbar>

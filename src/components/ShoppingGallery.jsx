@@ -1,6 +1,7 @@
 import { Container, Grid, Paper} from "@mui/material"
 import ShoppingItem from "./ShoppingItem"
 import redFidgetSpinner from '../assets/images/fidget-spinner-red.jpg'
+
 export default function ShoppingCart(){
     return (
        <Container maxWidth="lg" style={{marginTop:"calc(72px + 0.5em)"}}>
