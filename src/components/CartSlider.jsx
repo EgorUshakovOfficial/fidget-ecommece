@@ -1,12 +1,9 @@
 import {
     Drawer, 
-    Grid, 
     Box, 
     Typography, 
     IconButton, 
-    Divider, 
     Container,
-    BottomNavigation, 
     Button
 } 
 from "@mui/material";
@@ -17,37 +14,42 @@ export default function CartSlider(){
     return (
         <Drawer
             anchor="right"
-            open={true}
-            alignItems="space-betweeen"
+            open={false}
         >
             <Container>
-                <Box>
-                    <Grid container justifyContent="space-between">
-                        <Typography
-                            variant="h4"
-                            component="h2"
-                        >
-                            Cart
-                        </Typography>
-                        <IconButton>
-                            <Close />
-                        </IconButton>
-                    </Grid>
-                    <Divider sx={{marginBlock:"0.5em", overflow:"hidden"}} />
+                <Box sx={{
+                    display:"flex", 
+                    alignItems:"center", 
+                    justifyContent:"space-between", 
+                }}>
+                    <Typography variant="h4" component="h2">
+                        Cart 
+                    </Typography>
+                    <IconButton>
+                        <Close />
+                    </IconButton>
                 </Box>
-                <Box style={{height: "80vh"}}>
-                    <Box sx={{display:"flex", gap:"0.6em"}}>
+                <Box style={{
+                    minHeight: "calc(100vh - 73px - 1em - 42px - 0.4em)", 
+                    borderTop:"1px solid rgba(0, 0, 0, 0.12)",
+                    borderBottom:"1px solid rgba(0, 0, 0, 0.12)", 
+                }}>
+                    <Box sx={{
+                        display:"flex", 
+                        gap:"0.2em", 
+                        paddingBlock:"0.8em",
+                        borderBottom:"1px solid rgba(0, 0, 0, 0.12)", 
+                    }}>
                         <Box
-                            component="img" 
-                            alt="Red Fidget Spinner"
+                            component="img"
                             src={redFidgetSpinner}
                             sx={{
-                                height: "100px", 
-                                objectFit:"cover", 
-                             }}
+                                height: '100px'
+                            }} 
+                            alt="Red Fidget Spinner"
                         />
-                        <Box sx={{display:"flex", flexDirection:"column", gap:"0.2em", alignItems:"center", justifyContent:"space-evenly"}}>
-                            <Typography variant="subtitle" textAlign="center" component="h3">
+                        <Box sx={{display:"flex", flexDirection:"column", alignItems:"center"}}>
+                            <Typography variant="subtitle"  component="h3">
                                 Red Fidget Spinner
                             </Typography>
                             <Box>
@@ -59,24 +61,32 @@ export default function CartSlider(){
                                     <Add />
                                 </IconButton>
                             </Box>
-                            <Typography variant="subtitle" component="p" style={{display:"flex", width:"100%", justifyContent:"flex-end"}}>
-                                $65.34
-                            </Typography>
-                         </Box>
+                            <Box sx={{display:"flex", width:"100%", justifyContent:"space-between"}}>
+                                <Typography variant="body1" component="p">
+                                    Cost
+                                </Typography>
+                                <Typography variant="body1" component="p">
+                                    63.12
+                                </Typography>
+                            </Box>
+                        </Box>
                     </Box>
-                    <Divider sx={{marginBlock:"0.5em"}} />
-                    <Box sx={{display:"flex", gap:"0.6em", marginTop:"0.6em"}}>
+                    <Box sx={{
+                        display:"flex", gap:"0.2em",
+                        paddingBlock: "0.5em",
+                        borderBottom:"1px solid rgba(0, 0, 0, 0.12)", 
+
+                    }}>
                         <Box
-                            component="img" 
-                            alt="Red Fidget Spinner"
+                            component="img"
                             src={redFidgetSpinner}
                             sx={{
-                                height: "100px", 
-                                objectFit:"cover", 
-                             }}
+                                height: '100px'
+                            }} 
+                            alt="Red Fidget Spinner"
                         />
-                        <Box sx={{display:"flex", flexDirection:"column", gap:"0.2em", alignItems:"center", justifyContent:"space-evenly"}}>
-                            <Typography variant="subtitle" textAlign="center" component="h3">
+                        <Box sx={{display:"flex", flexDirection:"column", alignItems:"center"}}>
+                            <Typography variant="subtitle"  component="h3">
                                 Red Fidget Spinner
                             </Typography>
                             <Box>
@@ -88,17 +98,28 @@ export default function CartSlider(){
                                     <Add />
                                 </IconButton>
                             </Box>
-                            <Typography variant="subtitle" component="p" style={{display:"flex", width:"100%", justifyContent:"flex-end"}}>
-                                $65.34
-                            </Typography>
-                         </Box>
+                            <Box sx={{display:"flex", width:"100%", justifyContent:"space-between"}}>
+                                <Typography variant="body1" component="p">
+                                    Cost
+                                </Typography>
+                                <Typography variant="body1" component="p">
+                                    63.12
+                                </Typography>
+                            </Box>
+                        </Box>
                     </Box>
                 </Box>
-                <Divider sx={{marginBlock:"0.5em"}} />
-                <Box>
-                    <Box style={{display:"flex", alignItems:"center", justifyContent:"space-between"}}>
-                        <Typography variant="subtitle" element="h3" style={{marginBottom:"0.5em"}}>Total</Typography>
-                        <Typography variant="subtitle" element="h3" style={{marginBottom:"0.5em"}}>$65.35</Typography>
+                <Box sx={{
+                    position:"absolute", 
+                    top:"calc(100% - 72.64px - 1em)", 
+                    left:"0", 
+                    width:"100%",
+                    padding:"0 24px",
+                    boxSizing:"border-box", 
+                }}>
+                    <Box style={{display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:"0.4em"}}>
+                        <Typography variant="body1" element="p">Total</Typography>
+                        <Typography variant="body1" element="p">121.21</Typography>
                     </Box>
                     <Button variant="contained" color="success" size="large" fullWidth={true}>Check Out</Button>
                 </Box>

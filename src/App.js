@@ -1,6 +1,7 @@
 import ShoppingGallery from './components/ShoppingGallery'; 
 import Layout from './containers/Layout'; 
 import CartSlider from './components/CartSlider'; 
+import EmailSubscription from './components/EmailSubscription';
 import './App.css';
 import './assets/styles/globals.css'; 
 
@@ -10,6 +11,7 @@ function App() {
       <Layout>
         <ShoppingGallery />
         <CartSlider />
+        <EmailSubscription />
       </Layout>
     </div>
   );
