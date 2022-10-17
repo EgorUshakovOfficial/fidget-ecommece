@@ -48,8 +48,8 @@ export default function CartItem({
     return (
         <Box sx={{
             display:"flex",
-            gap:"0.2em",
             justifyContent:"space-between",
+            gap:"0.2em",
             paddingBlock: "0.5em",
             borderBottom:"1px solid rgba(0, 0, 0, 0.12)",
 

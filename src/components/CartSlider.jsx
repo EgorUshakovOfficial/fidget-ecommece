@@ -42,12 +42,7 @@ export default function CartSlider(){
                 <>
                     <CartItems />
                     <Box sx={{
-                        position:"absolute",
-                        top:"calc(100% - 72.64px - 1em)",
-                        left:"0",
                         width:"100%",
-                        padding:"0 24px",
-                        boxSizing:"border-box",
                     }}>
                         <Box style={{display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:"0.4em"}}>
                             <Typography variant="body1" element="p">Total</Typography>
