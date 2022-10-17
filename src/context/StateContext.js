@@ -1,41 +1,37 @@
-import {useState, createContext} from 'react'; 
+import {useState, createContext} from 'react';
 
 // State context
-const StateContext = createContext({}); 
+const StateContext = createContext({});
 
-// State provider 
+// State provider
 const StateProvider = ({children}) => {
-    // State 
-    const [openCart, setOpenCart] = useState(false); 
+    // State
+    const [openCart, setOpenCart] = useState(false);
     const [cart, setCart] = useState(() => {
-        let itemsInCart = JSON.parse(sessionStorage.getItem('cart')); 
+        let itemsInCart = JSON.parse(sessionStorage.getItem('cart'));
 
         if (!itemsInCart){
-            return []; 
+            return [];
         }
 
         else if (itemsInCart.length !== 0){
-            return itemsInCart; 
+            return itemsInCart;
         }
 
         return []
-    }); 
+    });
 
-    console.log(cart); 
-
-
-
-
-    // Handle shopping cart slider 
+    // Handle shopping cart slider
     const handleShoppingCartSlider = () => {
         setOpenCart(state => !state)
     }
 
-    
+
     return (
         <StateContext.Provider value={{
-            openCart, 
+            openCart,
             setOpenCart,
+            cart,
             setCart,
             handleShoppingCartSlider
         }}>
@@ -44,4 +40,4 @@ const StateProvider = ({children}) => {
     )
 }
 
-export {StateProvider, StateContext}; 
+export {StateProvider, StateContext};

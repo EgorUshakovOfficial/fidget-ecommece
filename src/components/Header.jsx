@@ -18,7 +18,7 @@ const pages = ["Catalog", "About", "Contact"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 export default function Header() {
-  const {handleShoppingCartSlider} = useContext(StateContext); 
+  const {handleShoppingCartSlider, cart} = useContext(StateContext);
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
 
@@ -38,19 +38,19 @@ export default function Header() {
   };
 
   return (
-    <AppBar 
-        position="fixed" 
+    <AppBar
+        position="fixed"
         color="transparent"
         sx={{background:"white"}}
     >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-        <Box 
+        <Box
             component="img"
             sx={{
                 height: 64,
-                mr:1, 
-                borderRadius: "8px", 
+                mr:1,
+                borderRadius: "8px",
                 display: {xs: "none", md:"flex"}
             }}
             alt="Fidget Spinner logo"
@@ -100,7 +100,7 @@ export default function Header() {
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
               sx={{
-                display: { xs: "block", md: "none" }, 
+                display: { xs: "block", md: "none" },
               }}
             >
               {pages.map((page) => (
@@ -110,12 +110,12 @@ export default function Header() {
               ))}
             </Menu>
           </Box>
-          <Box 
+          <Box
             component="img"
             sx={{
                 height: 64,
-                mr:1, 
-                borderRadius: "8px", 
+                mr:1,
+                borderRadius: "8px",
                 display: {xs: "flex", md:"none"}
             }}
             alt="Fidget Spinner logo"
@@ -152,7 +152,7 @@ export default function Header() {
 
           <Box sx={{ flexGrow: 0 }}>
             <IconButton onClick={handleShoppingCartSlider} sx={{ p: 0 }}>
-                <Badge badgeContent={4} color="error">
+                <Badge badgeContent={cart.length} color="error">
                   <ShoppingCart  />
                 </Badge>
             </IconButton>
