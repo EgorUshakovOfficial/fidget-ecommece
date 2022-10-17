@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useState, useContext} from "react";
 import logo from '../assets/images/logo.png';
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -12,11 +12,13 @@ import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import ShoppingCart from "@mui/icons-material/ShoppingCart";
 import { Badge } from "@mui/material";
+import {StateContext} from '../context/StateContext';
 
 const pages = ["Catalog", "About", "Contact"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 export default function Header() {
+  const {handleShoppingCartSlider} = useContext(StateContext); 
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
 
@@ -149,7 +151,7 @@ export default function Header() {
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
-            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+            <IconButton onClick={handleShoppingCartSlider} sx={{ p: 0 }}>
                 <Badge badgeContent={4} color="error">
                   <ShoppingCart  />
                 </Badge>

@@ -1,3 +1,4 @@
+import {useContext} from 'react'; 
 import {
     Drawer, 
     Box, 
@@ -7,14 +8,16 @@ import {
     Button
 } 
 from "@mui/material";
-import redFidgetSpinner from '../assets/images/fidget-spinner-red.jpg'; 
 import {Add, Close, Remove} from '@mui/icons-material'; 
+import redFidgetSpinner from '../assets/images/fidget-spinner-red.jpg'; 
+import {StateContext} from '../context/StateContext'; 
 
 export default function CartSlider(){
+    const {openCart, setOpenCart} = useContext(StateContext); 
     return (
         <Drawer
             anchor="right"
-            open={false}
+            open={openCart}
         >
             <Container>
                 <Box sx={{
@@ -25,7 +28,7 @@ export default function CartSlider(){
                     <Typography variant="h4" component="h2">
                         Cart 
                     </Typography>
-                    <IconButton>
+                    <IconButton onClick={() => setOpenCart(false)}>
                         <Close />
                     </IconButton>
                 </Box>

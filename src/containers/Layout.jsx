@@ -1,12 +1,13 @@
 import { Fragment } from 'react';
 import Header from '../components/Header'; 
 import Footer from '../components/Footer'; 
+import {StateProvider} from '../context/StateContext'; 
 export default function Layout({children}){
     return (
-        <Fragment>
+        <StateProvider>
             <Header />
             {children}
             <Footer />
-        </Fragment>
+        </StateProvider>
     )
 }
