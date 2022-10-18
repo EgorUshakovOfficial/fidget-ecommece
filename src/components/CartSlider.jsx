@@ -8,6 +8,7 @@ import {
     Button
 }
 from "@mui/material";
+import {Link} from 'react-router-dom';
 import {Add, Close, Remove} from '@mui/icons-material';
 import redFidgetSpinner from '../assets/images/fidget-spinner-red.jpg';
 import {StateContext} from '../context/StateContext';
@@ -48,7 +49,11 @@ export default function CartSlider(){
                             <Typography variant="body1" element="p">Total</Typography>
                             <Typography variant="body1" element="p">{total.toFixed(2)}</Typography>
                         </Box>
-                        <Button variant="contained" color="success" size="large" fullWidth={true}>Check Out</Button>
+                        <Link to="/checkout">
+                            <Button variant="contained" color="success" size="large" fullWidth={true}>
+                                Check Out
+                            </Button>
+                        </Link>
                     </Box>
                 </>
                 :

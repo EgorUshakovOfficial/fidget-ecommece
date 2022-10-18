@@ -11,7 +11,7 @@ import { Card,
     Button,
     CardActions
 } from "@mui/material";
-import {StateContext} from '../context/StateContext';
+import {StateContext} from '../../context/StateContext';
 import { Add, Remove } from '@mui/icons-material';
 
 export default function ShoppingItem({

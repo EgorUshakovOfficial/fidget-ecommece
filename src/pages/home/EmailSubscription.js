@@ -1,13 +1,13 @@
 
 import {
-    Box, 
-    Typography, 
+    Box,
+    Typography,
     TextField,
-    IconButton, 
+    IconButton,
     Container,
     Button,
     FormGroup
-} 
+}
 from "@mui/material";
 export default function EmailSubscription(){
     return (
@@ -15,6 +15,7 @@ export default function EmailSubscription(){
             display:"flex",
             flexDirection:"column",
             justifyContent:"space-evenly",
+            alignItems:"center",
             gap:"0.4em",
             paddingBlock:"16px"
         }}>
@@ -25,7 +26,7 @@ export default function EmailSubscription(){
                 Subscribe to get special offers, free giveaways, and once-in-a-lifetime deals
             </Typography>
             <form action="#" method="POST">
-                <Box 
+                <Box
                     sx={{
                         display:"flex",
                         justifyContent: "center",

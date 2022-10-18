@@ -1,18 +1,22 @@
-import ShoppingGallery from './components/ShoppingGallery'; 
-import Layout from './containers/Layout'; 
-import CartSlider from './components/CartSlider'; 
-import EmailSubscription from './components/EmailSubscription';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+} from 'react-router-dom';
+import Home from './pages/home/index';
+import Checkout from './pages/checkout/index';
 import './App.css';
-import './assets/styles/globals.css'; 
+import './assets/styles/globals.css';
 
 function App() {
   return (
     <div className="App">
-      <Layout>
-        <ShoppingGallery />
-        <CartSlider />
-        <EmailSubscription />
-      </Layout>
+      <Router>
+        <Routes>
+          <Route path='/checkout' element={<Checkout />} />
+          <Route path="/" element={<Home />} />
+        </Routes>
+      </Router>
     </div>
   );
 }
