@@ -1,4 +1,4 @@
-import {Box, TextField, Button} from '@mui/material';
+import {Box, TextField, Divider, Button} from '@mui/material';
 export default function ApplyDiscount(){
     return (
         <Box

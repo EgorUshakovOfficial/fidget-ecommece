@@ -1,7 +1,12 @@
 import {Divider, Grid, Typography} from '@mui/material';
 export default function CostSummary(){
     return (
-        <Grid item style={{display:"flex", flexDirection:"column", gap:"0.6em"}}>
+        <Grid item style={{
+            display:"flex",
+            flexDirection:"column",
+            gap:"0.6em",
+            borderTop:"1px solid lightgray"
+        }}>
             <Grid item container alignItems="center" justifyContent="space-between">
                 <Typography variant="subtitle1" component="span">
                     Subtotal
@@ -18,8 +23,7 @@ export default function CostSummary(){
                     Free
                 </Typography>
             </Grid>
-            <Divider />
-            <Grid item container alignItems="center" justifyContent="space-between">
+            <Grid item container alignItems="center" justifyContent="space-between" style={{borderTop:"1px solid lightgray"}}>
                 <Typography variant="subtitle2" component="span">
                     Total
                 </Typography>
