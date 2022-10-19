@@ -45,13 +45,13 @@ export default function ShippingForm(){
                     </Select>
                 </FormControl>
                 <Grid container spacing={4} justifyContent="space-between">
-                    <Grid item sm={12} md={6}>
+                    <Grid item sm={12} md={6} width="100%">
                         <FormControl fullWidth>
                             <InputLabel htmlFor="first-name">First name</InputLabel>
                             <Input id="first-name" aria-describedby="first-name-text" />
                         </FormControl>
                     </Grid>
-                    <Grid item sm={12} md={6}>
+                    <Grid item sm={12} md={6} width="100%">
                         <FormControl fullWidth>
                             <InputLabel htmlFor="last-name">Last name</InputLabel>
                             <Input id="last-name" aria-describedby="last-name-text" />
@@ -67,13 +67,13 @@ export default function ShippingForm(){
                     <Input id="apartment" aria-describedby="apartment-text" />
                 </FormControl>
                 <Grid container spacing={4} justifyContent="space-between">
-                    <Grid item sm={12} md={6}>
+                    <Grid item sm={12} md={6}  width="100%">
                         <FormControl fullWidth>
                             <InputLabel htmlFor="postal-code">Postal code</InputLabel>
                             <Input id="postal-code" aria-describedby='postal-code-text' />
                         </FormControl>
                     </Grid>
-                    <Grid item sm={12} md={6}>
+                    <Grid item sm={12} md={6} width="100%">
                         <FormControl fullWidth>
                             <InputLabel htmlFor="city">City</InputLabel>
                             <Input id="city-text" aria-describedby='city' />
