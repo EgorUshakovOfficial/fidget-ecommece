@@ -1,4 +1,4 @@
-import {Grid, Box} from '@mui/material';
+import {Grid, Collapse, Container} from '@mui/material';
 import Logo from './Logo';
 import CheckoutBreadCrumbs  from './CheckoutBreadCrumbs';
 import ShippingForm from './ShippingForm';
@@ -6,20 +6,24 @@ import Navigation from './Navigation';
 import ItemsInCart from './ItemsInCart';
 import ApplyDiscount from './ApplyDiscount';
 import CostSummary from './CostSummary';
+import MobileShoppingSummary from './MobileShoppingSummary';
 export default function Checkout(){
     return (
-        <Grid container columnSpacing={4} justifyContent="center" alignItems="center" style={{minHeight:"100vh"}}>
-            <Grid item style={{display:"flex", flexDirection:"column", gap:"0.6em"}}>
-                <Logo />
-                <CheckoutBreadCrumbs />
-                <ShippingForm />
-                <Navigation prevRoute="Cart" nextRoute="Shipping" />
+        <Container maxWidth="lg" >
+            <Grid container columnSpacing={2} justifyContent="space-evenly" flexDirection="row-reverse" alignItems="center" style={{minHeight:"100vh"}}>
+                <Grid item md={4} sx={{display:{md:"flex", xs:"none"}, flexDirection:"column", gap:"0.6em"}}>
+                    <ItemsInCart />
+                    <ApplyDiscount />
+                    <CostSummary />
+                </Grid>
+                <Grid item sm={12} md={5} style={{display:"flex", flexDirection:"column", gap:"0.6em"}}>
+                    <Logo />
+                    <MobileShoppingSummary />
+                    <CheckoutBreadCrumbs />
+                    <ShippingForm />
+                    <Navigation prevRoute="Cart" nextRoute="Shipping" />
+                </Grid>
             </Grid>
-            <Grid item style={{display:"flex", flexDirection:"column", gap:"0.6em"}}>
-                <ItemsInCart />
-                <ApplyDiscount />
-                <CostSummary />
-            </Grid>
-        </Grid>
+        </Container>
     )
 }
