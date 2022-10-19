@@ -21,7 +21,7 @@ export default function ShippingForm(){
     }
 
     return (
-        <Container>
+        <Grid item>
             <Typography variant="h5" component="h2">Shipping Address</Typography>
             <Box style={{
                 display:"flex",
@@ -84,6 +84,6 @@ export default function ShippingForm(){
                         <FormControlLabel control={<Checkbox  />} label="Save this information for next time" />
                 </FormGroup>
             </Box>
-        </Container>
+        </Grid>
     )
 }
