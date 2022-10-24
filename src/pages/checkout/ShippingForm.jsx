@@ -30,19 +30,8 @@ export default function ShippingForm(){
                 gap:"0.8em"
             }}>
                 <FormControl fullWidth>
-                    <InputLabel id="country-region-label">Country/Region</InputLabel>
-                    <Select
-                        labelId="country-region-label"
-                        id="country-region-select"
-                        value={countryOrRegion}
-                        label="Country/Region"
-                        onChange={handleCountryOrRegionChange}
-                    >
-                        <MenuItem value="canada">Canada</MenuItem>
-                        <MenuItem value="us">US</MenuItem>
-                        <MenuItem value="germany">Germany</MenuItem>
-                        <MenuItem value="portugal">Portugal</MenuItem>
-                    </Select>
+                    <InputLabel htmlFor="country-region">Country/Region</InputLabel>
+                    <Input id="country-region" aria-describedby="country-region-text" />
                 </FormControl>
                 <Grid container spacing={4} justifyContent="space-between">
                     <Grid item sm={12} md={6} width="100%">
@@ -67,13 +56,19 @@ export default function ShippingForm(){
                     <Input id="apartment" aria-describedby="apartment-text" />
                 </FormControl>
                 <Grid container spacing={4} justifyContent="space-between">
-                    <Grid item sm={12} md={6}  width="100%">
+                    <Grid item sm={12} md={4}  width="100%">
                         <FormControl fullWidth>
                             <InputLabel htmlFor="postal-code">Postal code</InputLabel>
                             <Input id="postal-code" aria-describedby='postal-code-text' />
                         </FormControl>
                     </Grid>
-                    <Grid item sm={12} md={6} width="100%">
+                    <Grid item sm={12} md={4}  width="100%">
+                        <FormControl fullWidth>
+                            <InputLabel htmlFor="state-province">State/Province</InputLabel>
+                            <Input id="state-province" aria-describedby='state-province-text' />
+                        </FormControl>
+                    </Grid>
+                    <Grid item sm={12} md={4} width="100%">
                         <FormControl fullWidth>
                             <InputLabel htmlFor="city">City</InputLabel>
                             <Input id="city-text" aria-describedby='city' />

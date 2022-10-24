@@ -1,6 +1,7 @@
 import {Grid, Collapse, Container} from '@mui/material';
 import Logo from './Logo';
 import CheckoutBreadCrumbs  from './CheckoutBreadCrumbs';
+import ContactFrom from './ContactForm';
 import ShippingForm from './ShippingForm';
 import Navigation from './Navigation';
 import ItemsInCart from './ItemsInCart';
@@ -20,6 +21,7 @@ export default function Checkout(){
                     <Logo />
                     <MobileShoppingSummary />
                     <CheckoutBreadCrumbs />
+                    <ContactFrom />
                     <ShippingForm />
                     <Navigation prevRoute="Cart" nextRoute="Shipping" />
                 </Grid>
