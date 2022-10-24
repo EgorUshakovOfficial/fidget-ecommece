@@ -22,7 +22,7 @@ export default function ShippingForm(){
 
     return (
         <Grid item >
-            <Typography variant="h5" component="h2" sx={{marginBlock:"0.6em"}}>Shipping Address</Typography>
+            <Typography variant="h6" component="h2" textAlign="left" sx={{marginBlock:"0.6em"}}>Shipping Address</Typography>
             <Box style={{
                 display:"flex",
                 flexDirection:"column",
