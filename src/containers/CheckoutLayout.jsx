@@ -1,14 +1,13 @@
-import {Grid, Collapse, Container} from '@mui/material';
-import Logo from './Logo';
-import CheckoutBreadCrumbs  from './CheckoutBreadCrumbs';
-import ContactFrom from './ContactForm';
-import ShippingForm from './ShippingForm';
-import Navigation from './Navigation';
-import ItemsInCart from './ItemsInCart';
-import ApplyDiscount from './ApplyDiscount';
-import CostSummary from './CostSummary';
-import MobileShoppingSummary from './MobileShoppingSummary';
-export default function Checkout(){
+import {Grid, Container} from '@mui/material';
+import Logo from '../pages/checkout/Logo';
+import CheckoutBreadCrumbs  from '../pages/checkout/CheckoutBreadCrumbs';
+import Navigation from '../pages/checkout/Navigation';
+import ItemsInCart from '../pages/checkout/ItemsInCart';
+import ApplyDiscount from '../pages/checkout/ApplyDiscount';
+import CostSummary from '../pages/checkout/CostSummary';
+import MobileShoppingSummary from '../pages/checkout/MobileShoppingSummary';
+
+export default function CheckoutLayout({children}){
     return (
         <Container maxWidth="lg" >
             <Grid container columnSpacing={2} justifyContent="space-evenly" flexDirection="row-reverse" alignItems="center" style={{minHeight:"100vh"}}>
@@ -21,8 +20,7 @@ export default function Checkout(){
                     <Logo />
                     <MobileShoppingSummary />
                     <CheckoutBreadCrumbs />
-                    <ContactFrom />
-                    <ShippingForm />
+                    {children}
                     <Navigation prevRoute="Cart" nextRoute="Shipping" />
                 </Grid>
             </Grid>

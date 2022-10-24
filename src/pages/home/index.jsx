@@ -1,12 +1,12 @@
-import Layout from '../../containers/Layout';
+import ShoppingLayout from '../../containers/ShoppingLayout';
 import ShoppingGallery from './ShoppingGallery';
 import EmailSubscription from './EmailSubscription';
 
 export default function Home(){
     return (
-        <Layout>
+        <ShoppingLayout>
             <ShoppingGallery />
             <EmailSubscription />
-        </Layout>
+        </ShoppingLayout>
     )
 }

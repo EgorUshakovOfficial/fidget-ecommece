@@ -49,7 +49,7 @@ export default function CartSlider(){
                             <Typography variant="body1" element="p">Total</Typography>
                             <Typography variant="body1" element="p">{total.toFixed(2)}</Typography>
                         </Box>
-                        <Link to="/checkout">
+                        <Link to="/checkout/information">
                             <Button variant="contained" color="success" size="large" fullWidth={true}>
                                 Check Out
                             </Button>

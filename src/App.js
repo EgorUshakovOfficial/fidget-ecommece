@@ -4,7 +4,8 @@ import {
   Route,
 } from 'react-router-dom';
 import Home from './pages/home/index';
-import Checkout from './pages/checkout/index';
+import Information from './pages/checkout/information/index';
+import Shipping from './pages/checkout/shipping/index';
 import './App.css';
 import './assets/styles/globals.css';
 
@@ -13,8 +14,11 @@ function App() {
     <div className="App">
       <Router>
         <Routes>
-          <Route path='/checkout' element={<Checkout />} />
           <Route path="/" element={<Home />} />
+            <Route path='checkout'>
+              <Route path='information' element={<Information />} />
+              <Route path="shipping" element={<Shipping />} />
+            </Route>
         </Routes>
       </Router>
     </div>
