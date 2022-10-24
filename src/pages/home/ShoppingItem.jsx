@@ -77,12 +77,10 @@ export default function ShoppingItem({
                 />
                 <CardHeader
                     title={productName}
-                    subheader={productDescription}
-                    action={
-                    <Typography variant="h4">
-                        ${productCost}
-                    </Typography>
-                    }
+                    titleTypographyProps={{marginBlock:"0.2em"}}
+                    subheader={`$${productCost}`}
+                    subheaderTypographyProps={{variant:"h5", color:"black", fontWeight:"bold"}}
+                    style={{padding:"0", marginBlock:"0.2em"}}
                 />
                 <CardActions>
                     <Grid container justifyContent="space-between" alignItems="center">
