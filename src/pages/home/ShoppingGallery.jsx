@@ -55,9 +55,9 @@ const products = [
 
 export default function ShoppingCart(){
     return (
-       <Container maxWidth="lg" style={{marginTop:"calc(72px + 0.5em)"}}>
+       <Container maxWidth="lg">
         <Grid
-            style={{rowGap: "1em"}}
+            style={{rowGap: "1em", padding:"45px"}}
             container
             justifyContent="space-between"
         >

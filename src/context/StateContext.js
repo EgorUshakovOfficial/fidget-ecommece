@@ -1,4 +1,4 @@
-import {useState, createContext} from 'react';
+import {useState, useEffect, createContext} from 'react';
 
 // State context
 const StateContext = createContext({});
@@ -7,6 +7,7 @@ const StateContext = createContext({});
 const StateProvider = ({children}) => {
     // State
     const [openCart, setOpenCart] = useState(false);
+
     const [cart, setCart] = useState(() => {
         let itemsInCart = JSON.parse(sessionStorage.getItem('cart'));
 
@@ -21,11 +22,15 @@ const StateProvider = ({children}) => {
         return []
     });
 
+    // Update session storage whenever cart changes
+    useEffect(() => {
+       sessionStorage.setItem('cart', JSON.stringify(cart))
+    }, [cart])
+
     // Handle shopping cart slider
     const handleShoppingCartSlider = () => {
         setOpenCart(state => !state)
     }
-
 
     return (
         <StateContext.Provider value={{

@@ -17,7 +17,6 @@ import { Add, Remove } from '@mui/icons-material';
 export default function ShoppingItem({
     productName,
     productImage,
-    productDescription,
     productCost,
     productId
 }){
@@ -44,8 +43,6 @@ export default function ShoppingItem({
             if (index !== -1){
                 let prevItem = cart[index];
                 cart[index] = Object.assign(prevItem, {quantity: numItem, cost: productCost})
-                // Update cart in session storage
-                sessionStorage.setItem("cart", JSON.stringify(cart));
                 return cart;
             }
 
@@ -61,7 +58,6 @@ export default function ShoppingItem({
                 }
 
             ];
-            sessionStorage.setItem("cart", JSON.stringify(cart));
             return cart;
         })
     }
