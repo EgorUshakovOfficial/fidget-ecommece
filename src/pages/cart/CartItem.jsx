@@ -15,10 +15,9 @@ export default function CartItem({
     quantity
 }){
     return(
-        <Card sx={{maxWidth:345}}>
+        <Card>
             <CardMedia
                 component="img"
-                height="194"
                 image={image}
                 alt="Fidget Spinner"
             />
