@@ -1,4 +1,4 @@
-import {Grid, Container, Badge, Box, Typography, Divider} from '@mui/material';
+import {Grid, Badge, Box, Typography} from '@mui/material';
 import yellowFidgetSpinner from '../../assets/images/fidget-spinner-yellow.jpg';
 export default function ItemsInCart(){
     return (
