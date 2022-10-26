@@ -34,7 +34,7 @@ export default function ContactForm(){
                     <Input id="country-region" aria-describedby="country-region-text" required />
                 </FormControl>
                 <FormGroup>
-                        <FormControlLabel control={<Checkbox  />} label="Email me with news and offers" sx={{margin:0}} />
+                        <FormControlLabel control={<Checkbox />} label="Email me with news and offers" sx={{margin:0}} />
                 </FormGroup>
             </Box>
         </Grid>

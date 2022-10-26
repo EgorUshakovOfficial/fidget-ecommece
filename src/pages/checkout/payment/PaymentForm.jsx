@@ -1,16 +1,19 @@
 import {
-    Box,
     Grid,
     Typography,
     InputLabel,
     Input,
     FormControl,
+    IconButton,
+    Box,
+    Button
 } from "@mui/material"
+import NavigateNextIcon from '@mui/icons-material/NavigateBefore';
 export default function PaymentForm(){
     return (
         <Grid item marginBlock="0.6em">
             <Typography variant="h6" component="h2" textAlign="left" sx={{marginBlock:"0.2em"}}>Credit Card</Typography>
-            <Box style={{
+            <form style={{
                 display:"flex",
                 flexDirection:"column",
                 justifyContent:"space-evenly",
@@ -38,7 +41,18 @@ export default function PaymentForm(){
                         </FormControl>
                     </Grid>
                 </Grid>
-            </Box>
+                <Box display="flex" justifyContent="space-between">
+                    <Box display="flex" alignItems="center" gap="0.2em">
+                        <IconButton aria-label="previous" >
+                            <NavigateNextIcon size="large" />
+                        </IconButton>
+                        <Typography variant="body1" component="p">Return to shipping</Typography>
+                    </Box>
+                    <Button variant="contained" type="submit" color="success" size="small">
+                        Pay now
+                    </Button>
+                </Box>
+            </form>
         </Grid>
     )
 }

@@ -21,7 +21,6 @@ export default function CheckoutLayout({children}){
                     <MobileShoppingSummary />
                     <CheckoutBreadCrumbs />
                     {children}
-                    <Navigation prevRoute="Cart" nextRoute="Shipping" />
                 </Grid>
             </Grid>
         </Container>
