@@ -5,11 +5,11 @@ import Footer from '../components/Footer';
 import {StateProvider} from '../context/StateContext';
 export default function Layout({children}){
     return (
-        <StateProvider>
+        <Fragment>
             <Header />
             {children}
             <CartSlider />
             <Footer />
-        </StateProvider>
+        </Fragment>
     )
 }
