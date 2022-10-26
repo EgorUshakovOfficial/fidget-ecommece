@@ -76,7 +76,7 @@ export default function ShippingForm(){
                     </Grid>
                 </Grid>
                 <FormGroup>
-                        <FormControlLabel control={<Checkbox  />} label="Save this information for next time" />
+                        <FormControlLabel control={<Checkbox  />} sx={{margin:0}}label="Save this information for next time" />
                 </FormGroup>
             </Box>
         </Grid>

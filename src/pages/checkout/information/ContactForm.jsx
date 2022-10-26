@@ -31,10 +31,10 @@ export default function ContactForm(){
             }}>
                 <FormControl fullWidth>
                     <InputLabel htmlFor="country-region">Email address</InputLabel>
-                    <Input id="country-region" aria-describedby="country-region-text" />
+                    <Input id="country-region" aria-describedby="country-region-text" required />
                 </FormControl>
                 <FormGroup>
-                        <FormControlLabel control={<Checkbox  />} label="Email me with news and offers" />
+                        <FormControlLabel control={<Checkbox  />} label="Email me with news and offers" sx={{margin:0}} />
                 </FormGroup>
             </Box>
         </Grid>

@@ -5,7 +5,7 @@ export default function Navigation({prevRoute, nextRoute}){
     return (
         <Box display="flex" justifyContent="space-between">
             <Box display="flex" alignItems="center" gap="0.2em">
-                <IconButton aria-label="previous" sx={{paddingLeft:"0"}} >
+                <IconButton aria-label="previous" >
                     <NavigateNextIcon size="large" />
                 </IconButton>
                 <Typography variant="body1" component="p">Return to {prevRoute}</Typography>
