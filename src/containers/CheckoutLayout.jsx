@@ -1,7 +1,6 @@
 import {Grid, Container} from '@mui/material';
 import Logo from '../pages/checkout/Logo';
 import CheckoutBreadCrumbs  from '../pages/checkout/CheckoutBreadCrumbs';
-import Navigation from '../pages/checkout/Navigation';
 import ItemsInCart from '../pages/checkout/ItemsInCart';
 import ApplyDiscount from '../pages/checkout/ApplyDiscount';
 import CostSummary from '../pages/checkout/CostSummary';

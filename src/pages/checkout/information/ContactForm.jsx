@@ -1,4 +1,3 @@
-import {useState} from 'react';
 import {
     Box,
     Grid,
@@ -14,12 +13,6 @@ import {
     Divider
 } from "@mui/material"
 export default function ContactForm(){
-    const [countryOrRegion, setCountryOrRegion] = useState('')
-
-    const handleCountryOrRegionChange = e => {
-        setCountryOrRegion(e.target.value);
-    }
-
     return (
         <Grid item >
             <Typography variant="h6" component="h2" textAlign="left" sx={{marginBlock:"0.6em"}}>Contact information</Typography>

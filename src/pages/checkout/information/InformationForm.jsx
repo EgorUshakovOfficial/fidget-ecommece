@@ -3,6 +3,7 @@ import NavigateNextIcon from '@mui/icons-material/NavigateBefore';
 import ContactForm from './ContactForm';
 import ShippingForm from './ShippingForm';
 
+
 export default function InformationForm(){
     return (
         <form action="#" method="POST" style={{display:"flex", flexDirection:"column", gap:"0.6em"}}>
