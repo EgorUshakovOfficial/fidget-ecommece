@@ -12,7 +12,7 @@ const CheckoutProvider = ({children}) => {
     const paymentProps = usePayment();
 
     return (
-        <CheckoutContext.Provider values={{...infoProps, ...shippingProps, ...paymentProps}}>
+        <CheckoutContext.Provider value={{...infoProps, ...shippingProps, ...paymentProps}}>
             {children}
         </CheckoutContext.Provider>
     )

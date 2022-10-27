@@ -1,3 +1,4 @@
+import {useContext} from 'react';
 import {
     Grid,
     Typography,
@@ -9,35 +10,49 @@ import {
     Button
 } from "@mui/material"
 import NavigateNextIcon from '@mui/icons-material/NavigateBefore';
+import {CheckoutContext} from '../../../context/CheckoutContext';
 export default function PaymentForm(){
+    const {
+        cardNumber,
+        cardHolderName,
+        expirationDate,
+        securityCode,
+        handleCardNumber,
+        handleCardHolderName,
+        handleExpirationDate,
+        handleSecurityCode,
+        payOnSubmit
+    } = useContext(CheckoutContext);
     return (
         <Grid item marginBlock="0.6em">
             <Typography variant="h6" component="h2" textAlign="left" sx={{marginBlock:"0.2em"}}>Credit Card</Typography>
             <form style={{
-                display:"flex",
-                flexDirection:"column",
-                justifyContent:"space-evenly",
-                gap:"0.8em"
-            }}>
+                    display:"flex",
+                    flexDirection:"column",
+                    justifyContent:"space-evenly",
+                    gap:"0.8em"
+                }}
+                onSubmit={payOnSubmit}
+            >
                 <FormControl fullWidth>
                     <InputLabel htmlFor="card-number">Card number</InputLabel>
-                    <Input id="card-number" aria-describedby="card-number-text" />
+                    <Input id="card-number" ref={cardNumber} aria-describedby="card-number-text" onChange={handleCardNumber} required />
                 </FormControl>
                 <FormControl fullWidth>
                     <InputLabel htmlFor="cardholder-name">Cardholder name</InputLabel>
-                    <Input id="cardholder-name" aria-describedby="cardholder-name-text" />
+                    <Input id="cardholder-name" ref={cardHolderName} aria-describedby="cardholder-name-text" onChange={handleCardHolderName} required />
                 </FormControl>
                 <Grid container spacing={4} justifyContent="space-between">
                     <Grid item sm={12} md={6} width="100%">
                         <FormControl fullWidth>
                             <InputLabel htmlFor="expiration-date">Expiration Date</InputLabel>
-                            <Input id="expiration-date" aria-describedby="expiration-date-text" />
+                            <Input id="expiration-date" ref={expirationDate} aria-describedby="expiration-date-text" onChange={handleExpirationDate} required />
                         </FormControl>
                     </Grid>
                     <Grid item sm={12} md={6} width="100%">
                         <FormControl fullWidth>
                             <InputLabel htmlFor="security-code">Security code</InputLabel>
-                            <Input id="security-code" aria-describedby="security-code-text" />
+                            <Input id="security-code" ref={securityCode} aria-describedby="security-code-text" onChange={handleSecurityCode} required />
                         </FormControl>
                     </Grid>
                 </Grid>

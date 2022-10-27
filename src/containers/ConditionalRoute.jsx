@@ -11,9 +11,5 @@ export default function ConditionalRoute(){
         return <Navigate to="/" />
     }
 
-    return (
-        <CheckoutProvider>
-            <Outlet />
-        </CheckoutProvider>
-    )
+    return <Outlet />;
 }

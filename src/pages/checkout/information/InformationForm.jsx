@@ -1,12 +1,18 @@
+import {useContext} from 'react';
 import {IconButton, Typography, Button, Box} from '@mui/material';
 import NavigateNextIcon from '@mui/icons-material/NavigateBefore';
 import ContactForm from './ContactForm';
 import ShippingForm from './ShippingForm';
-
+import {CheckoutContext} from '../../../context/CheckoutContext';
 
 export default function InformationForm(){
+    const {infoOnSubmit} = useContext(CheckoutContext);
     return (
-        <form action="#" method="POST" style={{display:"flex", flexDirection:"column", gap:"0.6em"}}>
+        <form action="#" method="POST" onSubmit={infoOnSubmit} style={{
+            display:"flex",
+            flexDirection:"column",
+            gap:"0.6em"
+        }}>
             <ContactForm />
             <ShippingForm />
             <Box display="flex" justifyContent="space-between">

@@ -1,8 +1,13 @@
+import {Navigate} from 'react-router-dom';
 import CheckoutLayout from '../../../containers/CheckoutLayout';
 import ShippingForm from './ShippingForm';
 import InformationSummary from './InformationSummary';
-import ShippingMethod from './ShippingMethod';
+
 export default function Shipping(){
+    // Information has not been filled out prior to the user visiting this page
+    if (sessionStorage.getItem('info') === null)
+        return <Navigate to="/checkout/information" />
+
     return (
         <CheckoutLayout>
             <InformationSummary />

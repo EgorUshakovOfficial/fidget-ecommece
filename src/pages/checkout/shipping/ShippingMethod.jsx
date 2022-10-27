@@ -1,3 +1,4 @@
+import {useContext} from 'react';
 import {
     Box,
     Typography,
@@ -11,7 +12,10 @@ import {
     Radio,
     Paper
 } from '@mui/material';
+import { CheckoutContext } from '../../../context/CheckoutContext';
+
 export default function ShippingMethod(){
+    const {handleShippingMethod} = useContext(CheckoutContext);
     return (
         <Box>
             <Typography variant="h6" component="h2" textAlign="left" marginBottom="0.2em">Shipping method</Typography>
@@ -25,13 +29,13 @@ export default function ShippingMethod(){
                         <TableBody>
                             <TableRow>
                                 <TableCell>
-                                    <FormControlLabel value="free-shipping" control={<Radio name="type-shipping" />} label="Free Shipping" />
+                                    <FormControlLabel value="free-shipping" control={<Radio name="type-shipping" />} label="Free Shipping" onChange={handleShippingMethod} />
                                 </TableCell>
                                 <TableCell align="right">Free</TableCell>
                             </TableRow>
                             <TableRow>
                                 <TableCell>
-                                    <FormControlLabel value="tracked-shipping" control={<Radio name="type-shipping" />} label="Tracked shipping" />
+                                    <FormControlLabel value="tracked-shipping" control={<Radio name="type-shipping" />} label="Tracked shipping" onChange={handleShippingMethod}  />
                                 </TableCell>
                                 <TableCell align="right">9.32</TableCell>
                             </TableRow>

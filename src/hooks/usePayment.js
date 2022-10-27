@@ -25,10 +25,34 @@ export default function usePayment(){
         securityCode.current = e.target.value;
     }
 
+    const payOnSubmit = e => {
+        // Prevent default form from being submitted to the server
+        e.preventDefault();
+
+        // Retrieve the buyer's information and the kind of shipping method from session storage
+        const info = JSON.parse(sessionStorage.getItem('info'));
+        const shipping = JSON.parse(sessionStorage.getItem('shipping'));
+
+        // Payment information
+        const payment = {
+            cardNumber: cardNumber.current,
+            cardHolderName: cardHolderName.current,
+            expirationDate: expirationDate.current,
+            securityCode: securityCode.current
+        }
+
+        // Fetch stripe api here...
+    }
+
     return {
+        cardNumber,
+        cardHolderName,
+        expirationDate,
+        securityCode,
         handleCardNumber,
         handleCardHolderName,
         handleExpirationDate,
-        handleSecurityCode
+        handleSecurityCode,
+        payOnSubmit
     };
 }
