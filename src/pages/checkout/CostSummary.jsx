@@ -1,5 +1,15 @@
-import {Divider, Grid, Typography} from '@mui/material';
+import {useContext} from 'react';
+import { StateContext} from '../../context/StateContext';
+import {CheckoutContext} from '../../context/CheckoutContext';
+import {TRACKED_SHIPPING_COST} from '../../utils/constants';
+import {Grid, Typography} from '@mui/material';
+
 export default function CostSummary(){
+    const {total} = useContext(StateContext);
+    const {shippingMethod} = useContext(CheckoutContext);
+    const shippingCost = (shippingMethod === "tracked-shipping") ?
+        TRACKED_SHIPPING_COST : 0
+
     return (
         <Grid item style={{
             display:"flex",
@@ -12,7 +22,7 @@ export default function CostSummary(){
                     Subtotal
                 </Typography>
                 <Typography variant="subtitle2" component="span">
-                    $123.43
+                    ${total}
                 </Typography>
             </Grid>
             <Grid item container alignItems="center" justifyContent="space-between">
@@ -20,7 +30,7 @@ export default function CostSummary(){
                     Shipping
                 </Typography>
                 <Typography variant="subtitle2" component="span">
-                    Free
+                    {shippingCost > 0 ? shippingCost : 'Free'}
                 </Typography>
             </Grid>
             <Grid item container alignItems="center" justifyContent="space-between" style={{borderTop:"1px solid lightgray"}}>
@@ -28,7 +38,7 @@ export default function CostSummary(){
                     Total
                 </Typography>
                 <Typography variant="h5" component="p">
-                    $124.42
+                    ${total + shippingCost}
                 </Typography>
             </Grid>
         </Grid>

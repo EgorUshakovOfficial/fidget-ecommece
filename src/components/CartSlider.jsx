@@ -14,10 +14,7 @@ import {StateContext} from '../context/StateContext';
 import CartItems from './CartItems';
 
 export default function CartSlider(){
-    const {openCart, setOpenCart, cart} = useContext(StateContext);
-    const total = useMemo(() => {
-        return cart.reduce((totalCost, {cost, quantity}) => totalCost + cost*quantity, 0)
-    }, [JSON.stringify(cart)]);
+    const {openCart, setOpenCart, cart, total} = useContext(StateContext);
 
     // Navigation
     const navigate = useNavigate();

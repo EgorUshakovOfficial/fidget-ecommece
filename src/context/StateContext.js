@@ -1,13 +1,14 @@
-import {useState, useEffect, createContext} from 'react';
+import {useState, useEffect, useMemo, createContext} from 'react';
 
 // State context
 const StateContext = createContext({});
 
 // State provider
 const StateProvider = ({children}) => {
-    // State
+    // Controls sliding functionality of cart slider
     const [openCart, setOpenCart] = useState(false);
 
+    // State of cart
     const [cart, setCart] = useState(() => {
         let itemsInCart = JSON.parse(sessionStorage.getItem('cart'));
 
@@ -21,6 +22,11 @@ const StateProvider = ({children}) => {
 
         return []
     });
+
+    // Total
+    const total = useMemo(() => {
+        return cart.reduce((totalCost, {cost, quantity}) => totalCost + cost*quantity, 0)
+    }, [JSON.stringify(cart)]);
 
     // Update session storage whenever cart changes
     useEffect(() => {
@@ -37,6 +43,7 @@ const StateProvider = ({children}) => {
             openCart,
             setOpenCart,
             cart,
+            total,
             setCart,
             handleShoppingCartSlider
         }}>

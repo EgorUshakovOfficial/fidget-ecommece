@@ -12,7 +12,12 @@ import {
     Radio,
     Paper
 } from '@mui/material';
-import { CheckoutContext } from '../../../context/CheckoutContext';
+
+import {CheckoutContext} from '../../../context/CheckoutContext';
+import {TRACKED_SHIPPING_COST} from '../../../utils/constants';
+
+
+
 
 export default function ShippingMethod(){
     const {shippingMethod, handleShippingMethod} = useContext(CheckoutContext);
@@ -37,7 +42,7 @@ export default function ShippingMethod(){
                                 <TableCell>
                                     <FormControlLabel value="tracked-shipping" control={<Radio name="type-shipping" />} label="Tracked shipping" onChange={handleShippingMethod}  />
                                 </TableCell>
-                                <TableCell align="right">9.32</TableCell>
+                                <TableCell align="right">{TRACKED_SHIPPING_COST}</TableCell>
                             </TableRow>
                         </TableBody>
                     </Table>
