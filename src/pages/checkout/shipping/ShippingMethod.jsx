@@ -15,13 +15,13 @@ import {
 import { CheckoutContext } from '../../../context/CheckoutContext';
 
 export default function ShippingMethod(){
-    const {handleShippingMethod} = useContext(CheckoutContext);
+    const {shippingMethod, handleShippingMethod} = useContext(CheckoutContext);
     return (
         <Box>
             <Typography variant="h6" component="h2" textAlign="left" marginBottom="0.2em">Shipping method</Typography>
             <RadioGroup
                 aria-labelledby="type-shipping-label"
-                defaultValue="free-shipping"
+                value={shippingMethod}
                 name="type-shipping"
             >
                 <TableContainer sx={{boxShadow:"0", border:"1px solid lightgray"}}component={Paper}>

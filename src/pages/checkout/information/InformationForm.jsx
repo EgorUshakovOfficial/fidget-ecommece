@@ -1,4 +1,5 @@
 import {useContext} from 'react';
+import {useNavigate} from 'react-router-dom';
 import {IconButton, Typography, Button, Box} from '@mui/material';
 import NavigateNextIcon from '@mui/icons-material/NavigateBefore';
 import ContactForm from './ContactForm';
@@ -7,6 +8,8 @@ import {CheckoutContext} from '../../../context/CheckoutContext';
 
 export default function InformationForm(){
     const {infoOnSubmit} = useContext(CheckoutContext);
+    const navigate = useNavigate();
+
     return (
         <form action="#" method="POST" onSubmit={infoOnSubmit} style={{
             display:"flex",
@@ -18,7 +21,7 @@ export default function InformationForm(){
             <Box display="flex" justifyContent="space-between">
                 <Box display="flex" alignItems="center" gap="0.2em">
                     <IconButton aria-label="previous" >
-                        <NavigateNextIcon size="large" />
+                        <NavigateNextIcon size="large" onClick={() => navigate('/cart')}/>
                     </IconButton>
                     <Typography variant="body1" component="p">Return to Cart</Typography>
                 </Box>

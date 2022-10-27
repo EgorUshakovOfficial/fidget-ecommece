@@ -1,87 +1,38 @@
-import {useRef} from 'react';
+import {useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 
 export default function useInformation(){
     // Navigation
     const navigate = useNavigate();
 
+    const info = sessionStorage.getItem('info')
+
     // Form required fields
-    const email = useRef('');
-    const countryRegion = useRef('');
-    const firstName = useRef('');
-    const lastName = useRef('');
-    const address = useRef('');
-    const apartmentSuite = useRef('');
-    const postalCode = useRef('');
-    const stateProvince = useRef('');
-    const city = useRef('');
-
-
-    // Handles email
-    const handleEmail = e => {
-        email.current = e.target.value;
-    }
-
-    // Handles country or region
-    const handleCountryRegion = e => {
-        countryRegion.current = e.target.value;
-    }
-
-    // Handles first name
-    const handleFirstName = e => {
-        firstName.current = e.target.value;
-    }
-
-    // Handles last name
-    const handleLastName = e => {
-        lastName.current = e.target.value;
-    }
-
-    // Handles address
-    const handleAddress = e => {
-        address.current = e.target.value;
-    }
-
-    // Handles apartment or suite
-    const handleApartmentSuite = e => {
-        apartmentSuite.current = e.target.value;
-    }
-
-    // Handles postal code
-    const handlePostalCode = e => {
-        postalCode.current = e.target.value;
-    }
-
-    // Handles state or province
-    const handleStateProvince = e => {
-        stateProvince.current = e.target.value;
-    }
-
-    // Handles city
-    const handleCity = e => {
-        city.current = e.target.value;
-    }
+    const [email, setEmail] = useState(() => info ? JSON.parse(info).email : "");
+    const [countryRegion, setCountryRegion] = useState(() => info ? JSON.parse(info).countryRegion : "");
+    const [firstName, setFirstName] = useState(() => info ? JSON.parse(info).firstName : "");
+    const [lastName, setLastName] = useState(() => info ? JSON.parse(info).lastName : "");
+    const [address, setAddress] = useState(() => info ? JSON.parse(info).address : "");
+    const [apartmentSuite, setApartmentSuite] = useState(() => info ? JSON.parse(info).apartmentSuite : "");
+    const [postalCode, setPostalCode] = useState(() => info ? JSON.parse(info).postalCode : "");
+    const [stateProvince, setStateProvince] = useState(() => info ? JSON.parse(info).stateProvince : "");
+    const [city, setCity] = useState(() => info ? JSON.parse(info).city : "");
 
     // Information form is submitted
     const infoOnSubmit = e => {
         // Prevent default form from being submitted to the server
         e.preventDefault();
 
-        // Save form field values of information form in session storage
-        if (typeof apartmentSuite.current === "object")
-            apartmentSuite.current = ""
-
-
         const info = {
-            'email': email.current,
-            'countryRegion': countryRegion.current,
-            'firstName': firstName.current,
-            'lastName': lastName.current,
-            'address': address.current,
-            'apartmentSuite': apartmentSuite.current,
-             'postalCode': postalCode.current,
-            'stateProvince': stateProvince.current,
-            'city': city.current
+            email,
+            countryRegion,
+            firstName,
+            lastName,
+            address,
+            apartmentSuite,
+             postalCode,
+            stateProvince,
+            city
         };
 
         sessionStorage.setItem('info', JSON.stringify(info));
@@ -101,15 +52,15 @@ export default function useInformation(){
         postalCode,
         stateProvince,
         city,
-        handleEmail,
-        handleCountryRegion,
-        handleFirstName,
-        handleLastName,
-        handleAddress,
-        handleApartmentSuite,
-        handlePostalCode,
-        handleStateProvince,
-        handleCity,
+        setEmail,
+        setCountryRegion,
+        setFirstName,
+        setLastName,
+        setAddress,
+        setApartmentSuite,
+        setPostalCode,
+        setStateProvince,
+        setCity,
         infoOnSubmit
     };
 }

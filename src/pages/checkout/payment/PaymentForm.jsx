@@ -1,4 +1,5 @@
 import {useContext} from 'react';
+import {useNavigate} from 'react-router-dom';
 import {
     Grid,
     Typography,
@@ -11,6 +12,7 @@ import {
 } from "@mui/material"
 import NavigateNextIcon from '@mui/icons-material/NavigateBefore';
 import {CheckoutContext} from '../../../context/CheckoutContext';
+
 export default function PaymentForm(){
     const {
         cardNumber,
@@ -23,6 +25,8 @@ export default function PaymentForm(){
         handleSecurityCode,
         payOnSubmit
     } = useContext(CheckoutContext);
+    const navigate = useNavigate();
+
     return (
         <Grid item marginBlock="0.6em">
             <Typography variant="h6" component="h2" textAlign="left" sx={{marginBlock:"0.2em"}}>Credit Card</Typography>
@@ -58,7 +62,7 @@ export default function PaymentForm(){
                 </Grid>
                 <Box display="flex" justifyContent="space-between">
                     <Box display="flex" alignItems="center" gap="0.2em">
-                        <IconButton aria-label="previous" >
+                        <IconButton aria-label="previous" onClick={() => navigate('/checkout/shipping')} >
                             <NavigateNextIcon size="large" />
                         </IconButton>
                         <Typography variant="body1" component="p">Return to shipping</Typography>

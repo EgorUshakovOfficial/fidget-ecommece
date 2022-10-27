@@ -12,7 +12,7 @@ import {
 } from "@mui/material";
 import {CheckoutContext} from '../../../context/CheckoutContext';
 export default function ContactForm(){
-    const {email, handleEmail} = useContext(CheckoutContext);
+    const {email, setEmail} = useContext(CheckoutContext);
     return (
         <Grid item >
             <Typography variant="h6" component="h2" textAlign="left" sx={{marginBlock:"0.6em"}}>Contact information</Typography>
@@ -24,7 +24,7 @@ export default function ContactForm(){
             }}>
                 <FormControl fullWidth>
                     <InputLabel htmlFor="email">Email address</InputLabel>
-                    <Input id="email" ref={email}  aria-describedby="email-text"  onChange={handleEmail} required />
+                    <Input id="email" value={email}  aria-describedby="email-text"  onChange={e => setEmail(e.target.value)} required />
                 </FormControl>
                 <FormGroup>
                         <FormControlLabel control={<Checkbox />} label="Email me with news and offers" sx={{margin:0}} />

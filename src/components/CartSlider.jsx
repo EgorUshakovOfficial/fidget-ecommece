@@ -8,9 +8,8 @@ import {
     Button
 }
 from "@mui/material";
-import {Link} from 'react-router-dom';
-import {Add, Close, Remove} from '@mui/icons-material';
-import redFidgetSpinner from '../assets/images/fidget-spinner-red.jpg';
+import {useNavigate} from 'react-router-dom';
+import { Close} from '@mui/icons-material';
 import {StateContext} from '../context/StateContext';
 import CartItems from './CartItems';
 
@@ -19,6 +18,15 @@ export default function CartSlider(){
     const total = useMemo(() => {
         return cart.reduce((totalCost, {cost, quantity}) => totalCost + cost*quantity, 0)
     }, [JSON.stringify(cart)]);
+
+    // Navigation
+    const navigate = useNavigate();
+
+    // Handles cart slider and redirects to checkout page
+    const handleCheckOut = () => {
+        setOpenCart(false);
+        navigate('/checkout/information');
+    }
 
     return (
         <Drawer
@@ -49,11 +57,9 @@ export default function CartSlider(){
                             <Typography variant="body1" element="p">Total</Typography>
                             <Typography variant="body1" element="p">{total.toFixed(2)}</Typography>
                         </Box>
-                        <Link to="/checkout/information">
-                            <Button variant="contained" color="success" size="large" fullWidth={true}>
-                                Check Out
-                            </Button>
-                        </Link>
+                         <Button onClick={handleCheckOut} variant="contained" color="success" size="large" fullWidth={true}>
+                            Check Out
+                        </Button>
                     </Box>
                 </>
                 :

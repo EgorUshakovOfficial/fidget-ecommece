@@ -2,8 +2,10 @@ import {useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 
 export default function useShipping(){
+    const shipping = sessionStorage.getItem('shipping');
+
     // Form value of shipping method
-    const [shippingMethod, setShippingMethod] = useState('free-shipping');
+    const [shippingMethod, setShippingMethod] = useState(() => shipping ? JSON.parse(shipping).shippingMethod : 'free-shipping');
 
     // Navigation
     const navigate = useNavigate();
@@ -26,6 +28,7 @@ export default function useShipping(){
     }
 
     return {
+        shippingMethod,
         handleShippingMethod,
         shippingOnSubmit
     };

@@ -1,4 +1,5 @@
 import {useContext} from 'react';
+import {useNavigate} from 'react-router-dom';
 import {IconButton, Typography, Button, Box} from '@mui/material';
 import NavigateNextIcon from '@mui/icons-material/NavigateBefore';
 import InformationSummary from './InformationSummary';
@@ -7,6 +8,7 @@ import { CheckoutContext } from '../../../context/CheckoutContext';
 
 export default function ShippingForm(){
     const {shippingOnSubmit} = useContext(CheckoutContext);
+    const navigate = useNavigate();
 
     return (
         <form action="#" method="POST" style={{
@@ -20,7 +22,7 @@ export default function ShippingForm(){
             <Box display="flex" justifyContent="space-between">
                 <Box display="flex" alignItems="center" gap="0.2em">
                     <IconButton aria-label="previous" >
-                        <NavigateNextIcon size="large" />
+                        <NavigateNextIcon size="large" onClick={() => navigate('/checkout/information')} />
                     </IconButton>
                     <Typography variant="body1" component="p">Return to information</Typography>
                 </Box>
