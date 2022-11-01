@@ -10,6 +10,7 @@ import Cart from './pages/cart/index';
 import Information from './pages/checkout/information/index';
 import Shipping from './pages/checkout/shipping/index';
 import Payment from './pages/checkout/payment/index';
+import Admin from './pages/admin/index';
 import {CheckoutProvider} from './context/CheckoutContext';
 import ConditionalRoute from  './containers/ConditionalRoute';
 import './App.css';
@@ -22,6 +23,7 @@ function App() {
         <Router>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/admin" element={<Admin />} />
             <Route path="cart" element={<Cart />} />
             <Route path='checkout' element={
               <CheckoutProvider>

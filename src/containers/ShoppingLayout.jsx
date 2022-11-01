@@ -7,7 +7,9 @@ export default function Layout({children}){
     return (
         <Fragment>
             <Header />
-            {children}
+            <div className="shopping-body-content">
+                {children}
+            </div>
             <CartSlider />
             <Footer />
         </Fragment>

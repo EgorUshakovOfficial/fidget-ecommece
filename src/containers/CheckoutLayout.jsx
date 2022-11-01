@@ -8,7 +8,7 @@ import MobileShoppingSummary from '../pages/checkout/MobileShoppingSummary';
 
 export default function CheckoutLayout({children}){
     return (
-        <Container maxWidth="lg" >
+        <Container>
             <Grid container columnSpacing={2} justifyContent="space-evenly" flexDirection="row-reverse" alignItems="center" style={{minHeight:"100vh"}}>
                 <Grid item md={4} sx={{display:{md:"flex", xs:"none"}, flexDirection:"column", gap:"0.6em"}}>
                     <ItemsInCart />

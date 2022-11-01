@@ -6,6 +6,9 @@ a{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+
+.shopping-body-content{
     min-height: calc(100vh - 70px);
     margin-top: 70px;
 }
