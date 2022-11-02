@@ -1,10 +1,9 @@
 import {
   BrowserRouter as Router,
   Routes,
-  Route,
-  Navigate
+  Route
 } from 'react-router-dom';
-import {StateProvider} from './context/StateContext';
+import { AuthProvider } from './context/AuthContext';
 import Home from './pages/home/index';
 import Cart from './pages/cart/index';
 import Information from './pages/checkout/information/index';
@@ -12,6 +11,7 @@ import Shipping from './pages/checkout/shipping/index';
 import Payment from './pages/checkout/payment/index';
 import Admin from './pages/admin/index';
 import {CheckoutProvider} from './context/CheckoutContext';
+import Protected from './containers/Protected';
 import ConditionalRoute from  './containers/ConditionalRoute';
 import './App.css';
 import './assets/styles/globals.css';
@@ -19,12 +19,14 @@ import './assets/styles/globals.css';
 function App() {
   return (
     <div className="App">
-      <StateProvider>
         <Router>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/admin" element={<Admin />} />
+            <Route path="admin" element={ <Admin />} />
+            <Route path="dashboard" element={<div>Dashboard</div>} />
             <Route path="cart" element={<Cart />} />
+
+            {/* Checkout route  */}
             <Route path='checkout' element={
               <CheckoutProvider>
                 <ConditionalRoute />
@@ -36,7 +38,6 @@ function App() {
             </Route>
           </Routes>
         </Router>
-      </StateProvider>
     </div>
   );
 }

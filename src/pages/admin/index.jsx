@@ -1,4 +1,9 @@
+import {useContext} from 'react';
+import { StateContext } from '../../context/StateContext';
+import {Navigate} from 'react-router-dom';
+
 import LoginForm from "./LoginForm";
+
 
 export default function Admin(){
     return (
@@ -8,7 +13,6 @@ export default function Admin(){
             alignItems:"center",
             minHeight:"100vh"
         }}>
-
             <LoginForm />
         </div>
     )

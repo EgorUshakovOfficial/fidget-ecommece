@@ -1,14 +1,20 @@
-import {useMemo} from 'react';
-import axios from 'axios';
-import { BASE_URL } from '../utils/constants';
+import {useState} from 'react';
 
 export default function useAuth(){
-    // API used
-    const api = useMemo(() => {
-        return axios.create({
-            baseURL: BASE_URL
-        })
-    }, [])
+    // State
+    const [user, setUser] = useState(() => {
+        let savedUser = localStorage.getItem('user') || null;
+        return savedUser;
+    });
 
-    return {}
+    const handleLogout = () => {
+        setUser(null);
+        localStorage.removeItem('user');
+    }
+
+    return {
+        user,
+        setUser,
+        handleLogout
+    }
 }
