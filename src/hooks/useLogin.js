@@ -4,7 +4,7 @@ import axios from 'axios';
 import { BASE_URL } from '../utils/constants';
 
 export default function useLogin(){
-    const { setUser } = useContext(AuthContext);
+    const { setToken } = useContext(AuthContext);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
@@ -26,16 +26,15 @@ export default function useLogin(){
         .post('/login', {email, password})
         .then(async res => {
             let data =  await res.data;
-            setUser(data.user);
+            setToken(data.token);
 
             // Save access token in local storage
-            localStorage.setItem('user', JSON.stringify(data.user));
+            localStorage.setItem('access-token', data.token);
 
             // Redirect user to the dashboard
             window.location.href = "http://localhost:3000/dashboard"
         })
         .catch(err => {
-            console.log(err)
             if (err.response.status === 401){
                 setError('Please provide a valid email address and password');
             }
