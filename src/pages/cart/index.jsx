@@ -1,4 +1,4 @@
-import ShoppingLayout from '../../containers/ShoppingLayout';
+import ShoppingLayout from '../../containers/layouts/ShoppingLayout';
 import CartItems from './CartItems';
 export default function Cart(){
     return (

@@ -1,10 +1,10 @@
 import {Grid, Container} from '@mui/material';
-import Logo from '../pages/checkout/Logo';
-import CheckoutBreadCrumbs  from '../pages/checkout/CheckoutBreadCrumbs';
-import ItemsInCart from '../pages/checkout/ItemsInCart';
-import ApplyDiscount from '../pages/checkout/ApplyDiscount';
-import CostSummary from '../pages/checkout/CostSummary';
-import MobileShoppingSummary from '../pages/checkout/MobileShoppingSummary';
+import Logo from '../../pages/checkout/Logo';
+import CheckoutBreadCrumbs  from '../../pages/checkout/CheckoutBreadCrumbs';
+import ItemsInCart from '../../pages/checkout/ItemsInCart';
+import ApplyDiscount from '../../pages/checkout/ApplyDiscount';
+import CostSummary from '../../pages/checkout/CostSummary';
+import MobileShoppingSummary from '../../pages/checkout/MobileShoppingSummary';
 
 export default function CheckoutLayout({children}){
     return (

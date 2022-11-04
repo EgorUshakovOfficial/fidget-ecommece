@@ -1,4 +1,4 @@
-import ShoppingLayout from '../../containers/ShoppingLayout';
+import ShoppingLayout from '../../containers/layouts/ShoppingLayout';
 import ShoppingGallery from './ShoppingGallery';
 import EmailSubscription from './EmailSubscription';
 

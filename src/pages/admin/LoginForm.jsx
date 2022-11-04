@@ -1,5 +1,5 @@
 import {
-    Grid,
+    Alert,
     Paper,
     FormControl,
     Container,
@@ -15,6 +15,7 @@ export default function LoginForm(){
         setEmail,
         password,
         setPassword,
+        error,
         handleLogin
     } = useLogin();
     return (
@@ -22,6 +23,15 @@ export default function LoginForm(){
             <Typography variant="h5" component="h1" marginBottom="0.6em">E-commerce administration</Typography>
             <Paper elevation={2}>
                 <form style={{paddingBlock:"2em"}} onSubmit={handleLogin}>
+                    {error && <Alert  severity="error"  sx={{
+                            marginBottom:"1.2em",
+                            width:"80%",
+                            marginInline:"auto",
+                            boxSizing:"border-box"
+                        }}
+                    >
+                        {error}
+                    </Alert>}
                     <FormControl sx={{
                         width:"80%",
                         marginInline:"auto",

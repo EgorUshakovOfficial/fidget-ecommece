@@ -1,5 +1,5 @@
 import {Navigate} from 'react-router-dom';
-import CheckoutLayout from '../../../containers/CheckoutLayout';
+import CheckoutLayout from '../../../containers/layouts/CheckoutLayout';
 import InformationSummary from './InformationSummary';
 import PaymentForm from './PaymentForm';
 

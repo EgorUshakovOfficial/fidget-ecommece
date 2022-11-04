@@ -9,9 +9,9 @@ export default function useAuth(){
         let accessToken = localStorage.getItem('access-token') || "";
         return accessToken;
     });
-
     const [user, setUser] = useState(null);
-
+    const [error, setError] = useState('');
+    console.log(user)
     // Retrieve user object
     useEffect(() => {
         if (token !== ""){
@@ -26,16 +26,24 @@ export default function useAuth(){
                 setUser(data.user)
             })
             .catch(err => {
-                // Handle error somehow...
-                console.log(err);
+                if (err.response.status === 401){
+                    handleLogout();
+                    setError('Your Session has expired. Please log in again')
+                }
+                else{
+                    setError('Error! Something went wrong!')
+                }
             })
         }
-
     }, [token])
 
 
+
+
     const handleLogout = () => {
+        setToken("")
         setUser(null);
+        localStorage.removeItem('access-token');
         localStorage.removeItem('user');
     }
 
@@ -44,6 +52,8 @@ export default function useAuth(){
         setToken,
         user,
         setUser,
+        error,
+        setError,
         handleLogout
     }
 }

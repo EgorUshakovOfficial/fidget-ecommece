@@ -11,8 +11,8 @@ import Shipping from './pages/checkout/shipping/index';
 import Payment from './pages/checkout/payment/index';
 import Admin from './pages/admin/index';
 import {CheckoutProvider} from './context/CheckoutContext';
-import Protected from './containers/Protected';
-import ConditionalRoute from  './containers/ConditionalRoute';
+import Protected from './containers/routes/Protected';
+import Conditional from  './containers/routes/Conditional';
 import './App.css';
 import './assets/styles/globals.css';
 
@@ -20,23 +20,30 @@ function App() {
   return (
     <div className="App">
         <Router>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="admin" element={ <Admin />} />
-            <Route path="dashboard" element={<div>Dashboard</div>} />
-            <Route path="cart" element={<Cart />} />
+          <AuthProvider>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="admin" element={ <Admin />} />
+              <Route path="dashboard" element={
+                  <Protected>
+                    <div>Dashboard</div>
+                  </Protected>
+                }
+              />
+              <Route path="cart" element={<Cart />} />
 
-            {/* Checkout route  */}
-            <Route path='checkout' element={
-              <CheckoutProvider>
-                <ConditionalRoute />
-              </CheckoutProvider>
-            }>
-                <Route path='information' element={<Information />} />
-                <Route path="shipping" element={ <Shipping />} />
-                <Route path="payment" element={<Payment />} />
-            </Route>
-          </Routes>
+              {/* Checkout route  */}
+              <Route path='checkout' element={
+                <CheckoutProvider>
+                  <Conditional />
+                </CheckoutProvider>
+              }>
+                  <Route path='information' element={<Information />} />
+                  <Route path="shipping" element={ <Shipping />} />
+                  <Route path="payment" element={<Payment />} />
+              </Route>
+            </Routes>
+          </AuthProvider>
         </Router>
     </div>
   );

@@ -1,13 +1,16 @@
 import {useState, useContext, useMemo} from 'react';
+import {useNavigate} from 'react-router-dom';
 import {AuthContext} from '../context/AuthContext';
 import axios from 'axios';
 import { BASE_URL } from '../utils/constants';
 
 export default function useLogin(){
-    const { setToken } = useContext(AuthContext);
+    const { setToken, error, setError } = useContext(AuthContext);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [error, setError] = useState('');
+
+    // Navigation
+    const navigate = useNavigate();
 
     // API used
     const api = useMemo(() => {
@@ -32,7 +35,8 @@ export default function useLogin(){
             localStorage.setItem('access-token', data.token);
 
             // Redirect user to the dashboard
-            window.location.href = "http://localhost:3000/dashboard"
+            //window.location.href = "http://localhost:3000/dashboard"
+            navigate('/dashboard');
         })
         .catch(err => {
             if (err.response.status === 401){
@@ -50,7 +54,6 @@ export default function useLogin(){
         password,
         setPassword,
         error,
-        setError,
         handleLogin,
     }
 

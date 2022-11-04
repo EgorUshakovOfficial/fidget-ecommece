@@ -1,6 +1,6 @@
-import {Navigate} from 'react-router-dom';
-import CheckoutLayout from '../../../containers/CheckoutLayout';
+import CheckoutLayout from '../../../containers/layouts/CheckoutLayout';
 import InformationForm from './InformationForm';
+
 export default function Information(){
     return (
         <CheckoutLayout>

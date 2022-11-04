@@ -1,9 +1,10 @@
 import {useContext} from 'react';
 import {Outlet, Navigate} from 'react-router-dom';
-import {StateContext} from '../context/StateContext';
-import {CheckoutProvider} from '../context/CheckoutContext';
+import {StateContext} from '../../context/StateContext';
 
-export default function ConditionalRoute(){
+// Conditional route that prevents user from accessing
+// any checkout route if cart is empty
+export default function Conditional(){
     const {cart} = useContext(StateContext);
 
     // If no items are in cart, redirect user back to home page
