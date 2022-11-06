@@ -10,6 +10,7 @@ import Information from './pages/checkout/information/index';
 import Shipping from './pages/checkout/shipping/index';
 import Payment from './pages/checkout/payment/index';
 import Admin from './pages/admin/index';
+import Dashboard from './pages/dashboard/index';
 import {CheckoutProvider} from './context/CheckoutContext';
 import Protected from './containers/routes/Protected';
 import Conditional from  './containers/routes/Conditional';
@@ -25,9 +26,9 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="admin" element={ <Admin />} />
               <Route path="dashboard" element={
-                  <Protected>
-                    <div>Dashboard</div>
-                  </Protected>
+                  // <Protected>
+                    <Dashboard />
+                  //</Protected>
                 }
               />
               <Route path="cart" element={<Cart />} />
