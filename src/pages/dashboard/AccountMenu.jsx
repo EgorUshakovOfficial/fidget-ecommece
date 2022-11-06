@@ -34,7 +34,7 @@ export default function AccountMenu() {
             aria-haspopup="true"
             aria-expanded={open ? 'true' : undefined}
         >
-            <Avatar>EU</Avatar>
+            <Avatar sx={{background:"purple"}}>EU</Avatar>
         </IconButton>
       </Box>
       <Menu
