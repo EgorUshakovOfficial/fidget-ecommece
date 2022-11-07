@@ -1,3 +1,5 @@
+import {useContext} from 'react';
+import { CustomerContext } from '../../../../context/CustomerContext';
 import {TableCell, TableHead, TableRow, Checkbox} from '@mui/material';
 
 // Static head cells. Replace with API call here...
@@ -21,10 +23,20 @@ const headCells =  [
       label: 'Subscribed',
     },
 
+    {
+      id: 'edit-delete',
+      numeric: true,
+      disablePadding: false,
+      label: '',
+    }
+
 ];
 
-export default function EnhancedTableHead(props) {
-    const { onSelectAllClick,  numSelected, rowCount} = props;
+export default function EnhancedTableHead() {
+    const { handleSelectAllClick,  selected, rows} = useContext(CustomerContext);
+    const numSelected = selected.length;
+    const rowCount = rows.length;
+
     return (
       <TableHead>
         <TableRow>
@@ -33,7 +45,7 @@ export default function EnhancedTableHead(props) {
               color="primary"
               indeterminate={numSelected > 0 && numSelected < rowCount}
               checked={rowCount > 0 && numSelected === rowCount}
-              onChange={onSelectAllClick}
+              onChange={handleSelectAllClick}
               inputProps={{
                 'aria-label': 'select all desserts',
               }}

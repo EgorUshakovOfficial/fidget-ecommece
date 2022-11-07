@@ -1,11 +1,13 @@
-import * as React from 'react';
+import {useContext} from 'react';
 import { alpha } from '@mui/material/styles';
 import {Toolbar, Typography, IconButton, Tooltip } from '@mui/material';
 import {Delete, FilterList} from '@mui/icons-material';
 import UserFilter from './UserFilter';
+import {CustomerContext} from '../../../../context/CustomerContext';
 
-export default function EnhancedTableToolbar(props) {
-    const { numSelected } = props;
+export default function EnhancedTableToolbar() {
+    const {selected} = useContext(CustomerContext);
+    const numSelected = selected.length;
     return (
       <Toolbar
         sx={{
@@ -28,10 +30,7 @@ export default function EnhancedTableToolbar(props) {
             {numSelected} selected
           </Typography>
         ) : (
-          <UserFilter
-            userFilter={props.userFilter}
-            handleUserFilterChange={props.handleUserFilterChange}
-          />
+          <UserFilter />
         )}
         {numSelected > 0 ? (
           <Tooltip title="Delete">
