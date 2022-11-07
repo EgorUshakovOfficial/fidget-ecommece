@@ -13,8 +13,9 @@ import {Person, ShoppingCartCheckout, Email, Inventory, Menu} from '@mui/icons-m
 import AccountMenu from './AccountMenu';
 import AdminInfo from './AdminInfo';
 import NavItem from './NavItem';
+import { DRAWER_WIDTH } from '../../utils/constants';
 
-const drawerWidth = 240;
+
 
 export default function Navbar(props) {
   const { window } = props;
@@ -43,10 +44,10 @@ export default function Navbar(props) {
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
       <AppBar
-        position="fixed"
+        position="relative"
         sx={{
-          width: { sm: `calc(100% - ${drawerWidth}px)` },
-          ml: { sm: `${drawerWidth}px` },
+          width: { sm: `calc(100% - ${DRAWER_WIDTH}px)` },
+          ml: { sm: `${DRAWER_WIDTH}px` },
           backgroundColor:"transparent",
           color:"black",
         }}
@@ -73,7 +74,7 @@ export default function Navbar(props) {
       </AppBar>
       <Box
         component="nav"
-        sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
+        sx={{ width: { sm: DRAWER_WIDTH }, flexShrink: { sm: 0 } }}
         aria-label="mailbox folders"
       >
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
@@ -87,7 +88,7 @@ export default function Navbar(props) {
           }}
           sx={{
             display: { xs: 'block', sm: 'none' },
-            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: DRAWER_WIDTH },
           }}
         >
           {drawer}
@@ -96,7 +97,7 @@ export default function Navbar(props) {
           variant="permanent"
           sx={{
             display: { xs: 'none', sm: 'block' },
-            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: DRAWER_WIDTH },
           }}
           open
         >
