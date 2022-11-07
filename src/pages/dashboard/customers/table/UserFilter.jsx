@@ -1,8 +1,11 @@
+import {useContext} from 'react';
 import Paper from '@mui/material/Paper';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
+import {CustomerContext} from '../../../../context/CustomerContext';
 
-export default function CustomizedInputBase({handleUserFilterChange, userFilter}) {
+export default function UserFilter() {
+  const {userFilter, handleUserFilterChange} = useContext(CustomerContext);
   return (
     <Paper
         component="form"
