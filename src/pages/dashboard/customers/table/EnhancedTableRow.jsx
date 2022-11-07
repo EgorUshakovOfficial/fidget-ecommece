@@ -1,3 +1,4 @@
+import {useContext} from 'react';
 import {
     TableCell,
     TableRow,
@@ -6,6 +7,8 @@ import {
   } from '@mui/material';
 
 import {MoreHoriz} from '@mui/icons-material';
+import OptionsMenu from './OptionsMenu';
+import {CustomerContext} from '../../../../context/CustomerContext';
 
 export default function EnhancedTableRow({
     labelId,
@@ -13,6 +16,7 @@ export default function EnhancedTableRow({
     row,
     isItemSelected,
 }){
+    const {open, handleOptionsClick} = useContext(CustomerContext);
     return (
         <TableRow
         hover
@@ -43,10 +47,30 @@ export default function EnhancedTableRow({
         <TableCell align="right">{row.email}</TableCell>
         <TableCell align="right">{row.subscribed}</TableCell>
         <TableCell align="right">
-          <IconButton>
+          <IconButton
+            id="demo-customized-button"
+            aria-controls={open ? 'demo-customized-menu' : undefined}
+            aria-haspopup="true"
+            aria-expanded={open ? 'true' : undefined}
+            onClick={handleOptionsClick}
+          >
             <MoreHoriz />
           </IconButton>
+          <OptionsMenu />
         </TableCell>
       </TableRow>
     )
 }
+
+      /* <Button
+        id="demo-customized-button"
+        aria-controls={open ? 'demo-customized-menu' : undefined}
+        aria-haspopup="true"
+        aria-expanded={open ? 'true' : undefined}
+        variant="contained"
+        disableElevation
+        onClick={handleOptionsClick}
+        endIcon={<KeyboardArrowDownIcon />}
+      >
+        Options
+      </Button> */

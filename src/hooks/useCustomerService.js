@@ -1,10 +1,13 @@
 import {useState} from 'react';
 
 export default function useCustomerService(rows){
+    const [anchorOptions, setAnchorOptions] = useState(null);
     const [userFilter, setUserFilter] = useState("");
     const [selected, setSelected] = useState([]);
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(5);
+
+    const open = Boolean(anchorOptions);
 
     const handleSelectAllClick = (event) => {
       if (event.target.checked) {
@@ -36,6 +39,19 @@ export default function useCustomerService(rows){
       setSelected(newSelected);
     };
 
+    // Handles options click
+    const handleOptionsClick = e => {
+      // Prevents select click propagation
+      e.stopPropagation();
+      setAnchorOptions(e.currentTarget);
+    }
+
+    // Handles options close
+    const handleOptionsClose = e => {
+      e.stopPropagation();
+      setAnchorOptions(null);
+    }
+
     const handleChangePage = (event, newPage) => {
       setPage(newPage);
     };
@@ -64,18 +80,22 @@ export default function useCustomerService(rows){
     const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
     return {
+        open,
+        anchorOptions,
         userFilter,
         selected,
         rows,
         isSelected,
         page,
         rowsPerPage,
+        handleOptionsClick,
+        handleOptionsClose,
         handleSelectAllClick,
         handleSelectClick,
         handleChangePage,
         handleChangeRowsPerPage,
         handleUserFilterChange,
         filterRows,
-        emptyRows
+        emptyRows,
     }
 }
