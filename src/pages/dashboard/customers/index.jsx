@@ -1,15 +1,12 @@
-import DashboardLayout from '../../containers/layouts/DashboardLayout';
 import { CustomerProvider } from '../../../context/CustomerContext';
 import CustomerHeader from './CustomerHeader';
-import CustomerTable from './CustomerTable';
+import CustomerTable from './table/index';
 
 export default function Customers(){
     return (
-        <DashboardLayout>
-            <CustomerProvider>
-                <CustomerHeader />
-                <CustomerTable />
-            </CustomerProvider>
-        </DashboardLayout>
+        <CustomerProvider>
+            <CustomerHeader />
+            <CustomerTable />
+        </CustomerProvider>
     )
 }

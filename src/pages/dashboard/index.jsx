@@ -1,14 +1,13 @@
+import {useContext} from 'react';
+import { PageContext } from '../../context/PageContext';
 import DashboardLayout from '../../containers/layouts/DashboardLayout';
-import CustomerHeader from './customers/CustomerHeader';
-import CustomerTable from './customers/table/index';
-import { CustomerProvider } from '../../context/CustomerContext';
+import Customers from './customers/index';
+
 export default function Dashboard(){
+    const {page} = useContext(PageContext);
     return (
         <DashboardLayout>
-            <CustomerProvider>
-                <CustomerHeader />
-                <CustomerTable />
-            </CustomerProvider>
+            {page === "customers" && <Customers />}
         </DashboardLayout>
     )
 }

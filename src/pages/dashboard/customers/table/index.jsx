@@ -1,5 +1,4 @@
 import {useContext} from 'react';
-import useCustomerService from '../../../../hooks/useCustomerService';
 import {
   Box,
   Table,

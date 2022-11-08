@@ -4,6 +4,8 @@ import {
   Route
 } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
+import {CheckoutProvider} from './context/CheckoutContext';
+import { PageProvider } from './context/PageContext';
 import Home from './pages/home/index';
 import Cart from './pages/cart/index';
 import Information from './pages/checkout/information/index';
@@ -11,7 +13,6 @@ import Shipping from './pages/checkout/shipping/index';
 import Payment from './pages/checkout/payment/index';
 import Admin from './pages/admin/index';
 import Dashboard from './pages/dashboard/index';
-import {CheckoutProvider} from './context/CheckoutContext';
 import Protected from './containers/routes/Protected';
 import Conditional from  './containers/routes/Conditional';
 import './App.css';
@@ -27,7 +28,9 @@ function App() {
               <Route path="admin" element={ <Admin />} />
               <Route path="dashboard" element={
                   // <Protected>
-                    <Dashboard />
+                    <PageProvider>
+                      <Dashboard />
+                    </PageProvider>
                   //</Protected>
                 }
               />
