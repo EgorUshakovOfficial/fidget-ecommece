@@ -44,11 +44,11 @@ export default function Navbar(props) {
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
       <AppBar
-        position="relative"
+        position="fixed"
         sx={{
           width: { sm: `calc(100% - ${DRAWER_WIDTH}px)` },
           ml: { sm: `${DRAWER_WIDTH}px` },
-          backgroundColor:"transparent",
+          backgroundColor:"white",
           color:"black",
         }}
       >

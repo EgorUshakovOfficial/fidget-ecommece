@@ -69,8 +69,8 @@ export default function AccountMenu() {
             },
           },
         }}
-        transformOrigin={{ horizontal: 'right', vertical: 'top' }}
-        anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+        transformOrigin={{ horizontal: "center" }}
       >
         <Box paddingInline="1.2em">
             <Typography variant="body1" fontWeight={600}>Egor Ushakov</Typography>

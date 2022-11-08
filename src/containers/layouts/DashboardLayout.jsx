@@ -14,7 +14,8 @@ export default function CheckooutLayout({children}){
             <Box sx={{
                 width: matches ? `calc(100% - ${DRAWER_WIDTH}px)` : "100%",
                 marginLeft:"auto",
-                paddingBlock:"2.6em"
+                paddingBlock:"2.6em",
+                marginTop:"64px"
             }}>
                 <Container>
                     {children}
