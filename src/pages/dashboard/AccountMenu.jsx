@@ -1,4 +1,4 @@
-import {useState, Fragment} from 'react';
+import {useState, useContext, Fragment} from 'react';
 import {
     Box,
     Avatar,
@@ -10,10 +10,12 @@ import {
     Typography
 } from '@mui/material';
 import {Settings, Logout} from '@mui/icons-material';
+import {AuthContext} from '../../context/AuthContext'
 
 export default function AccountMenu() {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
+  const {handleLogout} = useContext(AuthContext);
 
   const handleClick = event => {
     setAnchorEl(event.currentTarget);
@@ -83,7 +85,7 @@ export default function AccountMenu() {
           </ListItemIcon>
           Settings
         </MenuItem>
-        <MenuItem>
+        <MenuItem onClick={handleLogout}>
           <ListItemIcon>
             <Logout fontSize="small" />
           </ListItemIcon>

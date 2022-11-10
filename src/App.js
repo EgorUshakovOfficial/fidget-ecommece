@@ -27,11 +27,11 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="admin" element={ <Admin />} />
               <Route path="dashboard" element={
-                  //<Protected>
+                  <Protected>
                     <PageProvider>
                       <Dashboard />
                     </PageProvider>
-                  //</Protected>
+                  </Protected>
                 }
               />
               <Route path="cart" element={<Cart />} />

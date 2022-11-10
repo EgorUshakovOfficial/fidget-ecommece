@@ -37,9 +37,7 @@ export default function useAuth(){
         }
     }, [token])
 
-
-
-
+    // Handles logout
     const handleLogout = () => {
         setToken("")
         setUser(null);
