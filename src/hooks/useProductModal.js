@@ -1,5 +1,6 @@
 import {useState, useEffect, useContext} from 'react';
 import { ProductContext } from '../context/ProductContext';
+import { validateNumericalInput } from '../utils/validators';
 
 export default function useProductModal(){
     const [productImage, setProductImage] = useState(null);
@@ -7,7 +8,7 @@ export default function useProductModal(){
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState('');
-    const [quantity, setQuantity] = useState('');
+    const [quantity, setQuantity] = useState('1');
     const {setOpenProductModal} = useContext(ProductContext);
 
     // Create product image url
@@ -59,10 +60,20 @@ export default function useProductModal(){
         // Prevent default behaviour of form
         e.preventDefault();
 
+        if (validateNumericalInput(price) === "Input is not valid"){
+            return;
+        }
+
         // Fetch from specific api...
 
+        // Set form fields to initial values
         setOpenProductModal(false);
-
+        setProductImage(null);
+        setProductImageUrl('');
+        setTitle('');
+        setDescription('');
+        setPrice('');
+        setQuantity('');
     }
 
     return {

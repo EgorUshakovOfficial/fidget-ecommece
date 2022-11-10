@@ -10,6 +10,7 @@ import {
 } from '@mui/material';
 import {CameraAlt, Close} from '@mui/icons-material';
 import useProductModal from '../../../hooks/useProductModal';
+import {validateNumericalInput} from '../../../utils/validators';
 import { ProductContext } from '../../../context/ProductContext';
 
 
@@ -120,17 +121,22 @@ export default function ProductModal() {
                  />
                 <TextField
                     id="product-modal-price"
-                    label="Price"
+                    label={"Price"}
+                    error={validateNumericalInput(price) === "Input is not valid"}
                     fullWidth
                     value={price}
+                    helperText={validateNumericalInput(price)}
                     onChange={handlePriceOnChange}
                     required
                  />
                 <TextField
                     id="product-modal-quantity"
                     label="Quantity"
+                    type="number"
+                    error={quantity === "Input is not valid"}
                     fullWidth
                     value={quantity}
+                    min="1"
                     onChange={handleQuantityOnChange}
                     required
                  />
