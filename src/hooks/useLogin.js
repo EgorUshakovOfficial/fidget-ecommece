@@ -1,8 +1,7 @@
 import {useState, useContext, useMemo} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {AuthContext} from '../context/AuthContext';
-import axios from 'axios';
-import { BASE_URL } from '../utils/constants';
+import {api} from '../lib/api';
 
 export default function useLogin(){
     const { setToken, error, setError } = useContext(AuthContext);
@@ -11,13 +10,6 @@ export default function useLogin(){
 
     // Navigation
     const navigate = useNavigate();
-
-    // API used
-    const api = useMemo(() => {
-        return axios.create({
-            baseURL: BASE_URL
-        })
-    }, []);
 
     // Handle login form
     const handleLogin =  e => {

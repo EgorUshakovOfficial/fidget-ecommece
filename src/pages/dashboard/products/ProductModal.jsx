@@ -13,7 +13,6 @@ import useProductModal from '../../../hooks/useProductModal';
 import {validateNumericalInput} from '../../../utils/validators';
 import { ProductContext } from '../../../context/ProductContext';
 
-
 export default function ProductModal() {
   const {openProductModal, handleProductModalClose} = useContext(ProductContext);
   const {
@@ -31,6 +30,7 @@ export default function ProductModal() {
     handleProductImageUpload,
     onProductModalSubmit
   } = useProductModal();
+
   return (
     <div>
       <Modal
@@ -75,6 +75,7 @@ export default function ProductModal() {
                             type="file"
                             accept="image/*"
                             hidden
+                            name="image"
                             onChange={handleProductImageUpload}
                         />
                     </Button>

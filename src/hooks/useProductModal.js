@@ -1,6 +1,7 @@
 import {useState, useEffect, useContext} from 'react';
 import { ProductContext } from '../context/ProductContext';
 import { validateNumericalInput } from '../utils/validators';
+import {api} from '../lib/api';
 
 export default function useProductModal(){
     const [productImage, setProductImage] = useState(null);
@@ -60,11 +61,35 @@ export default function useProductModal(){
         // Prevent default behaviour of form
         e.preventDefault();
 
-        if (validateNumericalInput(price) === "Input is not valid"){
+        // Price must be a numerical value and image must be selected.
+        // Otherwise, the request will not be send
+        if (validateNumericalInput(price) === "Input is not valid" || productImage === null){
             return;
         }
 
+        // Create new form and append fields to it
+        const formData = new FormData();
+        formData.append('image', productImage, "image");
+        formData.append('title', title);
+        formData.append('description', description);
+        formData.append('price', price);
+        formData.append('quantity', quantity);
+
+        // Header options
+        const configOptions = {
+           headers:{
+            'Content-Type':"multipart/form-data"
+           }
+        };
+
         // Fetch from specific api...
+        api.post('/api/add-new-product', formData, configOptions)
+        .then(product => {
+            console.log(product);
+        })
+        .catch(err => {
+            console.log('Error! Something went wrong')
+        })
 
         // Set form fields to initial values
         setOpenProductModal(false);
