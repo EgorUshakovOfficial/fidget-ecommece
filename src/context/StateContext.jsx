@@ -1,5 +1,5 @@
 import {createContext} from 'react';
-import useShoppingService from '../hooks/useShoppingService';
+import {useShoppingService} from '../features/shopping/index';
 
 // State context
 const StateContext = createContext({});

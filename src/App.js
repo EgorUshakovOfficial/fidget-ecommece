@@ -3,18 +3,16 @@ import {
   Routes,
   Route
 } from 'react-router-dom';
-import { AuthProvider } from './context/AuthContext';
-import {CheckoutProvider} from './context/CheckoutContext';
-import { PageProvider } from './context/PageContext';
-import Home from './pages/home/index';
-import Cart from './pages/cart/index';
-import Information from './pages/checkout/information/index';
-import Shipping from './pages/checkout/shipping/index';
-import Payment from './pages/checkout/payment/index';
-import Admin from './pages/admin/index';
-import Dashboard from './pages/dashboard/index';
-import Protected from './containers/routes/Protected';
-import Conditional from  './containers/routes/Conditional';
+import { AuthProvider, Protected } from './features/authentication/index';
+import { PageProvider } from './features/dashboard/index';
+import {Conditional, CheckoutProvider} from  './features/checkout/index';
+import ShoppingHome from './pages/Shopping/ShoppingHome';
+import Cart from './pages/Shopping/Cart';
+import Information from './pages/Checkout/Information';
+import Shipping from './pages/Checkout/Shipping';
+import Payment from './pages/Checkout/Payment';
+import Admin from './pages/Admin';
+import Dashboard from './pages/Dashboard/Dashboard';
 import './App.css';
 import './assets/styles/globals.css';
 
@@ -24,14 +22,14 @@ function App() {
         <Router>
           <AuthProvider>
             <Routes>
-              <Route path="/" element={<Home />} />
+              <Route path="/" element={<ShoppingHome />} />
               <Route path="admin" element={ <Admin />} />
               <Route path="dashboard" element={
-                  //<Protected>
+                  <Protected>
                     <PageProvider>
                       <Dashboard />
                     </PageProvider>
-                  //</Protected>
+                  </Protected>
                 }
               />
               <Route path="cart" element={<Cart />} />
