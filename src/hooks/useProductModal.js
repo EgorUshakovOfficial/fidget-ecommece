@@ -10,7 +10,7 @@ export default function useProductModal(){
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState('');
     const [quantity, setQuantity] = useState('1');
-    const {setOpenProductModal} = useContext(ProductContext);
+    const {setOpenProductModal, setProducts, setError} = useContext(ProductContext);
 
     // Create product image url
     useEffect(() => {
@@ -84,11 +84,12 @@ export default function useProductModal(){
 
         // Fetch from specific api...
         api.post('/api/add-new-product', formData, configOptions)
-        .then(product => {
-            console.log(product);
+        .then(res => {
+            let product = res.data;
+            setProducts(state => [...state, product])
         })
         .catch(err => {
-            console.log('Error! Something went wrong')
+            setError('Error! Something went wrong');
         })
 
         // Set form fields to initial values

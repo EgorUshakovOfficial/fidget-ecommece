@@ -1,4 +1,4 @@
-import { Container, Grid, Paper} from "@mui/material"
+import { Container, Grid} from "@mui/material"
 import ShoppingItem from "./ShoppingItem"
 import redFidgetSpinner from '../../assets/images/fidget-spinner-red.jpg'
 import yellowFidgetSpinner from '../../assets/images/fidget-spinner-yellow.jpg';

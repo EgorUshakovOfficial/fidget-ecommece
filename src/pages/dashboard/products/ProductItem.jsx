@@ -4,7 +4,7 @@ import {Edit, Delete} from '@mui/icons-material';
 export default function ProductItem({
     title,
     price,
-    quantity,
+    stock,
     imageUrl
 }){
     return (
@@ -28,7 +28,7 @@ export default function ProductItem({
                         alignItems:"center",
                         justifyContent:"space-around"
                     }}>
-                        <Typography variant="h6"><strong>Quantity: {quantity}</strong></Typography>
+                        <Typography variant="h6"><strong>Quantity: {stock}</strong></Typography>
                         <Box>
                             <Tooltip title="Edit">
                                 <IconButton>
