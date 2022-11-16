@@ -4,22 +4,22 @@ import {api} from '../../../lib/api';
 export default function useProductServices(){
     const [openProductModal, setOpenProductModal] = useState(false);
     const [anchorSortByMenu, setAnchorSortByMenu] = useState(null);
-    const [products, setProducts] = useState([]);
+    //const [products, setProducts] = useState([]);
     const [error, setError] = useState('');
 
     const open = Boolean(anchorSortByMenu);
 
-    // Fetch products from server
-    useEffect(() => {
-        api
-        .get('/api/products')
-        .then(res => {
-            setProducts([...res.data]);
-        })
-        .catch(err => {
-            setError('Error! Something went wrong!');
-        })
-    }, [])
+    // // Fetch products from server
+    // useEffect(() => {
+    //     api
+    //     .get('/api/products')
+    //     .then(res => {
+    //         setProducts([...res.data]);
+    //     })
+    //     .catch(err => {
+    //         setError('Error! Something went wrong!');
+    //     })
+    // }, [])
 
 
     // Handles new product click
@@ -47,8 +47,8 @@ export default function useProductServices(){
         setOpenProductModal,
         anchorSortByMenu,
         open,
-        products,
-        setProducts,
+        // products,
+        // setProducts,
         handleProductModalClose,
         handleNewProductClick,
         handleSortByClick,

@@ -1,4 +1,5 @@
 import {useState, useEffect, useContext} from 'react';
+import {StateContext} from '../../../context/StateContext';
 import { ProductContext } from '../context/ProductContext';
 import { validateNumericalInput } from '../../../utils/validators';
 import {api} from '../../../lib/api';
@@ -10,7 +11,8 @@ export default function useProductModal(){
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState('');
     const [quantity, setQuantity] = useState('1');
-    const {setOpenProductModal, setProducts, setError} = useContext(ProductContext);
+    const {setProductsForSale} = useContext(StateContext);
+    const {setOpenProductModal, setError} = useContext(ProductContext);
 
     // Create product image url
     useEffect(() => {
@@ -86,7 +88,7 @@ export default function useProductModal(){
         api.post('/api/add-new-product', formData, configOptions)
         .then(res => {
             let product = res.data;
-            setProducts(state => [...state, product])
+            setProductsForSale(state => [...state, product])
         })
         .catch(err => {
             setError('Error! Something went wrong');

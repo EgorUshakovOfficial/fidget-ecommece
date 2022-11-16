@@ -1,14 +1,37 @@
-import {createContext} from 'react';
-import {useShoppingService} from '../features/shopping/index';
+import {createContext, useEffect, useState} from 'react';
+import {useCartService} from '../features/shopping/index';
+import {api} from '../lib/api';
+
 
 // State context
 const StateContext = createContext({});
 
 // State provider
 const StateProvider = ({children}) => {
-    const homeProps = useShoppingService();
+    // Cart services
+    const homeProps = useCartService();
+
+    // Product for sale
+    const [productsForSale, setProductsForSale] = useState([]);
+
+    // Fetch products for sale from the endpoint
+    useEffect(() => {
+        api
+        .get('/api/products')
+        .then(res => {
+            setProductsForSale([...res.data]);
+        })
+        .catch(err => {
+           console.log(err);
+        })
+    }, [])
     return (
-        <StateContext.Provider value={{...homeProps}}>
+        <StateContext.Provider
+            value={{
+                ...homeProps,
+                productsForSale,
+                setProductsForSale
+        }}>
             {children}
         </StateContext.Provider>
     )

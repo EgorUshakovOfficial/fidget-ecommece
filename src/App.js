@@ -25,11 +25,11 @@ function App() {
               <Route path="/" element={<ShoppingHome />} />
               <Route path="admin" element={ <Admin />} />
               <Route path="dashboard" element={
-                  <Protected>
+                  //<Protected>
                     <PageProvider>
                       <Dashboard />
                     </PageProvider>
-                  </Protected>
+                  //</Protected>
                 }
               />
               <Route path="cart" element={<Cart />} />

@@ -13,9 +13,9 @@ export default function CartItems(){
             {cart.length !== 0 ?
                 <Grid container columnSpacing={2} rowGap={2}>
                         {cart.map(product => (
-                            <Grid key={product.id} item sm={12} md={6} lg={4}>
+                            <Grid key={product._id} item sm={12} md={6} lg={4}>
                                 <CartItem
-                                    id={product.id}
+                                    id={product._id}
                                     name={product.name}
                                     image={product.image}
                                     cost={product.cost}

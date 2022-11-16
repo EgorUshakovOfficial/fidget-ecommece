@@ -15,21 +15,27 @@ import {StateContext} from '../../../../context/StateContext';
 import { Add, Remove } from '@mui/icons-material';
 
 export default function ShoppingItem({
-    productName,
-    productImage,
-    productCost,
-    productId
+    title,
+    imageUrl,
+    stock,
+    price,
+    _id
 }){
-
     const [numItem, setNumItem] = useState(1);
     const {setCart} = useContext(StateContext);
 
     const handleIncrement = () => {
-        setNumItem(state => state + 1)
+        setNumItem(state => {
+            if (state + 1 <= stock){
+                return state + 1;
+            }
+            return state;
+        })
     };
 
     const handleDecrement = () => {
         setNumItem(state => {
+            console.log(stock);
             if (state > 1){
                 return state-1;
             }
@@ -39,10 +45,10 @@ export default function ShoppingItem({
 
     const handleAddToCart = e => {
         setCart(cart => {
-            let index = cart.findIndex(product => product.id === productId);
+            let index = cart.findIndex(product => product.id === _id);
             if (index !== -1){
                 let prevItem = cart[index];
-                cart[index] = Object.assign(prevItem, {quantity: numItem, cost: productCost})
+                cart[index] = Object.assign(prevItem, {quantity: numItem, cost: price})
                 return cart;
             }
 
@@ -50,10 +56,10 @@ export default function ShoppingItem({
             cart = [
                 ...cart,
                 {
-                    name:productName,
-                    id: productId,
-                    cost: productCost,
-                    image: productImage,
+                    name:title,
+                    id: _id,
+                    cost: price,
+                    image: imageUrl,
                     quantity: numItem,
                 }
 
@@ -67,14 +73,14 @@ export default function ShoppingItem({
             <Card>
                 <CardMedia
                     component="img"
-                    image={productImage}
+                    image={imageUrl}
                     height="auto"
                     alt="Fidget Spinner"
                 />
                 <CardHeader
-                    title={productName}
+                    title={title}
                     titleTypographyProps={{marginBlock:"0.2em"}}
-                    subheader={`$${productCost}`}
+                    subheader={`$${price}`}
                     subheaderTypographyProps={{variant:"h5", color:"black", fontWeight:"bold"}}
                     style={{padding:"0", marginBlock:"0.2em"}}
                 />
