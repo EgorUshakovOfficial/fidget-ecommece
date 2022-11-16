@@ -4,7 +4,8 @@ import {
     ProductFilter,
     SortByFilterMenu,
     ProductGallery,
-    ProductModal
+    AddProductModal,
+    DeleteProductModal
 } from '../../features/dashboard/index';
 
 export default function Products(){
@@ -14,7 +15,8 @@ export default function Products(){
             <ProductFilter />
             <SortByFilterMenu />
             <ProductGallery />
-            <ProductModal />
+            <AddProductModal />
+            <DeleteProductModal />
         </ProductProvider>
     )
 }

@@ -4,7 +4,7 @@ import { ProductContext } from '../context/ProductContext';
 import { validateNumericalInput } from '../../../utils/validators';
 import {api} from '../../../lib/api';
 
-export default function useProductModal(){
+export default function useAddProductModal(){
     const [productImage, setProductImage] = useState(null);
     const [productImageUrl, setProductImageUrl] = useState('');
     const [title, setTitle] = useState('');

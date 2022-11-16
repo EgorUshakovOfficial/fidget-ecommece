@@ -9,7 +9,8 @@ import AddProduct from "./components/products/AddProduct";
 import ProductFilter from "./components/products/ProductFilter";
 import SortByFilterMenu from "./components/products/SortByFilterMenu";
 import ProductGallery from "./components/products/ProductGallery";
-import ProductModal from './components/products/ProductModal';
+import AddProductModal from './components/products/AddProductModal';
+import DeleteProductModal from './components/products/DeleteProductModal';
 
 export {
     CustomerProvider,
@@ -23,5 +24,6 @@ export {
     ProductFilter,
     SortByFilterMenu,
     ProductGallery,
-    ProductModal
+    AddProductModal,
+    DeleteProductModal
 };

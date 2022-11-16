@@ -9,12 +9,12 @@ import {
     IconButton
 } from '@mui/material';
 import {CameraAlt, Close} from '@mui/icons-material';
-import useProductModal from '../../hooks/useProductModal';
+import useAddProductModal from '../../hooks/useAddProductModal';
 import {validateNumericalInput} from '../../../../utils/validators';
 import { ProductContext } from '../../context/ProductContext';
 
-export default function ProductModal() {
-  const {openProductModal, handleProductModalClose} = useContext(ProductContext);
+export default function AddProductModal() {
+  const {openAddProductModal, handleAddProductModalClose} = useContext(ProductContext);
   const {
     handleProductImageClick,
     productImage,
@@ -29,22 +29,22 @@ export default function ProductModal() {
     handleQuantityOnChange,
     handleProductImageUpload,
     onProductModalSubmit
-  } = useProductModal();
+  } = useAddProductModal();
 
   return (
     <div>
       <Modal
         aria-labelledby="product-modal"
         aria-describedby="add-new-product"
-        open={openProductModal}
-        onClose={handleProductModalClose}
+        open={openAddProductModal}
+        onClose={handleAddProductModalClose}
         closeAfterTransition
         BackdropComponent={Backdrop}
         BackdropProps={{
           timeout: 500,
         }}
       >
-        <Fade in={openProductModal}>
+        <Fade in={openAddProductModal}>
           <Box
             component="form"
             onSubmit={onProductModalSubmit}
