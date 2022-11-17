@@ -1,4 +1,6 @@
 import {useContext} from 'react';
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import {
     Backdrop,
     Box,
@@ -15,7 +17,6 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 400,
   bgcolor: 'background.paper',
   borderRadius:"8px",
   border:"1px solid lightgray",
@@ -30,6 +31,10 @@ export default function DeleteProductModal(){
   } = useContext(ProductContext);
 
   const {handleDeleteProductClick} = useDeleteProductModal();
+
+  const theme = useTheme();
+
+  const matches = useMediaQuery(theme.breakpoints.up('sm'));
 
   const open = deleteProductId !== "";
 
@@ -47,7 +52,7 @@ export default function DeleteProductModal(){
         }}
       >
         <Fade in={open}>
-          <Box sx={style}>
+          <Box sx={{...style, width: matches ? 400 : '90%'}}>
             <Typography id="delete-product-modal-title" variant="h6" component="h2">
               Delete Post
             </Typography>

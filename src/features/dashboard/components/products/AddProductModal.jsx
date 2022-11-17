@@ -1,4 +1,6 @@
 import {useContext} from 'react';
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import {
     Backdrop,
     Box,
@@ -15,6 +17,7 @@ import { ProductContext } from '../../context/ProductContext';
 
 export default function AddProductModal() {
   const {openAddProductModal, handleAddProductModalClose} = useContext(ProductContext);
+
   const {
     handleProductImageClick,
     productImage,
@@ -30,6 +33,10 @@ export default function AddProductModal() {
     handleProductImageUpload,
     onProductModalSubmit
   } = useAddProductModal();
+
+  const theme = useTheme();
+
+  const matches = useMediaQuery(theme.breakpoints.up('sm'));
 
   return (
     <div>
@@ -56,7 +63,7 @@ export default function AddProductModal() {
                 flexDirection:"column",
                 gap:"0.8em",
                 transform: 'translate(-50%, -50%)',
-                width: 400,
+                width: matches ? 400 : "90%",
                 bgcolor: 'background.paper',
                 borderRadius:"8px",
                 border:"1px solid lightgray",
@@ -80,7 +87,12 @@ export default function AddProductModal() {
                         />
                     </Button>
                     :
-                    <Box style={{position:"relative"}}>
+                    <Box style={{
+                        position:"relative",
+                        width: matches ? '80%' : '60%',
+                        marginInline:"auto"
+                    }}
+                    >
                         <Box
                             component="img"
                             alt="Picture of new product"
