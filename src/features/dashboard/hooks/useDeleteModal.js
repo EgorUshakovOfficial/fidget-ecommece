@@ -1,20 +1,24 @@
-import {useState} from 'react';
-export default function useDeleteModal(){
-    const [openDeleteModal, setOpenDeleteModal] = useState(false);
+import {useContext} from 'react';
+import {ProductContext } from '../context/ProductContext';
+import {StateContext} from '../../../context/StateContext';
+import {deleteProduct} from '../services/deleteProduct';
 
-    // Opens delete modal on click
-    const handleDeleteModalOpen= () => {
-        setOpenDeleteModal(true);
-    }
+export default function useDeleteProductModal(){
+    const {setProductsForSale} = useContext(StateContext);
+    const {deleteProductId, setDeleteProductId} = useContext(ProductContext);
 
-    // Closes delete modal on click
-    const handleDeleteModalClose = () => {
-        setOpenDeleteModal(false);
+    // Handle delete product click
+    const handleDeleteProductClick = async () => {
+        // Sends POST request to /api/delete-product/:id
+        deleteProduct(deleteProductId)
+        .then(productId => setProductsForSale(product => product._id !== productId))
+        .catch(err => console.log(err));
+
+        // Close delete product modal
+        setDeleteProductId('');
     }
 
     return {
-        openDeleteModal,
-        handleDeleteModalOpen,
-        handleDeleteModalClose
+        handleDeleteProductClick
     }
 }

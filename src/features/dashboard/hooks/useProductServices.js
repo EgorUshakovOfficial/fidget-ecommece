@@ -1,9 +1,8 @@
 import {useState, useMemo, useEffect} from 'react';
-import {api} from '../../../lib/api';
 
 export default function useProductServices(){
     const [openAddProductModal, setAddOpenProductModal] = useState(false);
-    const [openDeleteProductModal, setOpenDeleteProductModal] = useState(false);
+    const [deleteProductId, setDeleteProductId] = useState('');
     const [anchorSortByMenu, setAnchorSortByMenu] = useState(null);
     const [error, setError] = useState('');
 
@@ -19,14 +18,9 @@ export default function useProductServices(){
         setAddOpenProductModal(false);
     }
 
-    // Handles delete product click
-    const handleDeleteIconClick = () => {
-        setOpenDeleteProductModal(true);
-    }
-
     // Closes delete product modal
     const handleDeleteProductModalClose = () => {
-        setOpenDeleteProductModal(false);
+        setDeleteProductId("");
     }
 
     // Handles product filter click
@@ -42,12 +36,13 @@ export default function useProductServices(){
     return {
         openAddProductModal,
         setAddOpenProductModal,
-        openDeleteProductModal,
+        deleteProductId,
+        setDeleteProductId,
         anchorSortByMenu,
         open,
         handleAddProductModalClose,
         handleNewProductClick,
-        handleDeleteIconClick,
+        // handleDeleteIconClick,
         handleDeleteProductModalClose,
         handleSortByClick,
         handleSortByMenuClose,

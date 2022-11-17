@@ -1,4 +1,4 @@
-import {useState, useContext} from 'react';
+import {useContext} from 'react';
 import {
     Backdrop,
     Box,
@@ -8,6 +8,7 @@ import {
     Typography
 } from '@mui/material';
 import {ProductContext} from '../../context/ProductContext';
+import useDeleteProductModal from '../../hooks/useDeleteModal';
 
 const style = {
   position: 'absolute',
@@ -24,16 +25,20 @@ const style = {
 
 export default function DeleteProductModal(){
   const {
-    openDeleteProductModal,
+    deleteProductId,
     handleDeleteProductModalClose
   } = useContext(ProductContext);
+
+  const {handleDeleteProductClick} = useDeleteProductModal();
+
+  const open = deleteProductId !== "";
 
   return (
     <div>
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
-        open={openDeleteProductModal}
+        open={open}
         onClose={handleDeleteProductModalClose}
         closeAfterTransition
         BackdropComponent={Backdrop}
@@ -41,13 +46,13 @@ export default function DeleteProductModal(){
           timeout: 500,
         }}
       >
-        <Fade in={openDeleteProductModal}>
+        <Fade in={open}>
           <Box sx={style}>
             <Typography id="delete-product-modal-title" variant="h6" component="h2">
-              Delete Post?
+              Delete Post
             </Typography>
             <Typography id="delete-product-modal-description" sx={{ mt: 2 }}>
-              Are you sure you want to delete post?
+              Are you sure you want to delete this product?
             </Typography>
             <Box
               sx={{
@@ -58,11 +63,11 @@ export default function DeleteProductModal(){
                 mt:2
               }}
             >
-                <Button variant="secondary" size="medium" onClick={handleDeleteProductModalClose}>
+                <Button variant="secondary" style={{textTransform:"none"}} size="medium" onClick={handleDeleteProductModalClose}>
                     Cancel
                 </Button>
-                <Button variant="contained" color="error" size="medium">
-                    Delete
+                <Button variant="contained" color="error" style={{textTransform:"none"}} onClick={handleDeleteProductClick} size="medium">
+                    Yes, delete it
                 </Button>
             </Box>
           </Box>

@@ -3,14 +3,15 @@ import {Grid, Paper, Box, IconButton, Tooltip, Typography} from '@mui/material';
 import {Edit, Delete} from '@mui/icons-material';
 import {ProductContext} from '../../context/ProductContext';
 export default function ProductItem({
+    _id,
     title,
     price,
     stock,
     imageUrl
 }){
-    const {handleDeleteIconClick} = useContext(ProductContext);
+    const {setDeleteProductId} = useContext(ProductContext);
     return (
-        <Grid item xs={12} md={6} lg={4}>
+        <Grid item xs={12} md={6} lg={4} id={_id}>
             <Paper sx={{height:"100%"}}>
                 <Box
                     component="img"
@@ -37,7 +38,7 @@ export default function ProductItem({
                                     <Edit />
                                 </IconButton>
                             </Tooltip>
-                            <Tooltip title="Delete" onClick={handleDeleteIconClick}>
+                            <Tooltip title="Delete" onClick={() => setDeleteProductId( _id)}>
                                 <IconButton>
                                     <Delete />
                                 </IconButton>

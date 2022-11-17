@@ -2,7 +2,7 @@ import {useState, useEffect, useContext} from 'react';
 import {StateContext} from '../../../context/StateContext';
 import { ProductContext } from '../context/ProductContext';
 import { validateNumericalInput } from '../../../utils/validators';
-import {api} from '../../../lib/api';
+import {createNewProduct} from '../services/createNewProduct';
 
 export default function useAddProductModal(){
     const [productImage, setProductImage] = useState(null);
@@ -12,7 +12,7 @@ export default function useAddProductModal(){
     const [price, setPrice] = useState('');
     const [quantity, setQuantity] = useState('1');
     const {setProductsForSale} = useContext(StateContext);
-    const {setOpenProductModal, setError} = useContext(ProductContext);
+    const {setAddOpenProductModal, setError} = useContext(ProductContext);
 
     // Create product image url
     useEffect(() => {
@@ -59,7 +59,7 @@ export default function useAddProductModal(){
     }
 
     // Handles product modal form when submitted
-    const onProductModalSubmit = e => {
+    const onProductModalSubmit = async e => {
         // Prevent default behaviour of form
         e.preventDefault();
 
@@ -84,18 +84,13 @@ export default function useAddProductModal(){
            }
         };
 
-        // Fetch from specific api...
-        api.post('/api/add-new-product', formData, configOptions)
-        .then(res => {
-            let product = res.data;
-            setProductsForSale(state => [...state, product])
-        })
-        .catch(err => {
-            setError('Error! Something went wrong');
-        })
+        // Creates new product
+        createNewProduct(formData, configOptions)
+        .then(product => setProductsForSale(state => [...state, product]))
+        .catch(err => setError('Error! Something went wrong'))
 
         // Set form fields to initial values
-        setOpenProductModal(false);
+        setAddOpenProductModal(false);
         setProductImage(null);
         setProductImageUrl('');
         setTitle('');
