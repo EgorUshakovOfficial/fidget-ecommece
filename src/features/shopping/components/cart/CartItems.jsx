@@ -6,21 +6,15 @@ import {StateContext} from '../../../../context/StateContext';
 
 export default function CartItems(){
     const {cart} = useContext(StateContext);
-
+    console.log(cart);
     return (
         <Container maxWidth="lg" style={{padding:"65px"}}>
             <Typography variant="h4" component="h1" fontWeight="800" marginBottom="0.6em">Cart</Typography>
             {cart.length !== 0 ?
                 <Grid container columnSpacing={2} rowGap={2}>
                         {cart.map(product => (
-                            <Grid key={product._id} item sm={12} md={6} lg={4}>
-                                <CartItem
-                                    id={product._id}
-                                    name={product.name}
-                                    image={product.image}
-                                    cost={product.cost}
-                                    quantity={product.quantity}
-                                />
+                            <Grid key={product.id} item sm={12} md={6} lg={4}>
+                                <CartItem {...product} />
                             </Grid>
                         ) )}
                 </Grid>
