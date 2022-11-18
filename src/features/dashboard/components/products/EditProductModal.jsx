@@ -1,149 +1,147 @@
-import { useTheme } from '@mui/material/styles';
-import useMediaQuery from '@mui/material/useMediaQuery';
+import {useContext} from 'react';
+import {ProductContext} from '../../context/ProductContext';
 import {
-    Backdrop,
-    Box,
-    Modal,
-    Fade,
-    Button,
-    TextField,
-    IconButton
+  Backdrop,
+  Box,
+  Modal,
+  Typography,
+  TextField,
+  Button,
+  IconButton
 } from '@mui/material';
-import {CameraAlt, Close} from '@mui/icons-material';
-import {validateNumericalInput} from '../../../../utils/validators';
+import {Close} from '@mui/icons-material';
+import ConfirmEditProductModal from './ConfirmEditProductModal';
+import useEditProductModal from '../../hooks/useEditProductModal';
+import redFidgetSpinner from '../../../../assets/images/fidget-spinner-red.jpg';
 
-export default function AddProductModal() {
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '1px solid lightgray',
+  borderRadius:"8px",
+  boxShadow: 24,
+  pt: 2,
+  px: 4,
+  pb: 3
+};
 
-  const theme = useTheme();
+export default function EditProductModal() {
+  const {
+    editProductId,
+    handleModalCloseIconClick,
+    handleEditProductModalClose
+  } = useContext(ProductContext);
 
-  const matches = useMediaQuery(theme.breakpoints.up('sm'));
+  const {
+    image,
+    title,
+    description,
+    quantity,
+    price,
+    handleTitleOnChange,
+    handleDescriptionOnChange,
+    handlePriceOnChange,
+    handleQuantityOnChange
+  } = useEditProductModal();
 
-  return (
-    <div>
-      <Modal
-        aria-labelledby="edit-product-modal"
-        aria-describedby="edit-product"
-        open={true}
-        onClose={() => {}}
+  return (<Modal
+        open={editProductId !== ""}
+        onClose={handleEditProductModalClose}
         closeAfterTransition
         BackdropComponent={Backdrop}
         BackdropProps={{
           timeout: 500,
         }}
       >
-        <Fade in={openAddProductModal}>
-          <Box
-            component="form"
-            onSubmit={() => {}}
+        <Box sx={{ ...style}}>
+          <IconButton
+            onClick={handleModalCloseIconClick}
             sx={{
-                position: 'absolute',
-                top: '50%',
-                left: '50%',
-                display:"flex",
-                flexDirection:"column",
-                gap:"0.8em",
-                transform: 'translate(-50%, -50%)',
-                width: matches ? 400 : "90%",
-                bgcolor: 'background.paper',
-                borderRadius:"8px",
-                border:"1px solid lightgray",
-                p: 4,
+              position:"absolute",
+              left:"86%",
+              top:"2.5%"
             }}
           >
-                {productImage===null  ?
-                    <Button
-                        component="label"
-                        size="medium"
-                        fullWidth
-                        endIcon={<CameraAlt />}
-                    >
-                        Add photos
-                        <input
-                            type="file"
-                            accept="image/*"
-                            hidden
-                            name="image"
-                            onChange={() => {}}
-                        />
-                    </Button>
-                    :
-                    <Box style={{
-                        position:"relative",
-                        width: matches ? '80%' : '60%',
-                        marginInline:"auto"
-                    }}
-                    >
-                        <Box
-                            component="img"
-                            alt="Picture of product"
-                            src={"#"}
-                            sx={{
-                                width:"100%",
-                                height:"auto"
-                            }}
-                        />
-                        <IconButton
-                            sx={{
-                                position:"absolute",
-                                top:"2%",
-                                left:"85%"
-                            }}
-                            onClick={() => {}}
-                        >
-                            <Close />
-                        </IconButton>
-                    </Box>
-                }
-                <TextField
-                    id="edit-product-modal-email"
-                    label="Title"
-                    fullWidth
-                    value={""}
-                    onChange={() => {}}
-                    required
-                 />
-                <TextField
-                    id="edit-product-modal-description"
-                    multiline
-                    label="Description"
-                    rows={2}
-                    fullWidth
-                    value={description}
-                    onChange={handleDescriptionOnChange}
-                    required
-                 />
-                <TextField
-                    id="edit-product-modal-price"
-                    label={"Price"}
-                    error={validateNumericalInput(price) === "Input is not valid"}
-                    fullWidth
-                    value={""}
-                    helperText={validateNumericalInput("")}
-                    onChange={() => {}}
-                    required
-                 />
-                <TextField
-                    id="edit-product-modal-quantity"
-                    label="Quantity"
-                    type="number"
-                    error={quantity === "Input is not valid"}
-                    fullWidth
-                    value={""}
-                    min="1"
-                    onChange={() => {}}
-                    required
-                 />
-                 <Button
-                    variant="contained"
-                    color="success"
-                    size="medium"
-                    type="submit"
-                 >
-                    Create post
-                 </Button>
-          </Box>
-        </Fade>
-      </Modal>
-    </div>
-  );
+            <Close />
+          </IconButton>
+          <Typography component="h2" variant="h6" sx={{marginBottom:"0.4em"}}>Edit Post</Typography>
+            <form
+              style={{
+                display:"flex",
+                flexDirection:"column",
+                gap:"0.6em",
+              }}
+            >
+              <Box sx={{
+                position:"relative",
+                width:"80%",
+                marginInline:"auto"
+              }}>
+                <Box
+                  component="img"
+                  src={image}
+                  alt="Picture of product"
+                  sx={{
+                    width:"100%",
+                    height:"auto"
+                  }}
+                />
+                <IconButton
+                  sx={{
+                    position:"absolute",
+                    top:"3%",
+                    left:"83%"
+                  }}
+                >
+                  <Close />
+                </IconButton>
+              </Box>
+              <TextField
+                id="edit-product-modal-title"
+                label="Title"
+                fullWidth
+                value={title}
+                onChange={handleTitleOnChange}
+                required
+              />
+              <TextField
+                id="edit-product-modal-description"
+                label="Description"
+                fullWidth
+                value={description}
+                onChange={handleDescriptionOnChange}
+                required
+              />
+              <TextField
+                id="edit-product-modal-price"
+                label="Price"
+                fullWidth
+                value={price}
+                onChange={handlePriceOnChange}
+                required
+              />
+              <TextField
+                id="edit-product-modal-quantity"
+                label="Quantity"
+                fullWidth
+                value={quantity}
+                onChange={handleQuantityOnChange}
+                required
+              />
+              <Button
+                type="submit"
+                variant="contained"
+                size="medium"
+                color="success"
+              >
+                Save changes
+              </Button>
+            </form>
+          <ConfirmEditProductModal />
+        </Box>
+      </Modal>);
 }

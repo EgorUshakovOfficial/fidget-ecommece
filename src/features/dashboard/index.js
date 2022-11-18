@@ -11,6 +11,7 @@ import SortByFilterMenu from "./components/products/SortByFilterMenu";
 import ProductGallery from "./components/products/ProductGallery";
 import AddProductModal from './components/products/AddProductModal';
 import DeleteProductModal from './components/products/DeleteProductModal';
+import EditProductModal from './components/products/EditProductModal';
 
 export {
     CustomerProvider,
@@ -25,5 +26,6 @@ export {
     SortByFilterMenu,
     ProductGallery,
     AddProductModal,
-    DeleteProductModal
+    DeleteProductModal,
+    EditProductModal
 };

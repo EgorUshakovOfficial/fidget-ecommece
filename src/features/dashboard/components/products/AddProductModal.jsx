@@ -115,7 +115,7 @@ export default function AddProductModal() {
                     </Box>
                 }
                 <TextField
-                    id="product-modal-email"
+                    id="add-product-modal-title"
                     label="Title"
                     fullWidth
                     value={title}
@@ -123,7 +123,7 @@ export default function AddProductModal() {
                     required
                  />
                 <TextField
-                    id="product-modal-description"
+                    id="add-product-modal-description"
                     multiline
                     label="Description"
                     rows={2}
@@ -133,7 +133,7 @@ export default function AddProductModal() {
                     required
                  />
                 <TextField
-                    id="product-modal-price"
+                    id="add-product-modal-price"
                     label={"Price"}
                     error={validateNumericalInput(price) === "Input is not valid"}
                     fullWidth
@@ -143,7 +143,7 @@ export default function AddProductModal() {
                     required
                  />
                 <TextField
-                    id="product-modal-quantity"
+                    id="add-product-modal-quantity"
                     label="Quantity"
                     type="number"
                     error={quantity === "Input is not valid"}

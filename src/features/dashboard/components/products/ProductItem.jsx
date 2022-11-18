@@ -9,7 +9,7 @@ export default function ProductItem({
     stock,
     imageUrl
 }){
-    const {setDeleteProductId} = useContext(ProductContext);
+    const {setDeleteProductId, setEditProductId} = useContext(ProductContext);
     return (
         <Grid item xs={12} md={6} lg={4} id={_id}>
             <Paper sx={{height:"100%"}}>
@@ -33,7 +33,7 @@ export default function ProductItem({
                     }}>
                         <Typography variant="h6"><strong>Quantity: {stock}</strong></Typography>
                         <Box>
-                            <Tooltip title="Edit">
+                            <Tooltip title="Edit" onClick={() => setEditProductId(_id)}>
                                 <IconButton>
                                     <Edit />
                                 </IconButton>
