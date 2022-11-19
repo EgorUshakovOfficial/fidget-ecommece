@@ -1,3 +1,5 @@
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import {Fragment, useContext} from 'react';
 import {Box, Modal, Button, Typography} from '@mui/material';
 import {ProductContext} from '../../context/ProductContext';
@@ -24,16 +26,19 @@ export default function ConfirmEditProductModal(){
       openConfirmEditProductModal,
       handleConfirmEditProductModalClose
     } = useContext(ProductContext);
+
+    const theme = useTheme();
+
+    const matches = useMediaQuery(theme.breakpoints.up('sm'));
+
     return (
       <Fragment>
         <Modal
           hideBackdrop
           open={openConfirmEditProductModal}
           onClose={() => {}}
-          aria-labelledby="confirm-edit-product-modal-title"
-          aria-describedby="confirm-product-edits"
         >
-          <Box sx={{ ...style, width: 450 }}>
+          <Box sx={{ ...style, width: matches ? 350 : "80%"}}>
             <Typography component="h3" variant="h6" sx={{marginBottom:"0.2em"}}>Unsaved changes</Typography>
             <Typography variant="subtitle1" sx={{marginBottom:"0.2em"}}>
               Changes you made will not be saved

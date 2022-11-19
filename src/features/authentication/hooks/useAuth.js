@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react';
-import {api} from '../../../lib/api';
+import {getUser} from '../services/getUser';
 
 export default function useAuth(){
     // State
@@ -13,20 +13,16 @@ export default function useAuth(){
     // Retrieve user object
     useEffect(() => {
         if (token !== ""){
-            api
-            .get('/getUser', {headers:{'Authorization':`bearer ${token}`}})
-            .then(async res => {
-                let data = await res.data;
-                // Set user object
-                setUser(data.user)
-            })
+            // GET /user request: Retrieves user from endpoint using access token
+            getUser(token)
+            .then(user => setUser(user))
             .catch(err => {
                 if (err.response.status === 401){
                     handleLogout();
                     setError('Your Session has expired. Please log in again')
                 }
                 else{
-                    setError('Error! Something went wrong!')
+                    setError('Error! Something went wrong!');
                 }
             })
         }

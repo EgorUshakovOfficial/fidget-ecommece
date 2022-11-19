@@ -1,7 +1,7 @@
 import {useState, useContext} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {AuthContext} from '../context/AuthContext';
-import {api} from '../../../lib/api';
+import {login} from '../services/login';
 
 export default function useLogin(){
     const { setToken, error, setError } = useContext(AuthContext);
@@ -16,18 +16,13 @@ export default function useLogin(){
         // Prevent form from being submitted to the server
         e.preventDefault();
 
-        // Send request to POST /login endpoint
-        api
-        .post('/login', {email, password})
-        .then(async res => {
-            let data =  await res.data;
-            setToken(data.token);
+        // Send POST /login: Retrieves access token
+        login(email, password)
+        .then(token => {
+            // Saves access token in local storage
+            localStorage.setItem('access-token', token);
 
-            // Save access token in local storage
-            localStorage.setItem('access-token', data.token);
-
-            // Redirect user to the dashboard
-            //window.location.href = "http://localhost:3000/dashboard"
+            // Redirects user to the dashboard
             navigate('/dashboard');
         })
         .catch(err => {
@@ -37,7 +32,7 @@ export default function useLogin(){
             else{
                 setError('Error! Something went wrong!');
             }
-        })
+        });
     };
 
     return {

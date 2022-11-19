@@ -1,42 +1,30 @@
-import {useState, useContext} from "react";
+import {useContext} from "react";
+import {
+    AppBar,
+    Box,
+    Toolbar,
+    IconButton,
+    Typography,
+    Menu,
+    Container,
+    Button,
+    MenuItem,
+    Badge
+} from '@mui/material';
+import {ShoppingCart, Menu as MenuIcon} from "@mui/icons-material";
 import logo from '../../assets/images/logo.png';
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import Menu from "@mui/material/Menu";
-import MenuIcon from "@mui/icons-material/Menu";
-import Container from "@mui/material/Container";
-import Button from "@mui/material/Button";
-import MenuItem from "@mui/material/MenuItem";
-import ShoppingCart from "@mui/icons-material/ShoppingCart";
-import { Badge } from "@mui/material";
+import { SHOPPING_PAGES } from "../../data/constants";
+import useHeader from '../../hooks/useHeader';
 import {StateContext} from '../../context/StateContext';
-
-const pages = ["Catalog", "About", "Contact"];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 export default function Header() {
   const {handleShoppingCartSlider, cart} = useContext(StateContext);
-  const [anchorElNav, setAnchorElNav] = useState(null);
-  const [anchorElUser, setAnchorElUser] = useState(null);
-
-  const handleOpenNavMenu = e => {
-    setAnchorElNav(e.currentTarget);
-  };
-  const handleOpenUserMenu = e => {
-    setAnchorElUser(e.currentTarget);
-  };
-
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
-
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
-
+  const {
+    anchorElNav,
+    handleOpenNavMenu,
+    handleCloseNavMenu,
+  }
+   = useHeader();
   return (
     <AppBar
         position="fixed"
@@ -77,7 +65,7 @@ export default function Header() {
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
-              aria-label="account of current user"
+              aria-label="account-of-current-user"
               aria-controls="menu-appbar"
               aria-haspopup="true"
               onClick={handleOpenNavMenu}
@@ -103,7 +91,7 @@ export default function Header() {
                 display: { xs: "block", md: "none" },
               }}
             >
-              {pages.map((page) => (
+              {SHOPPING_PAGES.map((page) => (
                 <MenuItem key={page}  onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
@@ -139,7 +127,7 @@ export default function Header() {
             Fidget Spinners
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {pages.map((page) => (
+            {SHOPPING_PAGES.map((page) => (
               <Button
                 key={page}
                 onClick={handleCloseNavMenu}

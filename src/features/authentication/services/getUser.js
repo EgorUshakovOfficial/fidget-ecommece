@@ -1,13 +1,16 @@
-import axios from 'axios';
-import {BASE_URL} from './constants';
+import {api} from '../../../lib/api';
 
-const getUser = async accessToken => {
-    let response = await axios.create({
-        baseURL: BASE_URL,
-        headers:{'Authorization': `bearer ${accessToken}`}
-    })
-    .get('/getUser');
-}
+export const getUser = accessToken => {
+    return new Promise(async resolve => {
+        // Configuration options
+        const configOptions = {
+            headers:{"Authorization": `bearer ${accessToken}`}
+        };
+
+        let response = await api.get('/user', configOptions);
+        let user = response.data;
+        resolve(user);
+    });
+};
 
 
-export default getUser;

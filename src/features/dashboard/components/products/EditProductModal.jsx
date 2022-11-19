@@ -1,3 +1,5 @@
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import {useContext} from 'react';
 import {ProductContext} from '../../context/ProductContext';
 import {
@@ -12,14 +14,12 @@ import {
 import {Close} from '@mui/icons-material';
 import ConfirmEditProductModal from './ConfirmEditProductModal';
 import useEditProductModal from '../../hooks/useEditProductModal';
-import redFidgetSpinner from '../../../../assets/images/fidget-spinner-red.jpg';
 
 const style = {
   position: 'absolute',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 400,
   bgcolor: 'background.paper',
   border: '1px solid lightgray',
   borderRadius:"8px",
@@ -48,6 +48,10 @@ export default function EditProductModal() {
     handleQuantityOnChange
   } = useEditProductModal();
 
+  const theme = useTheme();
+
+  const matches = useMediaQuery(theme.breakpoints.up('sm'));
+
   return (<Modal
         open={editProductId !== ""}
         onClose={handleEditProductModalClose}
@@ -57,7 +61,7 @@ export default function EditProductModal() {
           timeout: 500,
         }}
       >
-        <Box sx={{ ...style}}>
+        <Box sx={{ ...style, width: matches ? 400 : "90%"}}>
           <IconButton
             onClick={handleModalCloseIconClick}
             sx={{
@@ -78,7 +82,7 @@ export default function EditProductModal() {
             >
               <Box sx={{
                 position:"relative",
-                width:"80%",
+                width: matches ? "80%" : "60%",
                 marginInline:"auto"
               }}>
                 <Box

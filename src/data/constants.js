@@ -7,6 +7,6 @@ export const DASHBOARD_PAGES = {
     products: 'products',
     orders: 'orders'
 }
-
+export const SHOPPING_PAGES = ["Catalog", "About", "Contact"];
 
 
