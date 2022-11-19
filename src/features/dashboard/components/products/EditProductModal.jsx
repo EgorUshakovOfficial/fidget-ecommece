@@ -11,7 +11,7 @@ import {
   Button,
   IconButton
 } from '@mui/material';
-import {Close} from '@mui/icons-material';
+import {Close, CameraAlt} from '@mui/icons-material';
 import ConfirmEditProductModal from './ConfirmEditProductModal';
 import useEditProductModal from '../../hooks/useEditProductModal';
 
@@ -42,6 +42,8 @@ export default function EditProductModal() {
     description,
     quantity,
     price,
+    handleImageCloseIconClick,
+    handleImageOnChange,
     handleTitleOnChange,
     handleDescriptionOnChange,
     handlePriceOnChange,
@@ -80,30 +82,50 @@ export default function EditProductModal() {
                 gap:"0.6em",
               }}
             >
-              <Box sx={{
-                position:"relative",
-                width: matches ? "80%" : "60%",
-                marginInline:"auto"
-              }}>
-                <Box
-                  component="img"
-                  src={image}
-                  alt="Picture of product"
-                  sx={{
-                    width:"100%",
-                    height:"auto"
-                  }}
-                />
-                <IconButton
-                  sx={{
-                    position:"absolute",
-                    top:"3%",
-                    left:"83%"
-                  }}
+              {image ?
+                <Box sx={{
+                  position:"relative",
+                  width: matches ? "80%" : "60%",
+                  marginInline:"auto"
+                }}>
+                  <Box
+                    component="img"
+                    src={image}
+                    alt="Picture of product"
+                    sx={{
+                      width:"100%",
+                      height:"auto"
+                    }}
+                  />
+                  <IconButton
+                    onClick={handleImageCloseIconClick}
+                    sx={{
+                      position:"absolute",
+                      top:"3%",
+                      left:"83%"
+                    }}
+                  >
+                    <Close />
+                  </IconButton>
+                </Box>
+                :
+                <Button
+                    style={{color:"black"}}
+                    variant="secondary"
+                    component="label"
+                    size="medium"
+                    endIcon={<CameraAlt />}
                 >
-                  <Close />
-                </IconButton>
-              </Box>
+                  Add photos
+                  <input
+                    type="file"
+                    accept="image/*"
+                    hidden
+                    name="image"
+                    onChange={handleImageOnChange}
+                  />
+                </Button>
+              }
               <TextField
                 id="edit-product-modal-title"
                 label="Title"

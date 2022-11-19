@@ -33,9 +33,20 @@ export default function useEditProductModal(){
         setQuantity(productToBeEdited.stock);
     }, [editProductId])
 
+    // Handles image close icon click
+    const handleImageCloseIconClick = () => {
+        setImage(null);
+    };
+
     // Handles image on change
     const handleImageOnChange = e => {
-        setImage(e.target.value);
+        let file = e.target.files[0];
+
+        // No file was selected by the user
+        if (file === undefined) return;
+
+        const imageUrl = URL.createObjectURL(file)
+        setImage(imageUrl);
     }
 
     // Handles title on change
@@ -64,6 +75,7 @@ export default function useEditProductModal(){
         description,
         price,
         quantity,
+        handleImageCloseIconClick,
         handleImageOnChange,
         handleTitleOnChange,
         handleDescriptionOnChange,
