@@ -4,7 +4,8 @@ import { ProductContext } from '../context/ProductContext';
 
 export default function useEditProductModal(){
     // State
-    const [image, setImage] = useState(null);
+    const [selectedImage, setSelectedImage] = useState(null);
+    const [imageUrl, setImageUrl] = useState('');
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState('');
@@ -15,7 +16,7 @@ export default function useEditProductModal(){
     const {editProductId, setOpenConfirmEditProductModal} = useContext(ProductContext);
     useEffect(() => {
         if (editProductId === ""){
-            setImage(null);
+            setImageUrl(null);
             setTitle('');
             setDescription('');
             setPrice('');
@@ -26,7 +27,7 @@ export default function useEditProductModal(){
 
         let productToBeEdited = productsForSale
         .filter(product => product._id === editProductId)[0];
-        setImage(productToBeEdited.imageUrl);
+        setImageUrl(productToBeEdited.imageUrl);
         setTitle(productToBeEdited.title);
         setDescription(productToBeEdited.description);
         setPrice(productToBeEdited.price);
@@ -35,7 +36,7 @@ export default function useEditProductModal(){
 
     // Handles image close icon click
     const handleImageCloseIconClick = () => {
-        setImage(null);
+        setImageUrl('');
     };
 
     // Handles image on change
@@ -46,7 +47,8 @@ export default function useEditProductModal(){
         if (file === undefined) return;
 
         const imageUrl = URL.createObjectURL(file)
-        setImage(imageUrl);
+        setImageUrl(imageUrl);
+        setSelectedImage(file);
     }
 
     // Handles title on change
@@ -70,7 +72,7 @@ export default function useEditProductModal(){
     }
 
     return {
-        image,
+        imageUrl,
         title,
         description,
         price,

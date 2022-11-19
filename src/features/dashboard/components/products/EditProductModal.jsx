@@ -37,7 +37,7 @@ export default function EditProductModal() {
   } = useContext(ProductContext);
 
   const {
-    image,
+    imageUrl,
     title,
     description,
     quantity,
@@ -82,7 +82,7 @@ export default function EditProductModal() {
                 gap:"0.6em",
               }}
             >
-              {image ?
+              {imageUrl ?
                 <Box sx={{
                   position:"relative",
                   width: matches ? "80%" : "60%",
@@ -90,7 +90,7 @@ export default function EditProductModal() {
                 }}>
                   <Box
                     component="img"
-                    src={image}
+                    src={imageUrl}
                     alt="Picture of product"
                     sx={{
                       width:"100%",
