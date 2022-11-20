@@ -1,6 +1,8 @@
 import {useState, useEffect, useContext} from 'react';
 import { StateContext } from '../../../context/StateContext';
 import { ProductContext } from '../context/ProductContext';
+import {editProduct} from '../services/editProduct';
+
 
 export default function useEditProductModal(){
     // State
@@ -12,8 +14,12 @@ export default function useEditProductModal(){
     const [quantity, setQuantity] = useState('');
 
     // Pre-fills edit modal form
-    const {productsForSale} = useContext(StateContext);
-    const {editProductId, setOpenConfirmEditProductModal} = useContext(ProductContext);
+    const {productsForSale, setProductsForSale} = useContext(StateContext);
+    const {
+        editProductId,
+        setEditProductId,
+        setOpenConfirmEditProductModal
+    } = useContext(ProductContext);
     useEffect(() => {
         if (editProductId === ""){
             setImageUrl(null);
@@ -71,8 +77,64 @@ export default function useEditProductModal(){
         setQuantity(e.target.value);
     }
 
+    // Handles edit product form on submit
+    const onSubmitEditProduct = e => {
+        // Prevents form from being submitted to the server
+        e.preventDefault();
+
+        // Product to be edited
+        let productToBeEdited = productsForSale
+        .filter(product => product._id === editProductId)[0];
+
+        const editedFields = {};
+
+        // Add edited fields to object
+        if (selectedImage !== null){
+            editedFields.selectedImage = selectedImage;
+        }
+
+        if (productToBeEdited.title !== title){
+            editedFields.title = title;
+        }
+
+        if (productToBeEdited.description !== description){
+            editedFields.description = description;
+        }
+
+        if (productToBeEdited.stock !== quantity){
+            editedFields.quantity = quantity
+        }
+
+        if (productToBeEdited.price !== price){
+            editedFields.price = price;
+        }
+
+        // Configuration options
+        const configOptions = {
+            headers:{"Content-Type":"multipart/form-data"}
+        };
+
+        // Sends PUT /api/product/:productId request: Updates database and S3 bucket
+        let numEditedFields = Object.keys(editedFields).length;
+        if (numEditedFields > 0){
+            editProduct(editProductId, editedFields, configOptions)
+            .then(updatedFields => setProductsForSale(products => {
+                let index = products.findIndex(product => product._id === editProductId);
+                let prevProduct = products[index];
+                let updatedProduct = Object.assign(prevProduct, updatedFields);
+                products[index] = updatedProduct;
+                return [...products];
+            }))
+            .catch(err => console.log('Error! Something went wrong!'))
+        }
+
+        // Closes edit product modal
+        setEditProductId('');
+    }
+
     return {
         imageUrl,
+        selectedImage,
         title,
         description,
         price,
@@ -82,7 +144,8 @@ export default function useEditProductModal(){
         handleTitleOnChange,
         handleDescriptionOnChange,
         handlePriceOnChange,
-        handleQuantityOnChange
+        handleQuantityOnChange,
+        onSubmitEditProduct
     };
 
 }

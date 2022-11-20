@@ -14,6 +14,7 @@ import {
 import {Close, CameraAlt} from '@mui/icons-material';
 import ConfirmEditProductModal from './ConfirmEditProductModal';
 import useEditProductModal from '../../hooks/useEditProductModal';
+import { validateNumericalInput } from '../../../../utils/validators';
 
 const style = {
   position: 'absolute',
@@ -33,7 +34,7 @@ export default function EditProductModal() {
   const {
     editProductId,
     handleModalCloseIconClick,
-    handleEditProductModalClose
+    handleEditProductModalClose,
   } = useContext(ProductContext);
 
   const {
@@ -47,7 +48,8 @@ export default function EditProductModal() {
     handleTitleOnChange,
     handleDescriptionOnChange,
     handlePriceOnChange,
-    handleQuantityOnChange
+    handleQuantityOnChange,
+    onSubmitEditProduct
   } = useEditProductModal();
 
   const theme = useTheme();
@@ -81,6 +83,7 @@ export default function EditProductModal() {
                 flexDirection:"column",
                 gap:"0.6em",
               }}
+              onSubmit={onSubmitEditProduct}
             >
               {imageUrl ?
                 <Box sx={{
@@ -129,6 +132,7 @@ export default function EditProductModal() {
               <TextField
                 id="edit-product-modal-title"
                 label="Title"
+                type="text"
                 fullWidth
                 value={title}
                 onChange={handleTitleOnChange}
@@ -137,6 +141,7 @@ export default function EditProductModal() {
               <TextField
                 id="edit-product-modal-description"
                 label="Description"
+                type="text"
                 fullWidth
                 value={description}
                 onChange={handleDescriptionOnChange}
@@ -146,6 +151,8 @@ export default function EditProductModal() {
                 id="edit-product-modal-price"
                 label="Price"
                 fullWidth
+                error={validateNumericalInput(price) === "Input is not valid"}
+                helperText={validateNumericalInput(price)}
                 value={price}
                 onChange={handlePriceOnChange}
                 required
@@ -153,8 +160,10 @@ export default function EditProductModal() {
               <TextField
                 id="edit-product-modal-quantity"
                 label="Quantity"
+                type="number"
                 fullWidth
                 value={quantity}
+                min="1"
                 onChange={handleQuantityOnChange}
                 required
               />
