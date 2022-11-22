@@ -7,6 +7,7 @@ import {
     Paper
 } from '@mui/material';
 import {Link} from 'react-router-dom';
+import { createShippingAddress } from '../../utils/createShippingAddress';
 export default function InformationSummary(){
     return (
         <TableContainer sx={{boxShadow:"0", border:"1px solid lightgray"}} component={Paper}>

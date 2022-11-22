@@ -9,8 +9,11 @@ import {
     Checkbox,
     Input,
     FormControl,
+    FormHelperText
 } from "@mui/material"
 import { CheckoutContext} from '../../context/CheckoutContext';
+import { validateStateProvince } from '../../utils/validators';
+
 export default function ShippingForm(){
     const {
         countryRegion,
@@ -30,6 +33,8 @@ export default function ShippingForm(){
         setStateProvince,
         setCity
     } = useContext(CheckoutContext);
+
+    const isStateValid = validateStateProvince(stateProvince) === "Input is not valid";
 
     return (
         <Grid item >
@@ -77,6 +82,9 @@ export default function ShippingForm(){
                         <FormControl fullWidth>
                             <InputLabel htmlFor="state-province">State/Province</InputLabel>
                             <Input id="state-province" value={stateProvince} aria-describedby='state-province-text' onChange={e => setStateProvince(e.target.value)} required />
+                            {isStateValid && <FormHelperText id="state-pronvince-error" error={isStateValid}>
+                                {validateStateProvince(stateProvince)}
+                            </FormHelperText>}
                         </FormControl>
                     </Grid>
                     <Grid item sm={12} md={4} width="100%">

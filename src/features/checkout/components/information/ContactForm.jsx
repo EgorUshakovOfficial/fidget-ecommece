@@ -24,7 +24,7 @@ export default function ContactForm(){
             }}>
                 <FormControl fullWidth>
                     <InputLabel htmlFor="email">Email address</InputLabel>
-                    <Input id="email" value={email}  aria-describedby="email-text"  onChange={e => setEmail(e.target.value)} required />
+                    <Input id="email" type="email" value={email}  aria-describedby="email-text"  onChange={e => setEmail(e.target.value)} required />
                 </FormControl>
                 <FormGroup>
                         <FormControlLabel control={<Checkbox />} label="Email me with news and offers" sx={{margin:0}} />

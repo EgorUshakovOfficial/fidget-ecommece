@@ -1,3 +1,4 @@
+import {useContext} from 'react';
 import {
     TableContainer,
     Table,
@@ -7,14 +8,25 @@ import {
     Paper
 } from '@mui/material';
 import {Link} from 'react-router-dom';
+import {CheckoutContext} from '../../context/CheckoutContext';
+import {createShippingAddress} from '../../utils/createShippingAddress';
+
 export default function InformationSummary(){
+    const {
+        email,
+        address,
+        city,
+        stateProvince,
+        postalCode,
+        countryRegion
+    } = useContext(CheckoutContext);
     return (
         <TableContainer sx={{boxShadow:"0", border:"1px solid lightgray"}} component={Paper}>
             <Table>
                 <TableBody>
                     <TableRow>
                         <TableCell>Contact</TableCell>
-                        <TableCell>egorushakov13@gmail</TableCell>
+                        <TableCell>{email}</TableCell>
                         <TableCell>
                             <Link to="/checkout/information" style={{color:"black"}}>
                                 Change
@@ -23,7 +35,7 @@ export default function InformationSummary(){
                     </TableRow>
                     <TableRow>
                         <TableCell>Ship to</TableCell>
-                        <TableCell>584 Windridge Road, Airdrie AB T4B 2P9, Canada</TableCell>
+                        <TableCell>{createShippingAddress(address, city, stateProvince, postalCode, countryRegion)}</TableCell>
                         <TableCell>
                             <Link to="/checkout/information" style={{color:"black"}}>
                                 Change

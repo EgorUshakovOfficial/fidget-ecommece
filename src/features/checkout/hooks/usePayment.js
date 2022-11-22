@@ -1,28 +1,28 @@
-import {useRef} from 'react';
+import {useState} from 'react';
 export default function usePayment(){
-    const cardNumber = useRef('');
-    const cardHolderName = useRef('');
-    const expirationDate = useRef('');
-    const securityCode = useRef('');
+    const [cardNumber, setCardNumber] = useState('');
+    const [cardholderName, setCardholderName] = useState('');
+    const [expirationDate, setExpirationDate] = useState('');
+    const [securityCode, setSecurityCode] = useState('');
 
     // Handles card number
     const handleCardNumber = e => {
-        cardNumber.current = e.target.value;
+        setCardNumber(e.target.value);
     }
 
     // Handles card holder name
     const handleCardHolderName = e => {
-        cardHolderName.current = e.target.value;
+         setCardholderName(e.target.value);
     }
 
     // Handles expiration date
     const handleExpirationDate = e => {
-        expirationDate.current = e.target.value;
+        setExpirationDate(e.target.value);
     }
 
     // Handles security code
     const handleSecurityCode = e => {
-        securityCode.current = e.target.value;
+        setSecurityCode(e.target.value);
     }
 
     const payOnSubmit = e => {
@@ -34,19 +34,19 @@ export default function usePayment(){
         const shipping = JSON.parse(sessionStorage.getItem('shipping'));
 
         // Payment information
-        const payment = {
-            cardNumber: cardNumber.current,
-            cardHolderName: cardHolderName.current,
-            expirationDate: expirationDate.current,
-            securityCode: securityCode.current
-        }
+        // const payment = {
+        //     cardNumber: cardNumber.current,
+        //     cardholderName: cardHolderName.current,
+        //     expirationDate: expirationDate.current,
+        //     securityCode: securityCode.current
+        // }
 
         // Fetch stripe api here...
     }
 
     return {
         cardNumber,
-        cardHolderName,
+        cardholderName,
         expirationDate,
         securityCode,
         handleCardNumber,

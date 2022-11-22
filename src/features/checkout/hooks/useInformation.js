@@ -1,5 +1,6 @@
 import {useState} from 'react';
 import {useNavigate} from 'react-router-dom';
+import { validateStateProvince } from '../utils/validators';
 
 export default function useInformation(){
     // Navigation
@@ -22,6 +23,11 @@ export default function useInformation(){
     const infoOnSubmit = e => {
         // Prevent default form from being submitted to the server
         e.preventDefault();
+
+        // Validates if state or province has valid input
+        if (validateStateProvince(stateProvince) === "Input is not valid"){
+            return;
+        }
 
         const info = {
             email,

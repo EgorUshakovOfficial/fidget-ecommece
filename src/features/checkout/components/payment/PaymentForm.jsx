@@ -6,17 +6,19 @@ import {
     InputLabel,
     Input,
     FormControl,
+    FormHelperText,
     IconButton,
     Box,
     Button
 } from "@mui/material"
 import NavigateNextIcon from '@mui/icons-material/NavigateBefore';
 import {CheckoutContext} from '../../context/CheckoutContext';
+import {validateCardNumber, validateExpirationDate} from '../../utils/validators';
 
 export default function PaymentForm(){
     const {
         cardNumber,
-        cardHolderName,
+        cardholderName,
         expirationDate,
         securityCode,
         handleCardNumber,
@@ -25,7 +27,11 @@ export default function PaymentForm(){
         handleSecurityCode,
         payOnSubmit
     } = useContext(CheckoutContext);
+
     const navigate = useNavigate();
+
+    const isCardNumberValid = validateCardNumber(cardNumber) === "Input is not valid";
+    const isExpirationDateValid = validateExpirationDate(expirationDate) === "Input is not valid";
 
     return (
         <Grid item marginBlock="0.6em">
@@ -40,23 +46,50 @@ export default function PaymentForm(){
             >
                 <FormControl fullWidth>
                     <InputLabel htmlFor="card-number">Card number</InputLabel>
-                    <Input id="card-number" ref={cardNumber} aria-describedby="card-number-text" onChange={handleCardNumber} required />
+                    <Input
+                        id="card-number"
+                        aria-describedby="card-number-text"
+                        value={cardNumber}
+                        onChange={handleCardNumber}
+                        required
+                    />
+                    {isCardNumberValid &&
+                        <FormHelperText id="card-number-error" error={isCardNumberValid}>
+                            {validateCardNumber(cardNumber)}
+                        </FormHelperText>
+                    }
                 </FormControl>
                 <FormControl fullWidth>
                     <InputLabel htmlFor="cardholder-name">Cardholder name</InputLabel>
-                    <Input id="cardholder-name" ref={cardHolderName} aria-describedby="cardholder-name-text" onChange={handleCardHolderName} required />
+                    <Input
+                        id="cardholder-name"
+                        value={cardholderName}
+                        aria-describedby="cardholder-name-text"
+                        onChange={handleCardHolderName}
+                        required
+                    />
                 </FormControl>
                 <Grid container spacing={4} justifyContent="space-between">
                     <Grid item sm={12} md={6} width="100%">
                         <FormControl fullWidth>
                             <InputLabel htmlFor="expiration-date">Expiration Date</InputLabel>
-                            <Input id="expiration-date" ref={expirationDate} aria-describedby="expiration-date-text" onChange={handleExpirationDate} required />
+                            <Input
+                                id="expiration-date"
+                                aria-describedby="expiration-date-text"
+                                onChange={handleExpirationDate}
+                                required
+                            />
+                            {isExpirationDateValid &&
+                                <FormHelperText id="expiration-date-error" error={isExpirationDateValid}>
+                                    {validateCardNumber(expirationDate)}
+                                </FormHelperText>
+                            }
                         </FormControl>
                     </Grid>
                     <Grid item sm={12} md={6} width="100%">
                         <FormControl fullWidth>
                             <InputLabel htmlFor="security-code">Security code</InputLabel>
-                            <Input id="security-code" ref={securityCode} aria-describedby="security-code-text" onChange={handleSecurityCode} required />
+                            <Input id="security-code" type="password" aria-describedby="security-code-text" onChange={handleSecurityCode} required />
                         </FormControl>
                     </Grid>
                 </Grid>
