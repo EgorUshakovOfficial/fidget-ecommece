@@ -11,10 +11,12 @@ export default function useDeleteProductModal(){
     const handleDeleteProductClick = async () => {
         // Sends POST request to /api/delete-product/:id
         deleteProduct(deleteProductId)
-        .then(productId => setProductsForSale(product => product._id !== productId))
+        .then(productId => setProductsForSale(
+            products => products.filter(product => product._id !== productId)
+        ))
         .catch(err => console.log(err));
 
-        // Close delete product modal
+        // Closes delete product modal
         setDeleteProductId('');
     }
 

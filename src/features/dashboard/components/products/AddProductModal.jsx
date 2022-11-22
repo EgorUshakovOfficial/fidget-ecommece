@@ -73,7 +73,9 @@ export default function AddProductModal() {
                 {productImage===null  ?
                     <Button
                         component="label"
+                        variant="secondary"
                         size="medium"
+                        style={{color:"black"}}
                         fullWidth
                         endIcon={<CameraAlt />}
                     >

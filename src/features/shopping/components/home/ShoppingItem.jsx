@@ -35,7 +35,6 @@ export default function ShoppingItem({
 
     const handleDecrement = () => {
         setNumItem(state => {
-            console.log(stock);
             if (state > 1){
                 return state-1;
             }

@@ -12,7 +12,7 @@ export default function useAddProductModal(){
     const [price, setPrice] = useState('');
     const [quantity, setQuantity] = useState('1');
     const {setProductsForSale} = useContext(StateContext);
-    const {setAddOpenProductModal, setError} = useContext(ProductContext);
+    const {setOpenAddProductModal, setError} = useContext(ProductContext);
 
     // Create product image url
     useEffect(() => {
@@ -90,7 +90,7 @@ export default function useAddProductModal(){
         .catch(err => setError('Error! Something went wrong'))
 
         // Set form fields to initial values
-        setAddOpenProductModal(false);
+        setOpenAddProductModal(false);
         setProductImage(null);
         setProductImageUrl('');
         setTitle('');

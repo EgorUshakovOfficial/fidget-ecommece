@@ -90,7 +90,7 @@ export default function useEditProductModal(){
 
         // Add edited fields to object
         if (selectedImage !== null){
-            editedFields.selectedImage = selectedImage;
+            editedFields.image = selectedImage;
         }
 
         if (productToBeEdited.title !== title){
@@ -102,22 +102,28 @@ export default function useEditProductModal(){
         }
 
         if (productToBeEdited.stock !== quantity){
-            editedFields.quantity = quantity
+            editedFields.stock = quantity
         }
 
         if (productToBeEdited.price !== price){
             editedFields.price = price;
         }
 
-        // Configuration options
-        const configOptions = {
-            headers:{"Content-Type":"multipart/form-data"}
-        };
-
         // Sends PUT /api/product/:productId request: Updates database and S3 bucket
         let numEditedFields = Object.keys(editedFields).length;
         if (numEditedFields > 0){
-            editProduct(editProductId, editedFields, configOptions)
+            // Form data
+            let formData = new FormData();
+            for (let editedField in editedFields){
+                formData.append(editedField, editedFields[editedField]);
+            }
+
+            // Configuration options
+            const configOptions = {
+                headers:{"Content-Type":"multipart/form-data"}
+            };
+
+            editProduct(editProductId, formData, configOptions)
             .then(updatedFields => setProductsForSale(products => {
                 let index = products.findIndex(product => product._id === editProductId);
                 let prevProduct = products[index];
