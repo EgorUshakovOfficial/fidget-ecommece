@@ -1,4 +1,5 @@
 import {useState} from 'react';
+import {validateCardNumber, validateExpirationDate} from '../utils/validators';
 export default function usePayment(){
     const [cardNumber, setCardNumber] = useState('');
     const [cardholderName, setCardholderName] = useState('');
@@ -28,6 +29,14 @@ export default function usePayment(){
     const payOnSubmit = e => {
         // Prevent default form from being submitted to the server
         e.preventDefault();
+
+        let isCardNumberValid = validateCardNumber(cardNumber) === "Card number is not valid";
+        let isExpirationDateValid = validateExpirationDate(expirationDate) === "Expiration date is not valid";
+
+        // Exits out of function if card number or expiration date is not valid
+        if (isCardNumberValid === false || isExpirationDateValid){
+            return;
+        }
 
         // Retrieve the buyer's information and the kind of shipping method from session storage
         const info = JSON.parse(sessionStorage.getItem('info'));

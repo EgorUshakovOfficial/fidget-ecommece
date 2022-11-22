@@ -30,8 +30,8 @@ export default function PaymentForm(){
 
     const navigate = useNavigate();
 
-    const isCardNumberValid = validateCardNumber(cardNumber) === "Input is not valid";
-    const isExpirationDateValid = validateExpirationDate(expirationDate) === "Input is not valid";
+    const isCardNumberValid = validateCardNumber(cardNumber) === "Card number is not valid";
+    const isExpirationDateValid = validateExpirationDate(expirationDate) === "Expiration date is not valid";
 
     return (
         <Grid item marginBlock="0.6em">
