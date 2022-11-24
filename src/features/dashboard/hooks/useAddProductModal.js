@@ -11,7 +11,7 @@ export default function useAddProductModal(){
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState('');
     const [quantity, setQuantity] = useState('1');
-    const {setProductsForSale} = useContext(StateContext);
+    const {setProductsForSale, loading, setLoading} = useContext(StateContext);
     const {setOpenAddProductModal, setError} = useContext(ProductContext);
 
     // Create product image url
@@ -69,6 +69,9 @@ export default function useAddProductModal(){
             return;
         }
 
+        // Change loading state of the application to true
+        setLoading(true);
+
         // Create new form and append fields to it
         const formData = new FormData();
         formData.append('image', productImage, "image");
@@ -97,6 +100,9 @@ export default function useAddProductModal(){
         setDescription('');
         setPrice('');
         setQuantity('');
+
+        // Changes loading state of the application to false
+        setLoading(false);
     }
 
     return {

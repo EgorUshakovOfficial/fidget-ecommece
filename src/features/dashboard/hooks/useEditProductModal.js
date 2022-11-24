@@ -14,7 +14,7 @@ export default function useEditProductModal(){
     const [quantity, setQuantity] = useState('');
 
     // Pre-fills edit modal form
-    const {productsForSale, setProductsForSale} = useContext(StateContext);
+    const {productsForSale, setProductsForSale, loading, setLoading} = useContext(StateContext);
     const {
         editProductId,
         setEditProductId,
@@ -112,6 +112,9 @@ export default function useEditProductModal(){
         // Sends PUT /api/product/:productId request: Updates database and S3 bucket
         let numEditedFields = Object.keys(editedFields).length;
         if (numEditedFields > 0){
+            // Changes loading state of the application to true
+            setLoading(true);
+
             // Form data
             let formData = new FormData();
             for (let editedField in editedFields){
@@ -132,6 +135,9 @@ export default function useEditProductModal(){
                 return [...products];
             }))
             .catch(err => console.log('Error! Something went wrong!'))
+
+            // Change the loading state of the application to false
+            setLoading(false);
         }
 
         // Closes edit product modal

@@ -2,7 +2,6 @@ import {createContext, useEffect, useState} from 'react';
 import {useCartService} from '../features/shopping/index';
 import {api} from '../lib/api';
 
-
 // State context
 const StateContext = createContext({});
 
@@ -13,6 +12,9 @@ const StateProvider = ({children}) => {
 
     // Product for sale
     const [productsForSale, setProductsForSale] = useState([]);
+
+    // Loading state
+    const [loading, setLoading] = useState(false);
 
     // Fetch products for sale from the endpoint
     useEffect(() => {
@@ -30,7 +32,9 @@ const StateProvider = ({children}) => {
             value={{
                 ...homeProps,
                 productsForSale,
-                setProductsForSale
+                setProductsForSale,
+                loading,
+                setLoading
         }}>
             {children}
         </StateContext.Provider>

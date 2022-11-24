@@ -1,3 +1,4 @@
+import {useContext} from 'react';
 import {
     ProductProvider,
     AddProduct,
@@ -8,14 +9,17 @@ import {
     DeleteProductModal,
     EditProductModal
 } from '../../features/dashboard/index';
+import Loading from '../../components/Loading';
+import { StateContext } from '../../context/StateContext';
 
 export default function Products(){
+    const {loading} = useContext(StateContext);
     return (
         <ProductProvider>
             <AddProduct />
             <ProductFilter />
             <SortByFilterMenu />
-            <ProductGallery />
+            {loading ? <Loading /> :<ProductGallery />}
             <AddProductModal />
             <DeleteProductModal />
             <EditProductModal />

@@ -1,8 +1,8 @@
 import {Fragment} from 'react';
+import {useTheme} from '@mui/material/styles';
 import {useMediaQuery, Container, Box} from '@mui/material';
 import Navbar from '../components/Navbar';
 import { DRAWER_WIDTH } from '../../../data/constants';
-import {useTheme} from '@mui/material/styles';
 
 export default function CheckooutLayout({children}){
     const theme = useTheme();

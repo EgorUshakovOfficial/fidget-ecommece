@@ -4,11 +4,14 @@ import {StateContext} from '../../../context/StateContext';
 import {deleteProduct} from '../services/deleteProduct';
 
 export default function useDeleteProductModal(){
-    const {setProductsForSale} = useContext(StateContext);
+    const {setProductsForSale, loading, setLoading} = useContext(StateContext);
     const {deleteProductId, setDeleteProductId} = useContext(ProductContext);
 
     // Handle delete product click
     const handleDeleteProductClick = async () => {
+        // Change loading state of the application to true
+        setLoading(true);
+
         // Sends POST request to /api/delete-product/:id
         deleteProduct(deleteProductId)
         .then(productId => setProductsForSale(
@@ -18,9 +21,10 @@ export default function useDeleteProductModal(){
 
         // Closes delete product modal
         setDeleteProductId('');
+
+        // Change loading state of the applcation to false
+        setLoading(false);
     }
 
-    return {
-        handleDeleteProductClick
-    }
+    return {handleDeleteProductClick}
 }
