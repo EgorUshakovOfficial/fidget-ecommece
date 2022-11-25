@@ -14,7 +14,7 @@ import {StateContext} from '../../../context/StateContext';
 import CartItems from './CartItems';
 
 export default function CartSlider(){
-    const {openCart, setOpenCart, cart, total} = useContext(StateContext);
+    const {openCart, setOpenCart, cart, subtotal} = useContext(StateContext);
 
     // Navigation
     const navigate = useNavigate();
@@ -52,7 +52,7 @@ export default function CartSlider(){
                     }}>
                         <Box style={{display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:"0.4em"}}>
                             <Typography variant="body1" element="p">Total</Typography>
-                            <Typography variant="body1" element="p">{total.toFixed(2)}</Typography>
+                            <Typography variant="body1" element="p">{subtotal.toFixed(2)}</Typography>
                         </Box>
                          <Button onClick={handleCheckOut} variant="contained" color="success" size="large" fullWidth={true}>
                             Check Out

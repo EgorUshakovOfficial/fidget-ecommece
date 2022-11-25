@@ -17,9 +17,15 @@ export default function InformationSummary(){
         address,
         city,
         stateProvince,
+        shippingMethod,
         postalCode,
         countryRegion
     } = useContext(CheckoutContext);
+
+    // Type of shipping method
+    const typeShipping = (shippingMethod==="free-shipping")
+        ? "Free Shipping" : "Tracked Shipping";
+
     return (
         <TableContainer sx={{boxShadow:"0", border:"1px solid lightgray"}} component={Paper}>
             <Table>
@@ -44,7 +50,7 @@ export default function InformationSummary(){
                     </TableRow>
                     <TableRow>
                         <TableCell>Method</TableCell>
-                        <TableCell>Free Shipping</TableCell>
+                        <TableCell>{typeShipping}</TableCell>
                         <TableCell>
                             <Link to="/checkout/shipping" style={{color:"black"}}>
                                 Change

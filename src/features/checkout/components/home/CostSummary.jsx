@@ -5,10 +5,15 @@ import {TRACKED_SHIPPING_COST} from '../../../../data/constants';
 import {Grid, Typography} from '@mui/material';
 
 export default function CostSummary(){
-    const {total} = useContext(StateContext);
+    const {subtotal} = useContext(StateContext);
+
     const {shippingMethod} = useContext(CheckoutContext);
+
     const shippingCost = (shippingMethod === "tracked-shipping") ?
         TRACKED_SHIPPING_COST : 0
+
+    // Total amount
+    const total = shippingCost + subtotal;
 
     return (
         <Grid item style={{
@@ -22,7 +27,7 @@ export default function CostSummary(){
                     Subtotal
                 </Typography>
                 <Typography variant="subtitle2" component="span">
-                    ${total}
+                    ${subtotal}
                 </Typography>
             </Grid>
             <Grid item container alignItems="center" justifyContent="space-between">
@@ -38,7 +43,7 @@ export default function CostSummary(){
                     Total
                 </Typography>
                 <Typography variant="h5" component="p">
-                    ${total + shippingCost}
+                    ${total}
                 </Typography>
             </Grid>
         </Grid>

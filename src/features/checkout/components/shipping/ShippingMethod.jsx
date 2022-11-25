@@ -16,11 +16,9 @@ import {
 import {CheckoutContext} from '../../context/CheckoutContext';
 import {TRACKED_SHIPPING_COST} from '../../../../data/constants';
 
-
-
-
 export default function ShippingMethod(){
     const {shippingMethod, handleShippingMethod} = useContext(CheckoutContext);
+
     return (
         <Box>
             <Typography variant="h6" component="h2" textAlign="left" marginBottom="0.2em">Shipping method</Typography>

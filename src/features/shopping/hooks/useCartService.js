@@ -24,7 +24,7 @@ export default function useCartService(){
     }, [cart])
 
     // Total
-    const total = useMemo(() => {
+    const subtotal = useMemo(() => {
         return cart.reduce((totalCost, {cost, quantity}) => totalCost + cost*quantity, 0)
     }, [JSON.stringify(cart)]);
 
@@ -37,7 +37,7 @@ export default function useCartService(){
         openCart,
         setOpenCart,
         cart,
-        total,
+        subtotal,
         setCart,
         handleShoppingCartSlider
     }

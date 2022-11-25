@@ -7,12 +7,17 @@ import useShipping from '../hooks/useShipping';
 const CheckoutContext = createContext({});
 
 const CheckoutProvider = ({children}) => {
+    // Information, shipping and payment props
     const infoProps = useInformation();
     const shippingProps = useShipping();
     const paymentProps = usePayment();
 
     return (
-        <CheckoutContext.Provider value={{...infoProps, ...shippingProps, ...paymentProps}}>
+        <CheckoutContext.Provider value={{
+            ...infoProps,
+            ...shippingProps,
+            ...paymentProps,
+        }}>
             {children}
         </CheckoutContext.Provider>
     )
