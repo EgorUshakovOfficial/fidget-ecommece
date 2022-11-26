@@ -100,7 +100,12 @@ export default function PaymentForm(){
                         </IconButton>
                         <Typography variant="body1" component="p">Return to shipping</Typography>
                     </Box>
-                    <Button variant="contained" type="submit" color="success" size="small">
+                    <Button
+                        variant="contained"
+                        type="submit"
+                        color="success"
+                        size="small"
+                    >
                         Pay now
                     </Button>
                 </Box>
