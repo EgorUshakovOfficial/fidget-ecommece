@@ -1,14 +1,18 @@
 import {Fragment, useContext} from 'react';
 import {Navigate} from 'react-router-dom';
 import {
+    CheckoutContext,
     CheckoutLayout,
     InformationSummary,
-    PaymentForm
+    PaymentForm,
+    ConfirmationMessage
 } from '../../features/checkout';
 import Loading from '../../components/Loading';
 import { StateContext } from '../../context/StateContext';
 
 export default function Payment(){
+    const {orderId} = useContext(CheckoutContext);
+
     // Loading state
     const {loading} = useContext(StateContext);
 
@@ -25,10 +29,14 @@ export default function Payment(){
         {loading ?
             <Loading />
             :
-            <CheckoutLayout>
-                <InformationSummary />
-                <PaymentForm />
-            </CheckoutLayout>
+            orderId ?
+                <ConfirmationMessage />
+                :
+                <CheckoutLayout>
+                    <InformationSummary />
+                    <PaymentForm />
+                </CheckoutLayout>
+
         }
     </Fragment>
     )

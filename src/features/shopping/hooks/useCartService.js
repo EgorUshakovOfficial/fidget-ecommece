@@ -23,7 +23,7 @@ export default function useCartService(){
        sessionStorage.setItem('cart', JSON.stringify(cart))
     }, [cart])
 
-    // Total
+    // Subtotal
     const subtotal = useMemo(() => {
         return cart.reduce((totalCost, {cost, quantity}) => totalCost + cost*quantity, 0)
     }, [JSON.stringify(cart)]);

@@ -12,12 +12,14 @@ export default function usePayment(){
     const [cardholderName, setCardholderName] = useState('');
     const [expirationDate, setExpirationDate] = useState('');
     const [securityCode, setSecurityCode] = useState('');
+    const [orderId, setOrderId] = useState(null);
+    const [error, setError] = useState('');
 
     // Shipping method
-    const {shippingMethod} = JSON.parse(sessionStorage.getItem('shipping'));
+    const shippingProps = JSON.parse(sessionStorage.getItem('shipping'));
 
     // Shipping cost
-    const shippingCost = (shippingMethod === 'tracked-shipping') ? TRACKED_SHIPPING_COST : 0;
+    const shippingCost = (shippingProps?.shippingMethod === 'tracked-shipping') ? TRACKED_SHIPPING_COST : 0;
 
     // Total amount
     const total = subtotal + shippingCost;
@@ -79,11 +81,26 @@ export default function usePayment(){
         // Charges customer for items in shopping carts
         // creates order details and sends them to customer's email
         purchaseProducts(data, configOptions)
-        .then(orderDetails => console.log('Items purchased successfully'))
-        .catch(err => console.log(err));
+        .then(order => {
+            // Records order id
+            setOrderId(order.id);
 
-        // Change loading state of the application to false
-        setLoading(false);
+        })
+        .catch(err => {
+            (err.type === "StripeCardError") ?
+                // Stripe error-incorrect card information has been entered
+                setError(err.raw.message)
+                :
+                // Other error
+                setError("Error! Something went wrong!");
+        })
+        .finally(() => {
+            setCardNumber('');
+            setCardholderName('');
+            setExpirationDate('');
+            setSecurityCode('');
+            setLoading(false)
+        })
     }
 
     return {
@@ -91,6 +108,8 @@ export default function usePayment(){
         cardholderName,
         expirationDate,
         securityCode,
+        orderId,
+        error,
         handleCardNumber,
         handleCardHolderName,
         handleExpirationDate,
