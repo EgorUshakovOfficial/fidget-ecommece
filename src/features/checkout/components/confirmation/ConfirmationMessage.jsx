@@ -1,23 +1,20 @@
-import {useEffect, useContext} from 'react';
-import {Typography} from '@mui/material';
-import { CheckoutContext } from '../../context/CheckoutContext';
-import { StateContext } from '../../../../context/StateContext';
+import { useTheme } from '@mui/material/styles';
+import { useMediaQuery, Typography} from '@mui/material';
+import {useContext} from 'react';
+import { CheckoutContext } from "../../context/CheckoutContext";
 
 export default function ConfirmationMessage(){
-    const {setCart} = useContext(StateContext);
+    const theme = useTheme();
+    const matches = useMediaQuery(theme.breakpoints.up('sm'));
     const {firstName, lastName} = useContext(CheckoutContext);
 
-    useEffect(() => {
-        // Clears any products in session storage
-        sessionStorage.clear();
-
-        // Reset state of cart
-        return () => setCart([]);
-    }, []);
-
     return (
-        <Typography>
-            Thank you for your order, {firstName} {lastName}. A confirmation email filled with the details of your purchase has been sent!
+        <Typography style={{
+            textAlign: matches ? "center" : "left",
+            lineHeight:1.6,
+            wordSpacing:"2px"
+        }}>
+            Thank you for your order, {firstName} {lastName}. An email filled with the details of your purchase has been sent!
         </Typography>
-    )
-};
+    );
+}

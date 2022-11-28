@@ -5,7 +5,7 @@ import {
     CheckoutLayout,
     InformationSummary,
     PaymentForm,
-    ConfirmationMessage
+    Confirmation
 } from '../../features/checkout';
 import Loading from '../../components/Loading';
 import { StateContext } from '../../context/StateContext';
@@ -30,12 +30,12 @@ export default function Payment(){
             <Loading />
             :
             orderId ?
-                <ConfirmationMessage />
-                :
                 <CheckoutLayout>
                     <InformationSummary />
                     <PaymentForm />
                 </CheckoutLayout>
+                :
+                <Confirmation />
 
         }
     </Fragment>

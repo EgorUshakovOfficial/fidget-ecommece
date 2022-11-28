@@ -5,7 +5,7 @@ import InformationForm from './components/information/InformationForm';
 import InformationSummary from './components/home/InformationSummary';
 import PaymentForm from './components/payment/PaymentForm';
 import ShippingForm from './components/shipping/ShippingForm';
-import ConfirmationMessage from './components/confirmation/ConfirmationMessage';
+import Confirmation from './components/confirmation/Confirmation';
 
 
 export {
@@ -17,5 +17,5 @@ export {
     InformationSummary,
     PaymentForm,
     ShippingForm,
-    ConfirmationMessage
+    Confirmation
 };
