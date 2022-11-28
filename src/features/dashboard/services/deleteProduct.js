@@ -1,13 +1,17 @@
 import {api} from '../../../lib/api';
 
-export const deleteProduct = async productId => {
+export const deleteProduct = productId => {
     const configOptions = {
         headers:{'Content-Type':'application/json'}
     };
 
-    return new Promise(async resolve => {
-        let response = await api.delete(`/api/product/${productId}`, configOptions);
-        let deletedProductId = response.data.productId;
-        resolve(deletedProductId);
+    return new Promise((resolve, reject) => {
+        api
+        .delete(`/api/product/${productId}`, configOptions)
+        .then(response => {
+            let deleteProductId = response.data.productId;
+            resolve(deleteProductId);
+        })
+        .catch(err => reject(err));
     });
 }

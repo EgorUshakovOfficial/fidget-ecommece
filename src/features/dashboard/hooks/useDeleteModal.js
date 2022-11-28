@@ -17,13 +17,11 @@ export default function useDeleteProductModal(){
         .then(productId => setProductsForSale(
             products => products.filter(product => product._id !== productId)
         ))
-        .catch(err => console.log(err));
+        .catch(err => console.log(err))
+        .finally(() => setLoading(false));
 
         // Closes delete product modal
         setDeleteProductId('');
-
-        // Change loading state of the applcation to false
-        setLoading(false);
     }
 
     return {handleDeleteProductClick}

@@ -91,6 +91,7 @@ export default function useAddProductModal(){
         createNewProduct(formData, configOptions)
         .then(product => setProductsForSale(state => [...state, product]))
         .catch(err => setError('Error! Something went wrong'))
+        .finally(() => setLoading(false));
 
         // Set form fields to initial values
         setOpenAddProductModal(false);
@@ -100,9 +101,6 @@ export default function useAddProductModal(){
         setDescription('');
         setPrice('');
         setQuantity('');
-
-        // Changes loading state of the application to false
-        setLoading(false);
     }
 
     return {

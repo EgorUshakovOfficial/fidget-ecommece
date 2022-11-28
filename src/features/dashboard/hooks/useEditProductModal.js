@@ -13,13 +13,15 @@ export default function useEditProductModal(){
     const [price, setPrice] = useState('');
     const [quantity, setQuantity] = useState('');
 
-    // Pre-fills edit modal form
+
     const {productsForSale, setProductsForSale, loading, setLoading} = useContext(StateContext);
     const {
         editProductId,
         setEditProductId,
         setOpenConfirmEditProductModal
     } = useContext(ProductContext);
+
+    // Pre-fills edit modal form
     useEffect(() => {
         if (editProductId === ""){
             setImageUrl(null);
@@ -135,9 +137,7 @@ export default function useEditProductModal(){
                 return [...products];
             }))
             .catch(err => console.log('Error! Something went wrong!'))
-
-            // Change the loading state of the application to false
-            setLoading(false);
+            .finally(() => setLoading(false));
         }
 
         // Closes edit product modal
