@@ -65,7 +65,6 @@ export default function useCustomerService(rows){
 
     // Handles user filter change
     const handleUserFilterChange = e => {
-      console.log(e.target.value)
       setUserFilter(e.target.value);
     }
 
@@ -74,7 +73,11 @@ export default function useCustomerService(rows){
       name = name.toLowerCase();
       email = email.toLowerCase();
       subscribed = subscribed.toLowerCase();
-      return (name.indexOf(userFilter) >= 0 || email.indexOf(userFilter) >= 0 || subscribed.indexOf(userFilter) >= 0)
+
+      // Lower case version of user filter
+      let filter = userFilter.toLowerCase();
+
+      return (name.indexOf(filter) >= 0 || email.indexOf(filter) >= 0 || subscribed.indexOf(filter) >= 0)
     }
 
     const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;

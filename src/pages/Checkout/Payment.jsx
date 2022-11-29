@@ -30,13 +30,12 @@ export default function Payment(){
             <Loading />
             :
             orderId ?
+                <Confirmation />
+                :
                 <CheckoutLayout>
                     <InformationSummary />
                     <PaymentForm />
                 </CheckoutLayout>
-                :
-                <Confirmation />
-
         }
     </Fragment>
     )
