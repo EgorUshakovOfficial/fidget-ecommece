@@ -1,6 +1,5 @@
 import {useContext} from 'react';
-import Paper from '@mui/material/Paper';
-import InputBase from '@mui/material/InputBase';
+import {Paper, InputBase} from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import {CustomerContext} from '../../../context/CustomerContext';
 
@@ -21,7 +20,7 @@ export default function UserFilter() {
     >
       <InputBase
         sx={{ ml: 1, flex: 1 }}
-        placeholder="Search customers"
+        placeholder="Search customer"
         inputProps={{
           'aria-label': 'search customers',
           onChange: handleUserFilterChange,

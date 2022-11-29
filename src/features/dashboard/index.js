@@ -12,6 +12,9 @@ import ProductGallery from "./components/products/ProductGallery";
 import AddProductModal from './components/products/AddProductModal';
 import DeleteProductModal from './components/products/DeleteProductModal';
 import EditProductModal from './components/products/EditProductModal';
+import {OrderContext, OrderProvider} from './context/OrderContext';
+import OrderHeader from './components/orders/OrderHeader';
+import OrderTable from './components/orders/OrderTable';
 
 export {
     CustomerProvider,
@@ -27,5 +30,9 @@ export {
     ProductGallery,
     AddProductModal,
     DeleteProductModal,
-    EditProductModal
+    EditProductModal,
+    OrderHeader,
+    OrderTable,
+    OrderContext,
+    OrderProvider
 };

@@ -12,20 +12,20 @@ const headCells =  [
     },
     {
       id: 'email',
-      numeric: true,
+      numeric: false,
       disablePadding: false,
       label: 'Email',
     },
     {
       id: 'Subscribed',
-      numeric: true,
+      numeric: false,
       disablePadding: false,
       label: 'Subscribed',
     },
 
     {
       id: 'edit-delete',
-      numeric: true,
+      numeric: false,
       disablePadding: false,
       label: '',
     }

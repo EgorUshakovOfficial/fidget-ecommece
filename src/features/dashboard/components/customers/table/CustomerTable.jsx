@@ -28,7 +28,7 @@ export default function CustomerTable(){
         <EnhancedTableToolbar />
         <TableContainer>
           <Table
-            aria-labelledby="tableTitle"
+            aria-labelledby="customer-table"
             size='medium'
           >
             <EnhancedTableHead />

@@ -1,11 +1,5 @@
 import {useContext} from 'react';
-import {
-    TableCell,
-    TableRow,
-    Checkbox,
-    IconButton
-  } from '@mui/material';
-
+import {TableCell, TableRow, Checkbox, IconButton, Tooltip} from '@mui/material';
 import {MoreHoriz} from '@mui/icons-material';
 import OptionsMenu from './OptionsMenu';
 import {CustomerContext} from '../../../context/CustomerContext';
@@ -18,12 +12,10 @@ export default function EnhancedTableRow({
 }){
     const {open, handleOptionsClick} = useContext(CustomerContext);
     return (
-        <TableRow
+      <TableRow
         hover
         onClick={(event) => handleSelectClick(event, row.name)}
         role="checkbox"
-        aria-checked={isItemSelected}
-        tabIndex={-1}
         key={row.name}
         selected={isItemSelected}
       >
@@ -31,9 +23,7 @@ export default function EnhancedTableRow({
           <Checkbox
             color="primary"
             checked={isItemSelected}
-            inputProps={{
-              'aria-labelledby': labelId,
-            }}
+            inputProps={{}}
           />
         </TableCell>
         <TableCell
@@ -44,33 +34,16 @@ export default function EnhancedTableRow({
         >
           {row.name}
         </TableCell>
-        <TableCell align="right">{row.email}</TableCell>
-        <TableCell align="right">{row.subscribed}</TableCell>
+        <TableCell align="left">{row.email}</TableCell>
+        <TableCell align="left">{row.subscribed}</TableCell>
         <TableCell align="right">
-          <IconButton
-            id="demo-customized-button"
-            aria-controls={open ? 'demo-customized-menu' : undefined}
-            aria-haspopup="true"
-            aria-expanded={open ? 'true' : undefined}
-            onClick={handleOptionsClick}
-          >
-            <MoreHoriz />
-          </IconButton>
+          <Tooltip title="Edit or delete">
+            <IconButton onClick={handleOptionsClick}>
+              <MoreHoriz />
+            </IconButton>
+          </Tooltip>
           <OptionsMenu />
         </TableCell>
       </TableRow>
     )
 }
-
-      /* <Button
-        id="demo-customized-button"
-        aria-controls={open ? 'demo-customized-menu' : undefined}
-        aria-haspopup="true"
-        aria-expanded={open ? 'true' : undefined}
-        variant="contained"
-        disableElevation
-        onClick={handleOptionsClick}
-        endIcon={<KeyboardArrowDownIcon />}
-      >
-        Options
-      </Button> */
