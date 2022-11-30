@@ -1,12 +1,14 @@
+
 import {useContext} from 'react';
 import {Paper, InputBase} from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import { OrderContext } from '../../context/OrderContext';
 
 export default function OrderFilter(){
-    const {handleOrderFilterChange} = useContext(OrderContext);
+    const {handleOrderFilterChange, orderFilter} = useContext(OrderContext);
     return (
         <Paper
+            elevation={orderFilter==="" ? 0 : 2}
             sx={{
                 p: '2px 4px',
                 display: 'flex',
