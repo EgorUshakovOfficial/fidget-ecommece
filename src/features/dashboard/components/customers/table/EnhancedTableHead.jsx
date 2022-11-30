@@ -34,7 +34,11 @@ const headCells =  [
 
 export default function EnhancedTableHead() {
     const { handleSelectAllClick,  selected, rows} = useContext(CustomerContext);
+
+    // Number of customers selected
     const numSelected = selected.length;
+
+    // Total number of customers
     const rowCount = rows.length;
 
     return (
@@ -44,11 +48,7 @@ export default function EnhancedTableHead() {
             <Checkbox
               color="primary"
               indeterminate={numSelected > 0 && numSelected < rowCount}
-              checked={rowCount > 0 && numSelected === rowCount}
-              onChange={handleSelectAllClick}
-              inputProps={{
-                'aria-label': 'select all desserts',
-              }}
+              onClick={handleSelectAllClick}
             />
           </TableCell>
           {headCells.map((headCell) => (

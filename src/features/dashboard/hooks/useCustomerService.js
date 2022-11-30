@@ -6,12 +6,18 @@ export default function useCustomerService(rows){
     const [selected, setSelected] = useState([]);
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(5);
-
     const open = Boolean(anchorOptions);
 
-    const handleSelectAllClick = (event) => {
-      if (event.target.checked) {
-        const newSelected = rows.map((n) => n.name);
+    // Number of selected customers
+    const numSelectedCustomers = selected.length;
+
+    // Total amount of customers
+    const totalCustomers = rows.length;
+
+    // Selects all the customers in the table
+    const handleSelectAllClick = () => {
+      if (totalCustomers > 0 && totalCustomers !== numSelectedCustomers) {
+        const newSelected = rows.map(n => n.name);
         setSelected(newSelected);
         return;
       }
@@ -22,9 +28,9 @@ export default function useCustomerService(rows){
     const handleSelectClick = (event, name) => {
       const selectedIndex = selected.indexOf(name);
       let newSelected= [];
-
       if (selectedIndex === -1) {
         newSelected = newSelected.concat(selected, name);
+        console.log(selected);
       } else if (selectedIndex === 0) {
         newSelected = newSelected.concat(selected.slice(1));
       } else if (selectedIndex === selected.length - 1) {

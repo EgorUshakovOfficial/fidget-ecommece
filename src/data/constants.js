@@ -7,6 +7,7 @@ export const DASHBOARD_PAGES = {
     products: 'products',
     orders: 'orders'
 }
+export const ROWS_PER_PAGE = 5;
 export const SHOPPING_PAGES = ["Catalog", "About", "Contact"];
 
 

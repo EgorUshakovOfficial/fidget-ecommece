@@ -1,4 +1,6 @@
+import {useContext} from 'react';
 import {TableCell, TableHead, TableRow, Checkbox} from '@mui/material';
+import {OrderContext} from '../../context/OrderContext';
 
 const headCells = [
     {
@@ -33,14 +35,23 @@ const headCells = [
     }
 ];
 
-
 export default function EnhancedTableHead(){
+    const {
+        numOrders,
+        numOrdersSelected,
+        handleSelectAllClick
+    } = useContext(OrderContext);
+
+
     return (
         <TableHead>
             <TableRow>
                 <TableCell padding='checkbox'>
                     <Checkbox
                         color="primary"
+                        indeterminate={numOrdersSelected > 0 && numOrdersSelected < numOrders}
+                        checked={numOrders > 0 && numOrders === numOrdersSelected}
+                        onClick={handleSelectAllClick}
                     />
                 </TableCell>
                 {headCells.map(headCell => (

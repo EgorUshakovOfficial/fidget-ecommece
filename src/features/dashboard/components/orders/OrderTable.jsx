@@ -1,9 +1,19 @@
-import {Box, Paper, Table, TableContainer} from '@mui/material';
+import {useContext} from 'react';
+import {Box, Paper, Table, TableContainer, TablePagination} from '@mui/material';
 import EnhancedTableHead from './EnhancedTableHead';
 import EnhancedTableTooltip from './EnhancedTableToolbar';
 import EnhancedTableRows from './EnhancedTableRows';
+import { OrderContext } from '../../context/OrderContext';
 
 export default function OrderTable(){
+    const {
+        numOrders,
+        rowsPerPage,
+        page,
+        handleChangePage,
+        handleChangeRowsPerPage
+    } = useContext(OrderContext);
+
     return (
         <Box
             sx={{
@@ -22,6 +32,15 @@ export default function OrderTable(){
                         <EnhancedTableRows />
                     </Table>
                 </TableContainer>
+                <TablePagination
+                    rowsPerPageOptions={[5, 10, 25]}
+                    component="div"
+                    count={numOrders}
+                    rowsPerPage={rowsPerPage}
+                    page={page}
+                    onPageChange={handleChangePage}
+                    onRowsPerPageChange={handleChangeRowsPerPage}
+                />
             </Paper>
         </Box>
     )

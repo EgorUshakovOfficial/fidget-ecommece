@@ -30,7 +30,9 @@ const rows = [
 
 // Customer Provider
 const CustomerProvider = ({children}) => {
+
     let customerProps = useCustomerService(rows);
+
     return(
         <CustomerContext.Provider value={{...customerProps}}>
             {children}

@@ -1,7 +1,10 @@
+import {useContext} from 'react';
 import {Paper, InputBase} from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
+import { OrderContext } from '../../context/OrderContext';
 
 export default function OrderFilter(){
+    const {handleOrderFilterChange} = useContext(OrderContext);
     return (
         <Paper
             sx={{
@@ -16,7 +19,7 @@ export default function OrderFilter(){
             <InputBase
                 sx={{ml:1, flex:1}}
                 placeholder="Search order"
-                inputProps={{}}
+                inputProps={{onChange: handleOrderFilterChange}}
             />
             <SearchIcon />
         </Paper>

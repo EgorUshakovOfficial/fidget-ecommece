@@ -1,18 +1,23 @@
+import {useContext} from 'react';
 import {TableCell, TableRow, Checkbox, IconButton} from '@mui/material';
 import {MoreHoriz} from '@mui/icons-material';
+import { OrderContext } from '../../context/OrderContext';
+
 export default function EnhancedTableRow({order}){
+    const {isSelected, handleSelectClick} = useContext(OrderContext);
+
     return (
         <TableRow
             key={order.id}
-            onClick={() => {}}
             hover
             role='checkbox'
-            selected={true}
+            selected={isSelected(order.number)}
         >
             <TableCell padding='checkbox'>
                 <Checkbox
                     color='primary'
-                    checked={false}
+                    checked={isSelected(order.number)}
+                    onClick={e => handleSelectClick(e, order.number)}
                     inputProps={{}}
                 />
             </TableCell>
