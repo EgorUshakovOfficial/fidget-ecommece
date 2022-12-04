@@ -5,18 +5,20 @@ import OptionsMenu from './OptionsMenu';
 import {CustomerContext} from '../../../context/CustomerContext';
 
 export default function EnhancedTableRow({
-    labelId,
     handleSelectClick,
-    row,
+    customer,
     isItemSelected,
 }){
     const {open, handleOptionsClick} = useContext(CustomerContext);
+
+    // Customer's fullname
+    let fullName = `${customer.firstName} ${customer.lastName}`;
+
     return (
       <TableRow
         hover
-        onClick={(event) => handleSelectClick(event, row.name)}
+        onClick={(event) => handleSelectClick(event, customer.email)}
         role="checkbox"
-        key={row.name}
         selected={isItemSelected}
       >
         <TableCell padding="checkbox">
@@ -28,14 +30,13 @@ export default function EnhancedTableRow({
         </TableCell>
         <TableCell
           component="th"
-          id={labelId}
           scope="row"
           padding="none"
         >
-          {row.name}
+          {fullName}
         </TableCell>
-        <TableCell align="left">{row.email}</TableCell>
-        <TableCell align="left">{row.subscribed}</TableCell>
+        <TableCell align="left">{customer.email}</TableCell>
+        <TableCell align="left">Yes</TableCell>
         <TableCell align="right">
           <Tooltip title="Edit or delete">
             <IconButton onClick={handleOptionsClick}>

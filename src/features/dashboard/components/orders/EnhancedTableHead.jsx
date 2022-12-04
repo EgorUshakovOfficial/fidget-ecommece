@@ -32,6 +32,12 @@ const headCells = [
         numeric:false,
         disablePadding:false,
         label:"Status"
+    },
+    {
+        id:"options",
+        numeric:false,
+        disablePadding:false,
+        label:""
     }
 ];
 
