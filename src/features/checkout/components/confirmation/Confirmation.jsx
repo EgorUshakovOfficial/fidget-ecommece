@@ -7,13 +7,13 @@ import ContinueShopping from '../../../../components/ContinueShopping';
 export default function Confirmation(){
     const {setCart} = useContext(StateContext);
 
-    // useEffect(() => {
-    //     // Clears any products in session storage
-    //     sessionStorage.clear();
+    useEffect(() => {
+        // Clears any products in session storage
+        sessionStorage.clear();
 
-    //     // Reset state of cart
-    //     return () => setCart([]);
-    // }, []);
+        // Reset state of cart
+        return () => setCart([]);
+    }, []);
 
     return (
         <Container

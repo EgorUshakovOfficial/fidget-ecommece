@@ -65,8 +65,12 @@ export default function usePayment(){
         // Body data
         const data = {
             userInfo:{...userInfo},
-            cartInfo:cart.map(({id, quantity}) => ({id, quantity})),
-            total,
+            cartInfo:cart.map(({id, image, quantity, cost}) => ({id, image, quantity, cost})),
+            costInfo:{
+                subtotal,
+                shippingCost,
+                total
+            },
             paymentInfo:{
                 cardNumber,
                 cardholderName,
