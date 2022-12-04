@@ -4,7 +4,7 @@ import {
   Route
 } from 'react-router-dom';
 import { AuthProvider, Protected } from './features/authentication/index';
-import { PageProvider } from './features/dashboard/index';
+import { DashboardProvider } from './features/dashboard/index';
 import {Conditional, CheckoutProvider} from  './features/checkout/index';
 import ShoppingHome from './pages/Shopping/ShoppingHome';
 import Cart from './pages/Shopping/Cart';
@@ -26,9 +26,9 @@ function App() {
               <Route path="admin" element={ <Admin />} />
               <Route path="dashboard" element={
                   //<Protected>
-                    <PageProvider>
+                    <DashboardProvider>
                       <Dashboard />
-                    </PageProvider>
+                    </DashboardProvider>
                   //</Protected>
                 }
               />

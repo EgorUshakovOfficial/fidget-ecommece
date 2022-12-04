@@ -1,11 +1,11 @@
 import {useContext} from 'react';
-import { PageContext, DashboardLayout } from '../../features/dashboard/index';
+import { DashboardContext, DashboardLayout } from '../../features/dashboard/index';
 import Customers from './Customers';
 import Products from './Products';
 import Orders from './Orders';
 
 export default function Dashboard(){
-    const {page} = useContext(PageContext);
+    const {page} = useContext(DashboardContext);
     return (
         <DashboardLayout>
             {page === "home" && <div>Analytics</div>}

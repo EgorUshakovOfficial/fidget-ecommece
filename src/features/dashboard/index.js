@@ -1,7 +1,6 @@
 import {CustomerProvider} from './context/CustomerContext';
 import { ProductProvider } from "./context/ProductContext";
-import { PageProvider } from './context/PageContext';
-import {PageContext} from './context/PageContext';
+import { DashboardContext, DashboardProvider} from './context/DashboardContext';
 import DashboardLayout from './layouts/DashboardLayout';
 import CustomerHeader from './components/customers/CustomerHeader';
 import CustomerTable from './components/customers/table/CustomerTable';
@@ -19,8 +18,8 @@ import OrderTable from './components/orders/OrderTable';
 export {
     CustomerProvider,
     ProductProvider,
-    PageProvider,
-    PageContext,
+    DashboardProvider,
+    DashboardContext,
     DashboardLayout,
     CustomerHeader,
     CustomerTable,

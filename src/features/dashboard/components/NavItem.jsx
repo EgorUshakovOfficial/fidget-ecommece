@@ -1,9 +1,9 @@
 import {useContext} from 'react';
 import {ListItem, ListItemButton, ListItemIcon, ListItemText} from '@mui/material';
-import { PageContext } from '../context/PageContext';
+import { DashboardContext } from '../context/DashboardContext';
 
 export default function NavItem({text, icon}){
-    const {handlePageClick} = useContext(PageContext);
+    const {handlePageClick} = useContext(DashboardContext);
     return (
         <ListItem value={text} onClick={handlePageClick} disablePadding>
             <ListItemButton>
