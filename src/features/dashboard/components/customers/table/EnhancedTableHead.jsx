@@ -33,25 +33,19 @@ const headCells =  [
 ];
 
 export default function EnhancedTableHead() {
-    const { handleSelectAllClick,  selected, rows} = useContext(CustomerContext);
-
-    // Number of customers selected
-    const numSelected = selected.length;
-
-    // Total number of customers
-    const rowCount = rows.length;
-
+    const { handleSelectAllClick, totalCustomers, numSelectedCustomers} = useContext(CustomerContext);
     return (
       <TableHead>
         <TableRow>
           <TableCell padding="checkbox">
             <Checkbox
               color="primary"
-              indeterminate={numSelected > 0 && numSelected < rowCount}
-              onClick={handleSelectAllClick}
+              indeterminate={numSelectedCustomers > 0 && numSelectedCustomers < totalCustomers}
+              checked={totalCustomers > 0 && numSelectedCustomers === totalCustomers}
+              onChange={handleSelectAllClick}
             />
           </TableCell>
-          {headCells.map((headCell) => (
+          {headCells.map(headCell => (
             <TableCell
               key={headCell.id}
               align={headCell.numeric ? 'right' : 'left'}

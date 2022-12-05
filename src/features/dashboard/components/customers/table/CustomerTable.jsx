@@ -10,27 +10,24 @@ import {
 import EnhancedTableHead from './EnhancedTableHead';
 import EnhancedTableToolbar from './EnhancedTableToolbar';
 import EnhancedTableRows from './EnhancedTableRows';
-
 import {CustomerContext} from '../../../context/CustomerContext';
 
 export default function CustomerTable(){
   const {
-    rows,
+    totalCustomers,
     rowsPerPage,
     page,
     handleChangePage,
     handleChangeRowsPerPage
   } = useContext(CustomerContext);
 
+
   return (
     <Box sx={{ width: '100%', marginTop:"0.8em"}}>
       <Paper elevation={0} sx={{ width: '100%', mb: 2, border:"1px solid lightgray" }}>
         <EnhancedTableToolbar />
         <TableContainer>
-          <Table
-            aria-labelledby="customer-table"
-            size='medium'
-          >
+          <Table size='medium'>
             <EnhancedTableHead />
             <EnhancedTableRows />
           </Table>
@@ -38,7 +35,7 @@ export default function CustomerTable(){
         <TablePagination
           rowsPerPageOptions={[5, 10, 25]}
           component="div"
-          count={rows.length}
+          count={totalCustomers}
           rowsPerPage={rowsPerPage}
           page={page}
           onPageChange={handleChangePage}

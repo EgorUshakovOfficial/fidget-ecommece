@@ -1,48 +1,48 @@
-import {useState} from 'react';
+import {useState, useContext} from 'react';
+import {DashboardContext} from '../context/DashboardContext';
 
-export default function useCustomerService(rows){
+export default function useCustomerService(){
+    // Customers
+    const {customers} = useContext(DashboardContext);
+
     const [anchorOptions, setAnchorOptions] = useState(null);
     const [userFilter, setUserFilter] = useState("");
-    const [selected, setSelected] = useState([]);
+    const [usersSelected, setUsersSelected] = useState([]);
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(5);
     const open = Boolean(anchorOptions);
 
-    // Number of selected customers
-    const numSelectedCustomers = selected.length;
-
     // Total amount of customers
-    const totalCustomers = rows.length;
+    const totalCustomers = customers.length;
+
+    // Number of selected customers
+    const numSelectedCustomers = usersSelected.length;
 
     // Selects all the customers in the table
     const handleSelectAllClick = () => {
       if (totalCustomers > 0 && totalCustomers !== numSelectedCustomers) {
-        const newSelected = rows.map(n => n.name);
-        setSelected(newSelected);
+        const newSelected = customers.map(n => n._id);
+        setUsersSelected(newSelected);
         return;
       }
-      setSelected([]);
+      setUsersSelected([]);
     };
 
     // Handles select click
-    const handleSelectClick = (event, name) => {
-      const selectedIndex = selected.indexOf(name);
-      let newSelected= [];
-      if (selectedIndex === -1) {
-        newSelected = newSelected.concat(selected, name);
-        console.log(selected);
-      } else if (selectedIndex === 0) {
-        newSelected = newSelected.concat(selected.slice(1));
-      } else if (selectedIndex === selected.length - 1) {
-        newSelected = newSelected.concat(selected.slice(0, -1));
-      } else if (selectedIndex > 0) {
-        newSelected = newSelected.concat(
-          selected.slice(0, selectedIndex),
-          selected.slice(selectedIndex + 1),
-        );
-      }
+    const handleSelectClick = (event, userId) => {
+      let selectedIndex = usersSelected.indexOf(userId);
 
-      setSelected(newSelected);
+      // Updates array of selected customers
+      setUsersSelected(state => {
+        // Selected customer has not been already selected
+        if (selectedIndex === -1){
+          return [...state, userId]
+        }
+
+        // Selected customer has been already selected
+        return [...state.slice(0, selectedIndex), ...state.slice(selectedIndex+1)];
+      })
+
     };
 
     // Handles options click
@@ -67,7 +67,8 @@ export default function useCustomerService(rows){
       setPage(0);
     };
 
-    const isSelected = (name) => selected.indexOf(name) !== -1;
+    // Checks if user has been selected
+    const isSelected = userId => usersSelected.indexOf(userId) !== -1;
 
     // Handles user filter change
     const handleUserFilterChange = e => {
@@ -86,15 +87,14 @@ export default function useCustomerService(rows){
       return (name.indexOf(filter) >= 0 || email.indexOf(filter) >= 0 || subscribed.indexOf(filter) >= 0)
     }
 
-    const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
-
     return {
         open,
         anchorOptions,
         userFilter,
-        selected,
-        rows,
+        usersSelected,
         isSelected,
+        totalCustomers,
+        numSelectedCustomers,
         page,
         rowsPerPage,
         handleOptionsClick,
@@ -104,7 +104,6 @@ export default function useCustomerService(rows){
         handleChangePage,
         handleChangeRowsPerPage,
         handleUserFilterChange,
-        filterRows,
-        emptyRows,
+        filterRows
     }
 }

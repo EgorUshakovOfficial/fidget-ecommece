@@ -5,6 +5,7 @@ import {CustomerContext} from '../../../context/CustomerContext';
 
 export default function UserFilter() {
   const {userFilter, handleUserFilterChange} = useContext(CustomerContext);
+
   return (
     <Paper
         component="form"
@@ -22,7 +23,6 @@ export default function UserFilter() {
         sx={{ ml: 1, flex: 1 }}
         placeholder="Search customer"
         inputProps={{
-          'aria-label': 'search customers',
           onChange: handleUserFilterChange,
           value:userFilter,
         }}

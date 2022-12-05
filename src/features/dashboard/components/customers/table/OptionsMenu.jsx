@@ -1,9 +1,7 @@
 import {useContext} from 'react';
 import { styled, alpha } from '@mui/material/styles';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import EditIcon from '@mui/icons-material/Edit';
-import FileCopyIcon from '@mui/icons-material/FileCopy';
+import {Menu, MenuItem} from '@mui/material';
+import {Edit, FileCopy} from '@mui/icons-material';
 
 import { CustomerContext } from '../../../context/CustomerContext';
 
@@ -50,22 +48,19 @@ const StyledMenu = styled((props) => (
 
 export default function OptionsMenu() {
   const {open, anchorOptions, handleOptionsClose} = useContext(CustomerContext);
+
   return (
       <StyledMenu
-        id="demo-customized-menu"
-        MenuListProps={{
-          'aria-labelledby': 'demo-customized-button',
-        }}
         anchorEl={anchorOptions}
         open={open}
         onClose={handleOptionsClose}
       >
         <MenuItem onClick={handleOptionsClose} disableRipple>
-          <EditIcon />
+          <Edit />
           Edit
         </MenuItem>
         <MenuItem onClick={handleOptionsClose} disableRipple>
-          <FileCopyIcon />
+          <FileCopy />
           Delete
         </MenuItem>
       </StyledMenu>
