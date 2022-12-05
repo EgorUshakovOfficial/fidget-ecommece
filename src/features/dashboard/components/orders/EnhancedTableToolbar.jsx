@@ -6,7 +6,7 @@ import OrderFilter from './OrderFilter';
 import { OrderContext } from '../../context/OrderContext';
 
 export default function EnhancedTableToolbar(){
-    const {numOrdersSelected} = useContext(OrderContext);
+    const {deleteSelectedOrdersOnClick, numOrdersSelected} = useContext(OrderContext);
     return (
         <Toolbar
         sx={{
@@ -30,7 +30,7 @@ export default function EnhancedTableToolbar(){
                         {numOrdersSelected} orders selected
                     </Typography>
                     <Tooltip title="Delete">
-                        <IconButton>
+                        <IconButton onClick={deleteSelectedOrdersOnClick}>
                             <Delete />
                         </IconButton>
                     </Tooltip>

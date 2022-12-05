@@ -6,7 +6,7 @@ import UserFilter from './UserFilter';
 import {CustomerContext} from '../../../context/CustomerContext';
 
 export default function EnhancedTableToolbar() {
-    const {numSelectedCustomers} = useContext(CustomerContext);
+    const {deleteUsersOnClick, numSelectedCustomers} = useContext(CustomerContext);
 
     return (
       <Toolbar
@@ -31,7 +31,7 @@ export default function EnhancedTableToolbar() {
               {numSelectedCustomers} selected
             </Typography>
             <Tooltip title="Delete">
-              <IconButton>
+              <IconButton onClick={deleteUsersOnClick}>
                 <Delete />
               </IconButton>
             </Tooltip>

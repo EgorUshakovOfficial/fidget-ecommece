@@ -1,9 +1,14 @@
 import {useState, useContext} from 'react';
+import { deleteUsers } from '../services/deleteUsers';
+import { StateContext } from '../../../context/StateContext';
 import {DashboardContext} from '../context/DashboardContext';
 
 export default function useCustomerService(){
+    // Loading
+    const {setLoading} = useContext(StateContext);
+
     // Customers
-    const {customers} = useContext(DashboardContext);
+    const {setCustomers, customers} = useContext(DashboardContext);
 
     const [anchorOptions, setAnchorOptions] = useState(null);
     const [userFilter, setUserFilter] = useState("");
@@ -13,6 +18,7 @@ export default function useCustomerService(){
     const open = Boolean(anchorOptions);
 
     // Total amount of customers
+    console.log(customers);
     const totalCustomers = customers.length;
 
     // Number of selected customers
@@ -87,6 +93,31 @@ export default function useCustomerService(){
       return (name.indexOf(filter) >= 0 || email.indexOf(filter) >= 0 || subscribed.indexOf(filter) >= 0)
     }
 
+    // Deletes multiple specified users on click
+    const deleteUsersOnClick = () => {
+      // Changes loading state of the application
+      // from not loading to loading
+      setLoading(true);
+
+      // Removes selected users from the database
+      // and updates table
+      deleteUsers(usersSelected)
+      .then(response => {
+        console.log(response);
+        setCustomers(state => {
+          return state.filter(customer => {
+            let index = usersSelected.findIndex(userId => userId === customer._id);
+            return (index === -1);
+          })
+        })
+      })
+      .catch(err => console.log(err))
+      .finally(() => {
+        setUsersSelected([]);
+        setLoading(false)
+      });
+    }
+
     return {
         open,
         anchorOptions,
@@ -104,6 +135,7 @@ export default function useCustomerService(){
         handleChangePage,
         handleChangeRowsPerPage,
         handleUserFilterChange,
-        filterRows
+        filterRows,
+        deleteUsersOnClick
     }
 }

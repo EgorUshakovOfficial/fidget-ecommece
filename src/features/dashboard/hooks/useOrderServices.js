@@ -1,7 +1,16 @@
-import {useState} from 'react';
+import {useState, useContext} from 'react';
 import { ROWS_PER_PAGE } from '../../../data/constants';
+import {StateContext} from '../../../context/StateContext';
+import {DashboardContext} from '../context/DashboardContext';
+import { deleteOrders } from '../services/deleteOrders';
 
-export default function useOrderServices(orders){
+export default function useOrderServices(){
+    // Loading
+    const {setLoading} = useContext(StateContext);
+
+    // Orders
+    const {orders, setOrders} = useContext(DashboardContext);
+
     // Order states
     const [orderFilter, setOrderFilter] = useState('');
     const [ordersSelected, setOrdersSelected] = useState([]);
@@ -22,7 +31,7 @@ export default function useOrderServices(orders){
     // Selects all orders on click
     const handleSelectAllClick = () => {
         if (numOrders > 0 && numOrdersSelected !== numOrders) {
-            let newOrdersSelected = orders.map(order => order.number);
+            let newOrdersSelected = orders.map(order => order._id);
             setOrdersSelected(newOrdersSelected);
             return;
         }
@@ -30,14 +39,14 @@ export default function useOrderServices(orders){
     };
 
     // Selects an order in the table
-    const handleSelectClick = (e, number) => {
-        let selectedIndex = ordersSelected.indexOf(number);
+    const handleSelectClick = (e, orderId) => {
+        let selectedIndex = ordersSelected.indexOf(orderId);
 
         // Update state of the orders selected
         setOrdersSelected(state => {
             // Order selected is not already selected
             if (selectedIndex === -1){
-                return [...state, number];
+                return [...state, orderId];
             }
 
             // Order is already selected, so unselect it
@@ -58,7 +67,7 @@ export default function useOrderServices(orders){
     }
 
     // Is row selected?
-    const isSelected = number => ordersSelected.indexOf(number) !== -1;
+    const isSelected = orderId => ordersSelected.indexOf(orderId) !== -1;
 
     // Filters orders
     const filterOrders = (number, email, amount, date, status) => {
@@ -76,6 +85,29 @@ export default function useOrderServices(orders){
             status.indexOf(filter) >= 0);
     }
 
+    // Deletes selected orders on click
+    const deleteSelectedOrdersOnClick = () => {
+        // Changes loading state of the application
+        // from not loading to loading
+        setLoading(true);
+
+        // Deletes specified orders from the database
+        deleteOrders(ordersSelected)
+        .then(() => {
+            setOrders(state => {
+                return state.filter(order => {
+                    let index = ordersSelected.findIndex(orderId => orderId === order._id);
+                    return (index === -1);
+                })
+            })
+        })
+        .catch(err => console.log(err))
+        .finally(() => {
+            setOrdersSelected([]);
+            setLoading(false);
+        });
+    }
+
 
     return {
         orderFilter,
@@ -91,6 +123,7 @@ export default function useOrderServices(orders){
         handleChangePage,
         handleChangeRowsPerPage,
         handleOrderFilterChange,
+        deleteSelectedOrdersOnClick
     }
 
 }

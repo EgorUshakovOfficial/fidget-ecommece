@@ -12,14 +12,13 @@ export default function EnhancedTableRow({order}){
             key={order._id}
             hover
             role='checkbox'
-            selected={isSelected(order.number)}
+            selected={isSelected(order._id)}
         >
             <TableCell padding='checkbox'>
                 <Checkbox
                     color='primary'
-                    checked={isSelected(order.number)}
-                    onClick={e => handleSelectClick(e, order.number)}
-                    inputProps={{}}
+                    checked={isSelected(order._id)}
+                    onClick={e => handleSelectClick(e, order._id)}
                 />
             </TableCell>
             <TableCell

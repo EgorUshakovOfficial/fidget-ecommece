@@ -40,5 +40,11 @@ export default function useDashboardServices(){
 
     }, []);
 
-    return {orders,customers}
+    return {
+        customers,
+        setCustomers,
+        orders,
+        setOrders
+    }
+
 }
