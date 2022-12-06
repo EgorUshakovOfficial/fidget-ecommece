@@ -8,6 +8,7 @@ import AddProduct from "./components/products/AddProduct";
 import ProductFilter from "./components/products/ProductFilter";
 import SortByFilterMenu from "./components/products/SortByFilterMenu";
 import ProductGallery from "./components/products/ProductGallery";
+import AddUserModal from './components/customers/table/AddUserModal';
 import AddProductModal from './components/products/AddProductModal';
 import DeleteProductModal from './components/products/DeleteProductModal';
 import EditProductModal from './components/products/EditProductModal';
@@ -27,6 +28,7 @@ export {
     ProductFilter,
     SortByFilterMenu,
     ProductGallery,
+    AddUserModal,
     AddProductModal,
     DeleteProductModal,
     EditProductModal,

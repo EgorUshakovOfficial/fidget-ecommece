@@ -15,10 +15,11 @@ export default function useCustomerService(){
     const [usersSelected, setUsersSelected] = useState([]);
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(5);
+    const [openNewUserForm, setOpenNewUserForm] = useState(false);
     const open = Boolean(anchorOptions);
 
+
     // Total amount of customers
-    console.log(customers);
     const totalCustomers = customers.length;
 
     // Number of selected customers
@@ -128,6 +129,8 @@ export default function useCustomerService(){
         numSelectedCustomers,
         page,
         rowsPerPage,
+        openNewUserForm,
+        setOpenNewUserForm,
         handleOptionsClick,
         handleOptionsClose,
         handleSelectAllClick,

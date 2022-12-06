@@ -41,8 +41,6 @@ export default function AddProductModal() {
   return (
     <div>
       <Modal
-        aria-labelledby="product-modal"
-        aria-describedby="add-new-product"
         open={openAddProductModal}
         onClose={handleAddProductModalClose}
         closeAfterTransition
