@@ -9,7 +9,7 @@ import {
 } from '@mui/material';
 import {Link} from 'react-router-dom';
 import {CheckoutContext} from '../../context/CheckoutContext';
-import {createShippingAddress} from '../../utils/createShippingAddress';
+import {createShippingAddress} from '../../../../utils/createShippingAddress';
 
 export default function InformationSummary(){
     const {

@@ -2,7 +2,7 @@ import {useContext} from 'react';
 import { CustomerContext } from '../../../context/CustomerContext';
 import {TableCell, TableHead, TableRow, Checkbox} from '@mui/material';
 
-// Static head cells. Replace with API call here...
+// Head cells
 const headCells =  [
     {
       id: 'name',
@@ -17,19 +17,23 @@ const headCells =  [
       label: 'Email',
     },
     {
+      id:"address",
+      numeric:false,
+      disablePadding:false,
+      label:"Address"
+    },
+    {
       id: 'Subscribed',
       numeric: false,
       disablePadding: false,
       label: 'Subscribed',
     },
-
     {
       id: 'edit-delete',
       numeric: false,
       disablePadding: false,
       label: '',
     }
-
 ];
 
 export default function EnhancedTableHead() {

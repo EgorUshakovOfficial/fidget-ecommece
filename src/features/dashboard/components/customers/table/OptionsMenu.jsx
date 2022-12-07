@@ -1,8 +1,7 @@
 import {useContext} from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import {Menu, MenuItem} from '@mui/material';
-import {Edit, FileCopy} from '@mui/icons-material';
-
+import {Edit, Delete} from '@mui/icons-material';
 import { CustomerContext } from '../../../context/CustomerContext';
 
 const StyledMenu = styled((props) => (
@@ -46,21 +45,26 @@ const StyledMenu = styled((props) => (
   },
 }));
 
-export default function OptionsMenu() {
-  const {open, anchorOptions, handleOptionsClose} = useContext(CustomerContext);
+export default function OptionsMenu({userId}) {
+  const {
+    openOptionsMenu,
+    anchorOptions,
+    handleOptionsClose,
+    deleteUserOnClick
+  } = useContext(CustomerContext);
 
   return (
       <StyledMenu
         anchorEl={anchorOptions}
-        open={open}
+        open={openOptionsMenu}
         onClose={handleOptionsClose}
       >
         <MenuItem onClick={handleOptionsClose} disableRipple>
           <Edit />
           Edit
         </MenuItem>
-        <MenuItem onClick={handleOptionsClose} disableRipple>
-          <FileCopy />
+        <MenuItem onClick={e => deleteUserOnClick(e, userId)} disableRipple>
+          <Delete />
           Delete
         </MenuItem>
       </StyledMenu>

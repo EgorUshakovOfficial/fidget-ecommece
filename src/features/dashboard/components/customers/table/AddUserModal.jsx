@@ -45,7 +45,6 @@ export default function AddUserModal(){
         <Modal
             open={openNewUserForm}
             onClose={() => setOpenNewUserForm(false)}
-            onClick={newUserProps.handleCloseIconClick}
             closeAfterTransition
             BackdropComponent={Backdrop}
             BackdropProps={{timeout: 500}}
@@ -71,7 +70,7 @@ export default function AddUserModal(){
                     >
                         New User
                     </Typography>
-                    <IconButton onClick={() => setOpenNewUserForm(false)}>
+                    <IconButton onClick={newUserProps.handleCloseIconClick}>
                         <Close />
                     </IconButton>
                 </Box>

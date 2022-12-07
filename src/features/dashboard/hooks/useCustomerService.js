@@ -1,5 +1,6 @@
 import {useState, useContext} from 'react';
 import { deleteUsers } from '../services/deleteUsers';
+import { deleteUser } from '../services/deleteUser';
 import { StateContext } from '../../../context/StateContext';
 import {DashboardContext} from '../context/DashboardContext';
 
@@ -16,8 +17,10 @@ export default function useCustomerService(){
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(5);
     const [openNewUserForm, setOpenNewUserForm] = useState(false);
-    const open = Boolean(anchorOptions);
+    const [error, setError] = useState('');
 
+    // Opens menu options
+    const openOptionsMenu = Boolean(anchorOptions);
 
     // Total amount of customers
     const totalCustomers = customers.length;
@@ -104,7 +107,6 @@ export default function useCustomerService(){
       // and updates table
       deleteUsers(usersSelected)
       .then(response => {
-        console.log(response);
         setCustomers(state => {
           return state.filter(customer => {
             let index = usersSelected.findIndex(userId => userId === customer._id);
@@ -117,10 +119,33 @@ export default function useCustomerService(){
         setUsersSelected([]);
         setLoading(false)
       });
+    };
+
+    const deleteUserOnClick = (event, userId) => {
+      // Prevents other events from executing
+      event.stopPropagation();
+
+      // Change loading state of the application
+      // from not loading to loading
+      setLoading(true);
+      setAnchorOptions(null);
+
+      // Deletes user from the database
+      // and removes it from the table
+      deleteUser(userId)
+      .then(() => setCustomers(
+        state => state.filter(
+          customer => customer._id !== userId
+        )
+      ))
+      .catch(err => setError(err))
+      .finally(() => {
+        setLoading(false);
+      });
     }
 
     return {
-        open,
+        openOptionsMenu,
         anchorOptions,
         userFilter,
         usersSelected,
@@ -130,6 +155,7 @@ export default function useCustomerService(){
         page,
         rowsPerPage,
         openNewUserForm,
+        error,
         setOpenNewUserForm,
         handleOptionsClick,
         handleOptionsClose,
@@ -139,6 +165,7 @@ export default function useCustomerService(){
         handleChangeRowsPerPage,
         handleUserFilterChange,
         filterRows,
-        deleteUsersOnClick
+        deleteUsersOnClick,
+        deleteUserOnClick
     }
 }

@@ -4,7 +4,8 @@ import {
   Table,
   TableContainer,
   TablePagination,
-  Paper
+  Paper,
+  Typography
 } from '@mui/material';
 
 import EnhancedTableHead from './EnhancedTableHead';
@@ -24,6 +25,7 @@ export default function CustomerTable(){
 
   return (
     <Box sx={{ width: '100%', marginTop:"0.8em"}}>
+      {totalCustomers > 0 ?
       <Paper elevation={0} sx={{ width: '100%', mb: 2, border:"1px solid lightgray" }}>
         <EnhancedTableToolbar />
         <TableContainer>
@@ -42,6 +44,9 @@ export default function CustomerTable(){
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </Paper>
+      :
+      <Typography>No customers are registered</Typography>
+      }
     </Box>
   );
 }
