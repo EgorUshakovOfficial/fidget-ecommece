@@ -24,7 +24,6 @@ export default function useDashboardServices(){
 
                 // Retrieves all customers from the database
                 let userData = await readUsers();
-                console.log(userData);
                 setCustomers([...userData]);
             }
 
