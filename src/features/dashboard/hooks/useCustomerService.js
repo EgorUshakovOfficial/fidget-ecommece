@@ -11,16 +11,15 @@ export default function useCustomerService(){
     // Customers
     const {setCustomers, customers} = useContext(DashboardContext);
 
+    // State
     const [anchorOptions, setAnchorOptions] = useState(null);
     const [userFilter, setUserFilter] = useState("");
     const [usersSelected, setUsersSelected] = useState([]);
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(5);
     const [openNewUserForm, setOpenNewUserForm] = useState(false);
+    const [userSelected, setUserSelected] = useState({id:"", action:""});
     const [error, setError] = useState('');
-
-    // Opens menu options
-    const openOptionsMenu = Boolean(anchorOptions);
 
     // Total amount of customers
     const totalCustomers = customers.length;
@@ -56,23 +55,47 @@ export default function useCustomerService(){
     };
 
     // Handles options click
-    const handleOptionsClick = e => {
+    const handleOptionsClick = (event, userId) => {
       // Prevents select click propagation
-      e.stopPropagation();
-      setAnchorOptions(e.currentTarget);
+      event.stopPropagation();
+
+      // Anchors menu options to the clicked element
+      setAnchorOptions(event.currentTarget);
+
+      // Specifies which user is selected
+      setUserSelected({id:userId, action:"selected"});
+    }
+
+    // Edits row of the specified user
+    const handleEditUserOnClick = event => {
+      // Prevents other events from executing
+      event.stopPropagation();
+
+      // Specifies which user will be edited
+      setUserSelected(state => Object.assign({}, state, {action:"edit"}));
     }
 
     // Handles options close
     const handleOptionsClose = e => {
       e.stopPropagation();
+
+      // Resets selected user and anchor options
+      setUserSelected({id:"", action:""});
       setAnchorOptions(null);
     }
+
+    // // Closes and discard any edits in the specified user
+    // const handleEditClose = () => {
+    //   // Resets selected user
+    //   setSelectedUser({id:"", action:""})
+    // }
+
 
     const handleChangePage = (event, newPage) => {
       setPage(newPage);
     };
 
-    const handleChangeRowsPerPage = (event) => {
+    const handleChangeRowsPerPage = event => {
       setRowsPerPage(parseInt(event.target.value, 10));
       setPage(0);
     };
@@ -128,7 +151,6 @@ export default function useCustomerService(){
       // Change loading state of the application
       // from not loading to loading
       setLoading(true);
-      setAnchorOptions(null);
 
       // Deletes user from the database
       // and removes it from the table
@@ -140,12 +162,12 @@ export default function useCustomerService(){
       ))
       .catch(err => setError(err))
       .finally(() => {
+        setUserSelected({id:"", action:""})
         setLoading(false);
       });
     }
 
     return {
-        openOptionsMenu,
         anchorOptions,
         userFilter,
         usersSelected,
@@ -155,9 +177,12 @@ export default function useCustomerService(){
         page,
         rowsPerPage,
         openNewUserForm,
+        userSelected,
         error,
+        setUserSelected,
         setOpenNewUserForm,
         handleOptionsClick,
+        handleEditUserOnClick,
         handleOptionsClose,
         handleSelectAllClick,
         handleSelectClick,
@@ -167,5 +192,5 @@ export default function useCustomerService(){
         filterRows,
         deleteUsersOnClick,
         deleteUserOnClick
-    }
+    };
 }

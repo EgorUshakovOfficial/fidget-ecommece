@@ -1,5 +1,5 @@
 import {useContext} from 'react';
-import {Box, Paper, Table, TableContainer, TablePagination} from '@mui/material';
+import {Box, Paper, Table, TableContainer, TablePagination, Typography} from '@mui/material';
 import EnhancedTableHead from './EnhancedTableHead';
 import EnhancedTableTooltip from './EnhancedTableToolbar';
 import EnhancedTableRows from './EnhancedTableRows';
@@ -21,6 +21,7 @@ export default function OrderTable(){
                 marginTop:"0.8em"
             }}
         >
+        {numOrders > 0 ?
             <Paper elevation={0} sx={{width:"100%", mb:2, border:"1px solid lightgray"}}>
                 <EnhancedTableTooltip />
                 <TableContainer>
@@ -42,6 +43,9 @@ export default function OrderTable(){
                     onRowsPerPageChange={handleChangeRowsPerPage}
                 />
             </Paper>
+            :
+            <Typography>No orders have been placed yet</Typography>
+        }
         </Box>
     )
 }

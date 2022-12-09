@@ -47,19 +47,20 @@ const StyledMenu = styled((props) => (
 
 export default function OptionsMenu({userId}) {
   const {
-    openOptionsMenu,
+    userSelected,
     anchorOptions,
     handleOptionsClose,
-    deleteUserOnClick
+    handleEditUserOnClick,
+    deleteUserOnClick,
   } = useContext(CustomerContext);
 
   return (
       <StyledMenu
         anchorEl={anchorOptions}
-        open={openOptionsMenu}
+        open={userSelected.id === userId && userSelected.action==="selected"}
         onClose={handleOptionsClose}
       >
-        <MenuItem onClick={handleOptionsClose} disableRipple>
+        <MenuItem onClick={handleEditUserOnClick} disableRipple>
           <Edit />
           Edit
         </MenuItem>
