@@ -10,7 +10,28 @@ import {TableCell,
     IconButton
 } from '@mui/material';
 import {Check, Close} from '@mui/icons-material';
-export default function TableRowEdit(){
+import useTableRowEdit from '../../../hooks/useTableRowEdit';
+import {createShippingAddress} from '../../../../../utils/createShippingAddress';
+export default function TableRowEdit({
+    firstName,
+    lastName,
+    email,
+    address,
+    city,
+    isSubscribed,
+    stateProvince,
+    postalCode,
+    countryRegion
+}){
+    // Fullname
+    let name = `${firstName} ${lastName}`;
+
+    // Shipping Address
+    let shippingAddress = createShippingAddress(address, city, stateProvince, postalCode, countryRegion);
+    console.log(isSubscribed);
+    // Edit user fields and functions
+    const editUserProps = useTableRowEdit({name, email, shippingAddress, isSubscribed});
+
     return (
         <Fragment>
             <TableCell>
@@ -19,8 +40,11 @@ export default function TableRowEdit(){
                         label="Name"
                         size="small"
                         placeholder="John"
+                        value={editUserProps.name}
+                        onChange={editUserProps.handleNameChange}
                         style={{minWidth:"150px"}}
                         InputLabelProps={{shrink: true}}
+                        onClick={e => e.stopPropagation()}
                         fullWidth
                         required
                     />
@@ -31,8 +55,11 @@ export default function TableRowEdit(){
                     label="Email"
                     size="small"
                     placeholder="e.g, johndoe@example.com"
+                    value={editUserProps.email}
+                    onChange={editUserProps.handleEmailChange}
                     style={{minWidth:"150px"}}
                     InputLabelProps={{shrink: true}}
+                    onClick={e => e.stopPropagation()}
                     fullWidth
                     required
                 />
@@ -45,6 +72,7 @@ export default function TableRowEdit(){
                     style={{minWidth:"150px"}}
                     multiline
                     rows={2}
+                    value={editUserProps.shippingAddress}
                     InputLabelProps={{shrink: true}}
                     fullWidth
                     onClick={e => e.stopPropagation()}
@@ -53,21 +81,19 @@ export default function TableRowEdit(){
             </TableCell>
             <TableCell>
                 <FormControl fullWidth>
-                    <InputLabel>Subscribed</InputLabel>
+                    <InputLabel id="subscribed-label">Subscribed</InputLabel>
                     <Select
+                        labelId='subscribed-label'
                         id="is-subscribed"
-                        value={"Yes"}
+                        value={editUserProps.isSubscribed}
                         label="Subscribed"
                         style={{minWidth:"100px"}}
                         fullWidth
-                        onChange={() => {}}
+                        onClick={e => e.stopPropagation()}
+                        onChange={editUserProps.handleIsSubscribedChange}
                     >
-                        <MenuItem value="yes">
-                            Yes
-                        </MenuItem>
-                        <MenuItem value="no">
-                            No
-                        </MenuItem>
+                        <MenuItem value="Yes">Yes</MenuItem>
+                        <MenuItem value="No">No</MenuItem>
                     </Select>
                 </FormControl>
             </TableCell>
@@ -79,7 +105,7 @@ export default function TableRowEdit(){
                         </IconButton>
                     </Tooltip>
                     <Tooltip title="Close">
-                        <IconButton>
+                        <IconButton onClick={editUserProps.closeAndDiscardEdits}>
                             <Close />
                         </IconButton>
                     </Tooltip>

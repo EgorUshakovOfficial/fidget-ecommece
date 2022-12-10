@@ -19,7 +19,7 @@ export default function EnhancedTableRow({customer}){
           <Checkbox color="primary" checked={isSelected(customer._id)} />
         </TableCell>
         {(customer._id === userSelected.id && userSelected.action==="edit") ?
-         <TableRowEdit /> : <TableRowContent {...customer} />}
+         <TableRowEdit {...customer} /> : <TableRowContent {...customer} />}
       </TableRow>
     )
 }

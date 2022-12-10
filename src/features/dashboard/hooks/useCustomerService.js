@@ -3,6 +3,7 @@ import { deleteUsers } from '../services/deleteUsers';
 import { deleteUser } from '../services/deleteUser';
 import { StateContext } from '../../../context/StateContext';
 import {DashboardContext} from '../context/DashboardContext';
+import {createShippingAddress} from '../../../utils/createShippingAddress';
 
 export default function useCustomerService(){
     // Loading
@@ -83,13 +84,6 @@ export default function useCustomerService(){
       setUserSelected({id:"", action:""});
       setAnchorOptions(null);
     }
-
-    // // Closes and discard any edits in the specified user
-    // const handleEditClose = () => {
-    //   // Resets selected user
-    //   setSelectedUser({id:"", action:""})
-    // }
-
 
     const handleChangePage = (event, newPage) => {
       setPage(newPage);
