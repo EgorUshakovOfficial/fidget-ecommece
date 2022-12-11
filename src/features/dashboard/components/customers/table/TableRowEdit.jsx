@@ -11,7 +11,6 @@ import {TableCell,
 } from '@mui/material';
 import {Check, Close} from '@mui/icons-material';
 import useTableRowEdit from '../../../hooks/useTableRowEdit';
-import {createShippingAddress} from '../../../../../utils/createShippingAddress';
 export default function TableRowEdit({
     firstName,
     lastName,
@@ -26,23 +25,41 @@ export default function TableRowEdit({
     // Fullname
     let name = `${firstName} ${lastName}`;
 
-    // Shipping Address
-    let shippingAddress = createShippingAddress(address, city, stateProvince, postalCode, countryRegion);
-    console.log(isSubscribed);
     // Edit user fields and functions
-    const editUserProps = useTableRowEdit({name, email, shippingAddress, isSubscribed});
+    const editUserProps = useTableRowEdit({
+        firstName,
+        lastName,
+        email,
+        address,
+        city,
+        postalCode,
+        countryRegion,
+        isSubscribed
+    });
 
     return (
         <Fragment>
             <TableCell>
                 <Box style={{display:"flex", gap:"0.25em"}}>
                     <TextField
-                        label="Name"
+                        label="First name"
                         size="small"
                         placeholder="John"
-                        value={editUserProps.name}
-                        onChange={editUserProps.handleNameChange}
-                        style={{minWidth:"150px"}}
+                        value={editUserProps.firstName}
+                        onChange={editUserProps.handleFirstNameChange}
+                        style={{minWidth:"100px"}}
+                        InputLabelProps={{shrink: true}}
+                        onClick={e => e.stopPropagation()}
+                        fullWidth
+                        required
+                    />
+                    <TextField
+                        label="Last name"
+                        size="small"
+                        placeholder="Doe"
+                        value={editUserProps.lastName}
+                        onChange={editUserProps.handleLastNameChange}
+                        style={{minWidth:"100px"}}
                         InputLabelProps={{shrink: true}}
                         onClick={e => e.stopPropagation()}
                         fullWidth
@@ -57,7 +74,7 @@ export default function TableRowEdit({
                     placeholder="e.g, johndoe@example.com"
                     value={editUserProps.email}
                     onChange={editUserProps.handleEmailChange}
-                    style={{minWidth:"150px"}}
+                    style={{minWidth:"200px"}}
                     InputLabelProps={{shrink: true}}
                     onClick={e => e.stopPropagation()}
                     fullWidth
@@ -69,14 +86,52 @@ export default function TableRowEdit({
                     label="Address"
                     size="small"
                     placeholder="e.g, 123 Bakerstreet Circle"
-                    style={{minWidth:"150px"}}
-                    multiline
-                    rows={2}
-                    value={editUserProps.shippingAddress}
+                    style={{minWidth:"200px"}}
+                    value="584 Windridge Road"
                     InputLabelProps={{shrink: true}}
                     fullWidth
                     onClick={e => e.stopPropagation()}
                     required
+                />
+            </TableCell>
+            <TableCell>
+                <TextField
+                    label="City"
+                    size="small"
+                    placeholder="e.g, Airdrie"
+                    style={{minWidth:"100px"}}
+                    value={editUserProps.city}
+                    onChange={editUserProps.handleCityChange}
+                    InputLabelProps={{shrink:true}}
+                    onClick={e => e.stopPropagation()}
+                    fullWidth
+                    required
+                />
+            </TableCell>
+            <TableCell>
+                <TextField
+                    label="Postal Code"
+                    size="small"
+                    placeholder="e.g, T4B 2P9"
+                    value={editUserProps.postalCode}
+                    onChange={editUserProps.handlePostalCodeChange}
+                    style={{minWidth:"100px"}}
+                    InputLabelProps={{shrink:true}}
+                    onClick={e => e.stopPropagation()}
+                    fullWidth
+                />
+            </TableCell>
+            <TableCell>
+                <TextField
+                    label="Country"
+                    size="small"
+                    placeholder="e.g, Canada"
+                    value={editUserProps.countryRegion}
+                    onChange={editUserProps.handleCountryRegionChange}
+                    style={{minWidth:"100px"}}
+                    InputLabelProps={{shrink:true}}
+                    onClick={e => e.stopPropagation()}
+                    fullWidth
                 />
             </TableCell>
             <TableCell>
@@ -85,12 +140,12 @@ export default function TableRowEdit({
                     <Select
                         labelId='subscribed-label'
                         id="is-subscribed"
-                        value={editUserProps.isSubscribed}
+                        value={editUserProps.subscribed}
                         label="Subscribed"
                         style={{minWidth:"100px"}}
                         fullWidth
                         onClick={e => e.stopPropagation()}
-                        onChange={editUserProps.handleIsSubscribedChange}
+                        onChange={editUserProps.handleSubscribedChange}
                     >
                         <MenuItem value="Yes">Yes</MenuItem>
                         <MenuItem value="No">No</MenuItem>

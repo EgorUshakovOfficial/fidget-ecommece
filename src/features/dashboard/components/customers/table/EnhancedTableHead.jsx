@@ -23,6 +23,24 @@ const headCells =  [
       label:"Address"
     },
     {
+      id:"city",
+      numeric:false,
+      disablePadding:false,
+      label:"City"
+    },
+    {
+      id:"postal-code",
+      numeric:false,
+      disablePadding:false,
+      label:"Postal Code"
+    },
+    {
+      id:"country",
+      numeric:false,
+      disablePadding:false,
+      label:"Country"
+    },
+    {
       id: 'Subscribed',
       numeric: false,
       disablePadding: false,

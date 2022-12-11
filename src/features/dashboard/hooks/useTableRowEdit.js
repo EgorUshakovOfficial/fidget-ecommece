@@ -6,42 +6,73 @@ export default function useTableRowEdit(initialValues){
     const {setUserSelected} = useContext(CustomerContext);
 
     // States
-    const [name, setName] = useState(initialValues.name);
+    const [firstName, setFirstName] = useState(initialValues.firstName);
+    const [lastName, setLastName] = useState(initialValues.lastName);
     const [email, setEmail] = useState(initialValues.email);
-    const [shippingAddress, setShippingAddress] = useState(initialValues.shippingAddress);
-    const [isSubscribed, setIsSubscribed] = useState(() => initialValues.isSubscribed ? "Yes" : "No");
+    const [address, setAddress] = useState(initialValues.address);
+    const [city, setCity] = useState(initialValues.city);
+    const [postalCode, setPostalCode] = useState(initialValues.postalCode);
+    const [countryRegion, setCountryRegion] = useState(initialValues.countryRegion);
+    const [subscribed, setSubscribed] = useState(() => initialValues.isSubscribed ? "Yes" : "No");
 
     // Closes and discards edits
     const closeAndDiscardEdits = event => {
         event.stopPropagation();
 
-        setName('');
+        // Reset all fields
+        setFirstName('');
+        setLastName('');
         setEmail('');
-        setShippingAddress('');
+        setAddress('');
+        setCity('');
+        setPostalCode('');
+        setCountryRegion('');
+        setSubscribed('');
         setUserSelected({id:"", action:""})
     }
 
     // Handles name on change
-    const handleNameChange = event => setName(event.target.value)
+    const handleFirstNameChange = event => setFirstName(event.target.value)
+
+    // Handles first name on change
+    const handleLastNameChange = event => setLastName(event.target.value);
 
     // Handles email on change
     const handleEmailChange = event => setEmail(event.target.value);
 
     // Handles address on change
-    const handleShippingAddressChange = event => setShippingAddress(event.target.value);
+    const handleAddressChange = event => setAddress(event.target.value);
 
-    // Handles subscription status
-    const handleIsSubscribedChange = e => setIsSubscribed(e.target.value);
+    // Handles city on change
+    const handleCityChange = event => setCity(event.target.value);
+
+    // Handles postal code on change
+    const handlePostalCodeChange = event => setPostalCode(event.target.value);
+
+    // Handles country on change
+    const handleCountryRegionChange = event => setCountryRegion(event.target.value);
+
+    // Handles subscription on change
+    const handleSubscribedChange = event => setSubscribed(event.target.value);
 
     return {
-        name,
+        firstName,
+        lastName,
         email,
-        shippingAddress,
-        isSubscribed,
+        address,
+        city,
+        postalCode,
+        countryRegion,
+        subscribed,
         handleEmailChange,
-        handleNameChange,
-        handleShippingAddressChange,
-        handleIsSubscribedChange,
+        handleFirstNameChange,
+        handleLastNameChange,
+        handleEmailChange,
+        handleAddressChange,
+        handleCityChange,
+        handlePostalCodeChange,
+        handleCountryRegionChange,
+        handleSubscribedChange,
         closeAndDiscardEdits
     }
 }

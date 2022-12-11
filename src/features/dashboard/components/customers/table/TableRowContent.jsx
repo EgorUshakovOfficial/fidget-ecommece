@@ -22,9 +22,6 @@ export default function TableRowContent({
     // Customer's fullname
     let fullName = `${firstName} ${lastName}`;
 
-    // Creates shipping address
-    let shippingAddress = createShippingAddress(address, city, stateProvince, postalCode, countryRegion);
-
     return (
         <Fragment>
             <TableCell
@@ -36,7 +33,10 @@ export default function TableRowContent({
                 {fullName}
             </TableCell>
             <TableCell align="center">{email}</TableCell>
-            <TableCell align="center">{shippingAddress}</TableCell>
+            <TableCell align="center">{address}</TableCell>
+            <TableCell align="center">{city}</TableCell>
+            <TableCell align="center">{postalCode}</TableCell>
+            <TableCell align="center">{countryRegion}</TableCell>
             <TableCell align="center">{isSubscribed ? "Yes" : "No"}</TableCell>
             <TableCell align="center">
                 <Tooltip title="Edit or delete">
