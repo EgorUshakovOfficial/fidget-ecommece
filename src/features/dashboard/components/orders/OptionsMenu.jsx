@@ -3,6 +3,7 @@ import { styled, alpha } from '@mui/material/styles';
 import {Menu, MenuItem} from '@mui/material';
 import {Paid, LocalShipping, AllInbox, PriceCheck} from '@mui/icons-material';
 import { OrderContext } from '../../context/OrderContext';
+import useOrderRowEdit from '../../hooks/useOrderRowEdit';
 
 const StyledMenu = styled((props) => (
   <Menu
@@ -48,25 +49,44 @@ const StyledMenu = styled((props) => (
 export default function OptionsMenu({orderId}) {
   const {orderSelected, anchorOptions, handleOrderOptionsClose} = useContext(OrderContext);
 
+  // Order details props
+  const orderDetailsProps = useOrderRowEdit();
+
   return (
       <StyledMenu
         anchorEl={anchorOptions}
         open={orderSelected.id === orderId}
         onClose={handleOrderOptionsClose}
       >
-        <MenuItem onClick={() => {}} disableRipple>
+        <MenuItem
+          value="bought"
+          onClick={e => orderDetailsProps.editOrderOnClick(e, orderId)}
+          disableRipple
+        >
             <Paid />
             Bought
         </MenuItem>
-        <MenuItem onClick={() => {}} disableRipple>
+        <MenuItem
+          value="shipped"
+          onClick={e => orderDetailsProps.editOrderOnClick(e, orderId)}
+          disableRipple
+        >
             <LocalShipping />
             Shipped
         </MenuItem>
-        <MenuItem onClick={() => {}} disableRipple>
+        <MenuItem
+          value="delivered"
+          onClick={e => orderDetailsProps.editOrderOnClick(e, orderId)}
+          disableRipple
+        >
             <AllInbox />
             Delivered
         </MenuItem>
-        <MenuItem onClick={() => {}} disableRipple>
+        <MenuItem
+          value="refund"
+          onClick={e => orderDetailsProps.editOrderOnClick(e, orderId)}
+          disableRipple
+        >
            <PriceCheck />
            Refund
         </MenuItem>

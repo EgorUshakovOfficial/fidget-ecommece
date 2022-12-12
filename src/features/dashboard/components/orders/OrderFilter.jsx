@@ -21,7 +21,8 @@ export default function OrderFilter(){
             <InputBase
                 sx={{ml:1, flex:1}}
                 placeholder="Search order"
-                inputProps={{onChange: handleOrderFilterChange}}
+                onChange={handleOrderFilterChange}
+                // inputProps={{onChange: handleOrderFilterChange}}
             />
             <SearchIcon />
         </Paper>

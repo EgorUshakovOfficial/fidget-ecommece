@@ -1,3 +1,4 @@
+import moment from 'moment';
 import {useState, useContext} from 'react';
 import { ROWS_PER_PAGE } from '../../../data/constants';
 import {StateContext} from '../../../context/StateContext';
@@ -91,7 +92,7 @@ export default function useOrderServices(){
     const filterOrders = (number, email, amount, date, status) => {
         number = number.toLowerCase();
         email = email.toLowerCase();
-        date = date.toLowerCase();
+        date = moment(date).format('MM/DD/YYYY').toLowerCase();
         amount = amount.toString();
         status = status.toLowerCase();
 
@@ -129,7 +130,9 @@ export default function useOrderServices(){
 
     return {
         anchorOptions,
+        setAnchorOptions,
         orderSelected,
+        setOrderSelected,
         orderFilter,
         ordersSelected,
         numOrders,
