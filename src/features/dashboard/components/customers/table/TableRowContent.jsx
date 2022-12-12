@@ -12,10 +12,10 @@ export default function TableRowContent({
     email,
     address,
     city,
-    isSubscribed,
     stateProvince,
     postalCode,
-    countryRegion
+    countryRegion,
+    isSubscribed
 }){
     const {handleOptionsClick, userSelected} = useContext(CustomerContext);
 
@@ -35,8 +35,9 @@ export default function TableRowContent({
             <TableCell align="center">{email}</TableCell>
             <TableCell align="center">{address}</TableCell>
             <TableCell align="center">{city}</TableCell>
-            <TableCell align="center">{postalCode}</TableCell>
+            <TableCell align="center">{stateProvince}</TableCell>
             <TableCell align="center">{countryRegion}</TableCell>
+            <TableCell align="center">{postalCode}</TableCell>
             <TableCell align="center">{isSubscribed ? "Yes" : "No"}</TableCell>
             <TableCell align="center">
                 <Tooltip title="Edit or delete">

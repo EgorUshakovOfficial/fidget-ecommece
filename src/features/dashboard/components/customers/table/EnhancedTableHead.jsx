@@ -29,16 +29,22 @@ const headCells =  [
       label:"City"
     },
     {
-      id:"postal-code",
+      id:"state-province",
       numeric:false,
-      disablePadding:false,
-      label:"Postal Code"
+      disablePadding: false,
+      label:"State/Province"
     },
     {
       id:"country",
       numeric:false,
       disablePadding:false,
       label:"Country"
+    },
+    {
+      id:"postal-code",
+      numeric:false,
+      disablePadding:false,
+      label:"Postal Code"
     },
     {
       id: 'Subscribed',

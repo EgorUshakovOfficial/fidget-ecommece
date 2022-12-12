@@ -17,11 +17,13 @@ export default function TableRowEdit({
     email,
     address,
     city,
-    isSubscribed,
     stateProvince,
+    countryRegion,
     postalCode,
-    countryRegion
+    isSubscribed,
 }){
+    console.log(stateProvince);
+
     // Fullname
     let name = `${firstName} ${lastName}`;
 
@@ -32,8 +34,9 @@ export default function TableRowEdit({
         email,
         address,
         city,
-        postalCode,
+        stateProvince,
         countryRegion,
+        postalCode,
         isSubscribed
     });
 
@@ -87,7 +90,8 @@ export default function TableRowEdit({
                     size="small"
                     placeholder="e.g, 123 Bakerstreet Circle"
                     style={{minWidth:"200px"}}
-                    value="584 Windridge Road"
+                    value={editUserProps.address}
+                    onChange={editUserProps.handleAddressChange}
                     InputLabelProps={{shrink: true}}
                     fullWidth
                     onClick={e => e.stopPropagation()}
@@ -110,12 +114,12 @@ export default function TableRowEdit({
             </TableCell>
             <TableCell>
                 <TextField
-                    label="Postal Code"
+                    label="State/Province"
                     size="small"
                     placeholder="e.g, T4B 2P9"
-                    value={editUserProps.postalCode}
-                    onChange={editUserProps.handlePostalCodeChange}
-                    style={{minWidth:"100px"}}
+                    value={editUserProps.stateProvince}
+                    onChange={editUserProps.handleStateProvinceChange}
+                    style={{minWidth:"120px"}}
                     InputLabelProps={{shrink:true}}
                     onClick={e => e.stopPropagation()}
                     fullWidth
@@ -128,6 +132,19 @@ export default function TableRowEdit({
                     placeholder="e.g, Canada"
                     value={editUserProps.countryRegion}
                     onChange={editUserProps.handleCountryRegionChange}
+                    style={{minWidth:"100px"}}
+                    InputLabelProps={{shrink:true}}
+                    onClick={e => e.stopPropagation()}
+                    fullWidth
+                />
+            </TableCell>
+            <TableCell>
+                <TextField
+                    label="Postal Code"
+                    size="small"
+                    placeholder="e.g, T4B 2P9"
+                    value={editUserProps.postalCode}
+                    onChange={editUserProps.handlePostalCodeChange}
                     style={{minWidth:"100px"}}
                     InputLabelProps={{shrink:true}}
                     onClick={e => e.stopPropagation()}
@@ -155,7 +172,7 @@ export default function TableRowEdit({
             <TableCell>
                 <Box display="flex" gap="0.25em">
                     <Tooltip title="Save">
-                        <IconButton>
+                        <IconButton onClick={editUserProps.editUserOnClick}>
                             <Check />
                         </IconButton>
                     </Tooltip>
