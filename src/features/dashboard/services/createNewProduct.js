@@ -4,7 +4,7 @@ import {api} from '../../../lib/api';
 export const createNewProduct = async (formData, configOptions) => {
     return new Promise((resolve, reject) => {
         api
-        .post('/api/add-new-product', formData, configOptions)
+        .post('/api/products', formData, configOptions)
         .then(response => {
             let product = response.data;
             resolve(product);

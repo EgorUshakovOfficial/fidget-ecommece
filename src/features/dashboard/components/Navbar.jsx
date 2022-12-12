@@ -9,7 +9,7 @@ import {
   Toolbar,
   List
 } from '@mui/material';
-import {Person, ShoppingCartCheckout, Email, Inventory, Menu} from '@mui/icons-material';
+import {Person, ShoppingCartCheckout, Email, Inventory, Menu, Analytics} from '@mui/icons-material';
 import AccountMenu from './AccountMenu';
 import AdminInfo from './AdminInfo';
 import NavItem from './NavItem';
@@ -30,10 +30,10 @@ export default function Navbar(props) {
     <div>
       <AdminInfo />
       <List>
+        <NavItem text="Analytics" icon={<Analytics />} />
         <NavItem text="Customers" icon={<Person />} />
         <NavItem text="Products" icon={<ShoppingCartCheckout />} />
         <NavItem text="Orders" icon={<Inventory />} />
-        <NavItem text="Subscribers" icon={<Email />} />
       </List>
     </div>
   );

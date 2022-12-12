@@ -28,7 +28,7 @@ export default function EnhancedTableToolbar() {
               variant="subtitle1"
               component="div"
             >
-              {numSelectedCustomers} selected
+              {numSelectedCustomers} {numSelectedCustomers === 1 ? "user" : "users"} selected
             </Typography>
             <Tooltip title="Delete">
               <IconButton onClick={deleteUsersOnClick}>
