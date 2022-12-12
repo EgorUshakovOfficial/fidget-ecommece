@@ -4,7 +4,7 @@ import { DashboardContext } from '../context/DashboardContext';
 import {CustomerContext} from '../context/CustomerContext';
 import { editUser } from '../services/editUser';
 
-export default function useTableRowEdit(initialValues){
+export default function useCustomerRowEdit(initialValues){
     // Loading
     const {setLoading} = useContext(StateContext);
 

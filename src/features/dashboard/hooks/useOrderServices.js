@@ -12,6 +12,8 @@ export default function useOrderServices(){
     const {orders, setOrders} = useContext(DashboardContext);
 
     // Order states
+    const [anchorOptions, setAnchorOptions] = useState(null);
+    const [orderSelected, setOrderSelected] = useState({id:"", action:""});
     const [orderFilter, setOrderFilter] = useState('');
     const [ordersSelected, setOrdersSelected] = useState([]);
     const [page, setPage] = useState(0);
@@ -23,10 +25,26 @@ export default function useOrderServices(){
     // Number of orders selected
     let numOrdersSelected = ordersSelected.length;
 
-    // Handles order filter on change
-    const handleOrderFilterChange = e => {
-        setOrderFilter(e.target.value);
+    // Handles anchor options on click
+    const handleOrderOptionsClick = (event, orderId) => {
+        // Anchors current element clicked to anchor options
+        setAnchorOptions(event.currentTarget);
+
+        // Specifies order selected
+        setOrderSelected({id:orderId, action:"selected"});
     }
+
+    // Handles options menu on close
+    const handleOrderOptionsClose = event => {
+        event.stopPropagation();
+
+        // Resets anchor options and order selected
+        setAnchorOptions(null);
+        setOrderSelected({id:"", action:""});
+    }
+
+    // Handles order filter on change
+    const handleOrderFilterChange = e => setOrderFilter(e.target.value);
 
     // Selects all orders on click
     const handleSelectAllClick = () => {
@@ -110,6 +128,8 @@ export default function useOrderServices(){
 
 
     return {
+        anchorOptions,
+        orderSelected,
         orderFilter,
         ordersSelected,
         numOrders,
@@ -118,6 +138,8 @@ export default function useOrderServices(){
         rowsPerPage,
         isSelected,
         filterOrders,
+        handleOrderOptionsClick,
+        handleOrderOptionsClose,
         handleSelectClick,
         handleSelectAllClick,
         handleChangePage,

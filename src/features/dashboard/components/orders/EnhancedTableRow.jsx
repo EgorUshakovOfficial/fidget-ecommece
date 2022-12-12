@@ -3,10 +3,11 @@ import {useContext} from 'react';
 import {TableCell, TableRow, Checkbox, IconButton} from '@mui/material';
 import {MoreHoriz} from '@mui/icons-material';
 import { OrderContext } from '../../context/OrderContext';
+import OptionsMenu from './OptionsMenu';
 
 export default function EnhancedTableRow({order}){
-    const {isSelected, handleSelectClick} = useContext(OrderContext);
-    console.log(order);
+    const {isSelected, handleSelectClick, handleOrderOptionsClick} = useContext(OrderContext);
+
     return (
         <TableRow
             key={order._id}
@@ -32,12 +33,13 @@ export default function EnhancedTableRow({order}){
             <TableCell align="left">{order.total}</TableCell>
             <TableCell align="left">{moment(order.createdAt).format('MM/DD/YYYY')}</TableCell>
             <TableCell align="left">{order.status}</TableCell>
-            <TableCell align="right">
+            <TableCell align="right" onClick={e => handleOrderOptionsClick(e, order._id)}>
                 <IconButton
                     aria-haspopup="true"
                 >
                     <MoreHoriz />
                 </IconButton>
+                <OptionsMenu orderId={order._id} />
             </TableCell>
         </TableRow>
     )

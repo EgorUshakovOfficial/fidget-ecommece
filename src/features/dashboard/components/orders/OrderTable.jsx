@@ -6,13 +6,7 @@ import EnhancedTableRows from './EnhancedTableRows';
 import { OrderContext } from '../../context/OrderContext';
 
 export default function OrderTable(){
-    const {
-        numOrders,
-        rowsPerPage,
-        page,
-        handleChangePage,
-        handleChangeRowsPerPage
-    } = useContext(OrderContext);
+    const {numOrders, rowsPerPage, page, handleChangePage, handleChangeRowsPerPage} = useContext(OrderContext);
 
     return (
         <Box

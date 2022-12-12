@@ -10,7 +10,7 @@ import {TableCell,
     IconButton
 } from '@mui/material';
 import {Check, Close} from '@mui/icons-material';
-import useTableRowEdit from '../../../hooks/useTableRowEdit';
+import useCustomerRowEdit from '../../../hooks/useCustomerRowEdit';
 export default function TableRowEdit({
     firstName,
     lastName,
@@ -22,13 +22,11 @@ export default function TableRowEdit({
     postalCode,
     isSubscribed,
 }){
-    console.log(stateProvince);
-
     // Fullname
     let name = `${firstName} ${lastName}`;
 
     // Edit user fields and functions
-    const editUserProps = useTableRowEdit({
+    const editUserProps = useCustomerRowEdit({
         firstName,
         lastName,
         email,

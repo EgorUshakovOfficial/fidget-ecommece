@@ -11,9 +11,6 @@ export default function OrderHeader(){
             <Typography component="h1" variant="h5">
                 Orders
             </Typography>
-            <Button color="primary" variant="contained" endIcon={<Add />}>
-                New Order
-            </Button>
         </Box>
     )
 }
