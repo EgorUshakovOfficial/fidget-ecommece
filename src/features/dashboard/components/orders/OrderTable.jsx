@@ -3,6 +3,7 @@ import {Box, Paper, Table, TableContainer, TablePagination, Typography} from '@m
 import EnhancedTableHead from './EnhancedTableHead';
 import EnhancedTableTooltip from './EnhancedTableToolbar';
 import EnhancedTableRows from './EnhancedTableRows';
+import RefundModal from './refundModal/RefundModal';
 import { OrderContext } from '../../context/OrderContext';
 
 export default function OrderTable(){
@@ -36,6 +37,7 @@ export default function OrderTable(){
                     onPageChange={handleChangePage}
                     onRowsPerPageChange={handleChangeRowsPerPage}
                 />
+                <RefundModal />
             </Paper>
             :
             <Typography>No orders have been placed yet</Typography>
