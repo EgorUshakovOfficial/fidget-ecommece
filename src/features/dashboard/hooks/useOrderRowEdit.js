@@ -1,7 +1,7 @@
 import {useContext} from 'react';
 import {DashboardContext} from '../context/DashboardContext';
 import {OrderContext} from '../context/OrderContext';
-import {editOrder} from '../services/editOrder';
+import {editOrderDetails} from '../services/editOrder';
 import {readOrderItems} from '../services/readOrderItems';
 
 export default function useOrderRowEdit(orderId){
@@ -50,7 +50,7 @@ export default function useOrderRowEdit(orderId){
             const config = { headers : {"Content-Type":"application/json" } };
 
             // Sends request to PUT /api/orders/:orderId
-            editOrder(orderId, editedFields, config)
+            editOrderDetails(orderId, editedFields, config)
             .then(orderDetails => setOrders(state => {
                 state[orderSelectedIndex] = orderDetails;
                 return [...state];
