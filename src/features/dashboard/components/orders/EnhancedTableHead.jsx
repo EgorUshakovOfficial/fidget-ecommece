@@ -16,6 +16,18 @@ const headCells = [
         label:"Email"
     },
     {
+        id:'shippingCost',
+        numeric:true,
+        disablePadding:false,
+        label:"Shipping Cost"
+    },
+    {
+        id:"subtotal",
+        numeric:false,
+        disablePadding:false,
+        label:"Subtotal"
+    },
+    {
         id:"amount",
         numeric:true,
         disablePadding:false,
@@ -63,7 +75,7 @@ export default function EnhancedTableHead(){
                 {headCells.map(headCell => (
                     <TableCell
                         key={headCell.id}
-                        align="left"
+                        align="center"
                         padding={headCell.disablePadding ? 'none' : 'normal'}
                     >
                         {headCell.label}

@@ -2,17 +2,33 @@ import {useContext} from 'react';
 import {DashboardContext} from '../context/DashboardContext';
 import {OrderContext} from '../context/OrderContext';
 import {editOrder} from '../services/editOrder';
+import {readOrderItems} from '../services/readOrderItems';
 
-export default function useOrderRowEdit(){
+export default function useOrderRowEdit(orderId){
     // All orders
     const {orders, setOrders} = useContext(DashboardContext);
 
     // Order selected
-    const {setOrderSelected, setAnchorOptions} = useContext(OrderContext);
+    const {setOrderSelected, setAnchorOptions, setOrderItems} = useContext(OrderContext);
+
+    // Opens refund modal on click
+    const openRefundModalOnClick = event => {
+        // Stops other events from being executed
+        event.stopPropagation();
+
+        // Retrieves the list of items for specified order
+        readOrderItems(orderId)
+        .then(orderItems => setOrderItems(orderItems))
+        .catch(err => console.log(err))
+        .finally(() => {
+            setOrderSelected(state => Object.assign({}, state, {action:"refund"}))
+            setAnchorOptions(null);
+        })
+    };
 
     // Edits order row on click
-    const editOrderOnClick = (event, orderId) => {
-        // Stops other events from executing
+    const editOrderOnClick = event => {
+        // Stops other events from executed
         event.stopPropagation();
 
         // Selected order status
@@ -30,10 +46,6 @@ export default function useOrderRowEdit(){
         }
 
         if (Object.keys(editedFields).length > 0){
-            // // Changes loading state of the application
-            // // from not loading to loading
-            // setLoading(true);
-
             // Configuration options
             const config = { headers : {"Content-Type":"application/json" } };
 
@@ -51,7 +63,5 @@ export default function useOrderRowEdit(){
         }
     }
 
-    return {
-        editOrderOnClick
-    }
+    return {openRefundModalOnClick, editOrderOnClick}
 }

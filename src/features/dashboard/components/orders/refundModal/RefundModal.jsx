@@ -1,10 +1,10 @@
-import {Modal, Box, Typography, TableContainer, Table, TableHead, TableBody} from '@mui/material';
-import {Reply} from '@mui/icons-material';
+import {Modal, Box, TableContainer, Table, TableHead, TableBody} from '@mui/material';
 import RefundHeader from './RefundHeader';
 import HeadCells from './HeadCells';
 import OrderItems from './OrderItems';
 import RefundSummary from './RefundSummary';
 import RefundControls from './RefundControls';
+import useOrderRefundModal from '../../../hooks/useOrderRefundModal';
 
 // Styles
 const style = {
@@ -20,25 +20,35 @@ const style = {
 };
 
 export default function RefundModal(){
+    const orderRefundProps = useOrderRefundModal();
+
     return(
         <Modal
             open={true}
             onClose={() => {}}
         >
             <Box sx={style}>
-                <RefundHeader />
+                <RefundHeader cancelOrderRefund={orderRefundProps.cancelOrderRefund} />
                 <TableContainer>
                     <Table size="small">
                         <TableHead>
                             <HeadCells />
                         </TableHead>
                         <TableBody>
-                            <OrderItems />
-                            <RefundSummary />
+                            <OrderItems
+                                selectOrderItem={orderRefundProps.selectOrderItem}
+                                orderItemsSelected={orderRefundProps.orderItemsSelected}
+                            />
+                            <RefundSummary
+                                subtotal={orderRefundProps.subtotal}
+                            />
                         </TableBody>
                     </Table>
                 </TableContainer>
-                <RefundControls />
+                <RefundControls
+                    orderItemsSelected={orderRefundProps.orderItemsSelected}
+                    cancelOrderRefund={orderRefundProps.cancelOrderRefund}
+                />
             </Box>
         </Modal>
     )

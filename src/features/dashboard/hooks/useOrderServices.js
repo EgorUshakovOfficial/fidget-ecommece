@@ -15,6 +15,7 @@ export default function useOrderServices(){
     // Order states
     const [anchorOptions, setAnchorOptions] = useState(null);
     const [orderSelected, setOrderSelected] = useState({id:"", action:""});
+    const [orderItems, setOrderItems] = useState([]);
     const [orderFilter, setOrderFilter] = useState('');
     const [ordersSelected, setOrdersSelected] = useState([]);
     const [page, setPage] = useState(0);
@@ -133,6 +134,8 @@ export default function useOrderServices(){
         setAnchorOptions,
         orderSelected,
         setOrderSelected,
+        orderItems,
+        setOrderItems,
         orderFilter,
         ordersSelected,
         numOrders,

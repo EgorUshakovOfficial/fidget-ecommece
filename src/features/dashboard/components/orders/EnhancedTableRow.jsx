@@ -26,14 +26,17 @@ export default function EnhancedTableRow({order}){
                 component='th'
                 scope='row'
                 padding='none'
+                align="center"
             >
                 {order.number}
             </TableCell>
-            <TableCell align="left">{order.user.email}</TableCell>
-            <TableCell align="left">{order.total}</TableCell>
-            <TableCell align="left">{moment(order.createdAt).format('MM/DD/YYYY')}</TableCell>
-            <TableCell align="left">{order.status}</TableCell>
-            <TableCell align="right" onClick={e => handleOrderOptionsClick(e, order._id)}>
+            <TableCell align="center">{order.user.email}</TableCell>
+            <TableCell align="center">{order.subtotal}</TableCell>
+            <TableCell align="center">{order.shippingCost}</TableCell>
+            <TableCell align="center">{order.total}</TableCell>
+            <TableCell align="center">{moment(order.createdAt).format('MM/DD/YYYY')}</TableCell>
+            <TableCell align="center">{order.status}</TableCell>
+            <TableCell align="center" onClick={e => handleOrderOptionsClick(e, order._id)}>
                 <Tooltip title="Edit status">
                     <IconButton disableRipple>
                         <MoreHoriz />

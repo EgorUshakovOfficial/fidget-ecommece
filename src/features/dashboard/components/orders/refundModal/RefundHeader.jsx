@@ -1,7 +1,7 @@
 import {Box, Typography, IconButton} from "@mui/material";
 import {Reply, Close} from '@mui/icons-material';
 
-export default function RefundHeader(){
+export default function RefundHeader({cancelOrderRefund}){
     return (
         <Box
             display="flex"
@@ -13,7 +13,10 @@ export default function RefundHeader(){
                 <Reply />
                 Refund
             </Typography>
-            <IconButton>
+            <IconButton
+                onClick={cancelOrderRefund}
+                disableRipple
+            >
                 <Close />
             </IconButton>
         </Box>

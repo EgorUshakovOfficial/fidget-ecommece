@@ -7,7 +7,17 @@ import RefundModal from './refundModal/RefundModal';
 import { OrderContext } from '../../context/OrderContext';
 
 export default function OrderTable(){
-    const {numOrders, rowsPerPage, page, handleChangePage, handleChangeRowsPerPage} = useContext(OrderContext);
+    const {
+        numOrders,
+        orderItems,
+        rowsPerPage,
+        page,
+        handleChangePage,
+        handleChangeRowsPerPage
+    } = useContext(OrderContext);
+
+    // Total number of order items for specified order
+    let numOrderItems = orderItems.length;
 
     return (
         <Box
@@ -37,7 +47,7 @@ export default function OrderTable(){
                     onPageChange={handleChangePage}
                     onRowsPerPageChange={handleChangeRowsPerPage}
                 />
-                <RefundModal />
+                {numOrderItems > 0 && <RefundModal />}
             </Paper>
             :
             <Typography>No orders have been placed yet</Typography>

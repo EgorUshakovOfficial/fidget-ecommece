@@ -50,17 +50,17 @@ export default function OptionsMenu({orderId}) {
   const {orderSelected, anchorOptions, handleOrderOptionsClose} = useContext(OrderContext);
 
   // Order details props
-  const orderDetailsProps = useOrderRowEdit();
+  const orderDetailsProps = useOrderRowEdit(orderId);
 
   return (
       <StyledMenu
         anchorEl={anchorOptions}
-        open={orderSelected.id === orderId}
+        open={orderSelected.id === orderId && orderSelected.action==="selected"}
         onClose={handleOrderOptionsClose}
       >
         <MenuItem
           value="bought"
-          onClick={e => orderDetailsProps.editOrderOnClick(e, orderId)}
+          onClick={orderDetailsProps.editOrderOnClick}
           disableRipple
         >
             <Paid />
@@ -68,7 +68,7 @@ export default function OptionsMenu({orderId}) {
         </MenuItem>
         <MenuItem
           value="shipped"
-          onClick={e => orderDetailsProps.editOrderOnClick(e, orderId)}
+          onClick={orderDetailsProps.editOrderOnClick}
           disableRipple
         >
             <LocalShipping />
@@ -76,7 +76,7 @@ export default function OptionsMenu({orderId}) {
         </MenuItem>
         <MenuItem
           value="delivered"
-          onClick={e => orderDetailsProps.editOrderOnClick(e, orderId)}
+          onClick={orderDetailsProps.editOrderOnClick}
           disableRipple
         >
             <AllInbox />
@@ -84,7 +84,7 @@ export default function OptionsMenu({orderId}) {
         </MenuItem>
         <MenuItem
           value="refund"
-          onClick={e => orderDetailsProps.editOrderOnClick(e, orderId)}
+          onClick={orderDetailsProps.openRefundModalOnClick}
           disableRipple
         >
            <PriceCheck />
