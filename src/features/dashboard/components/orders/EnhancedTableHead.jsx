@@ -16,16 +16,16 @@ const headCells = [
         label:"Email"
     },
     {
-        id:'shippingCost',
-        numeric:true,
-        disablePadding:false,
-        label:"Shipping Cost"
-    },
-    {
         id:"subtotal",
         numeric:false,
         disablePadding:false,
         label:"Subtotal"
+    },
+    {
+        id:'shippingCost',
+        numeric:true,
+        disablePadding:false,
+        label:"Shipping Cost"
     },
     {
         id:"amount",

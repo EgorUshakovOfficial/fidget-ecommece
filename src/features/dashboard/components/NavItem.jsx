@@ -6,7 +6,7 @@ export default function NavItem({text, icon}){
     const {handlePageClick} = useContext(DashboardContext);
     return (
         <ListItem value={text} onClick={handlePageClick} disablePadding>
-            <ListItemButton>
+            <ListItemButton disableRipple>
                 <ListItemIcon>
                     {icon}
                 </ListItemIcon>
