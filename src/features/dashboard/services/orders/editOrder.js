@@ -1,4 +1,4 @@
-import {api} from '../../../lib/api';
+import {api} from '../../../../lib/api';
 
 export const editOrderDetails = (orderId, editedFields, config) => {
     return new Promise((resolve, reject) => {

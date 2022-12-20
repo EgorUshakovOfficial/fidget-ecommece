@@ -1,5 +1,5 @@
 import {createContext} from 'react';
-import useProductServices from '../hooks/useProductServices';
+import useProductServices from '../hooks/products/useProductServices';
 
 // Product context
 const ProductContext = createContext({});

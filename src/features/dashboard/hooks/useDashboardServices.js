@@ -1,7 +1,7 @@
 import {useState, useEffect, useContext} from 'react';
 import {StateContext} from '../../../context/StateContext';
-import {readOrders} from '../services/readOrders';
-import { readUsers } from '../services/readUsers';
+import {readOrders} from '../services/orders/readOrders';
+import { readUsers } from '../services/customers/readUsers';
 
 export default function useDashboardServices(){
     const [orders, setOrders] = useState([]);

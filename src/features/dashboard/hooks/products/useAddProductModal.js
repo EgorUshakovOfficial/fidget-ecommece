@@ -1,8 +1,8 @@
 import {useState, useEffect, useContext} from 'react';
-import {StateContext} from '../../../context/StateContext';
-import { ProductContext } from '../context/ProductContext';
-import { validateNumericalInput } from '../../../utils/validators';
-import {createNewProduct} from '../services/createNewProduct';
+import {StateContext} from '../../../../context/StateContext';
+import { ProductContext } from '../../context/ProductContext';
+import { validateNumericalInput } from '../../../../utils/validators';
+import {createNewProduct} from '../../services/products/createNewProduct';
 
 export default function useAddProductModal(){
     const [productImage, setProductImage] = useState(null);

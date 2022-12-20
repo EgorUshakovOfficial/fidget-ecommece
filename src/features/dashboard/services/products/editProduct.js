@@ -1,4 +1,4 @@
-import {api} from '../../../lib/api';
+import {api} from '../../../../lib/api';
 
 export const editProduct = (productId, editedFields, configOptions) => {
     return new Promise((resolve, reject) => {

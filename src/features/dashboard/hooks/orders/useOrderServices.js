@@ -1,9 +1,9 @@
 import moment from 'moment';
 import {useState, useContext} from 'react';
-import { ROWS_PER_PAGE } from '../../../data/constants';
-import {StateContext} from '../../../context/StateContext';
-import {DashboardContext} from '../context/DashboardContext';
-import { deleteOrders } from '../services/deleteOrders';
+import { ROWS_PER_PAGE } from '../../../../data/constants';
+import {StateContext} from '../../../../context/StateContext';
+import {DashboardContext} from '../../context/DashboardContext';
+import { deleteOrders } from '../../services/orders/deleteOrders';
 
 export default function useOrderServices(){
     // Loading

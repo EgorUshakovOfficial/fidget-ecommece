@@ -1,7 +1,7 @@
 import {useState, useEffect, useContext} from 'react';
-import { StateContext } from '../../../context/StateContext';
-import { ProductContext } from '../context/ProductContext';
-import {editProduct} from '../services/editProduct';
+import { StateContext } from '../../../../context/StateContext';
+import { ProductContext } from '../../context/ProductContext';
+import {editProduct} from '../../services/products/editProduct';
 
 
 export default function useEditProductModal(){

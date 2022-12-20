@@ -1,8 +1,8 @@
 import {useContext} from 'react';
-import {DashboardContext} from '../context/DashboardContext';
-import {OrderContext} from '../context/OrderContext';
-import {editOrderDetails} from '../services/editOrder';
-import {readOrderItems} from '../services/readOrderItems';
+import {DashboardContext} from '../../context/DashboardContext';
+import {OrderContext} from '../../context/OrderContext';
+import {editOrderDetails} from '../../services/orders/editOrder';
+import {readOrderItems} from '../../services/orders/readOrderItems';
 
 export default function useOrderRowEdit(orderId){
     // All orders

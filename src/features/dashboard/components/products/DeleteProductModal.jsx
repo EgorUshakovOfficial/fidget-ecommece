@@ -10,7 +10,7 @@ import {
     Typography
 } from '@mui/material';
 import {ProductContext} from '../../context/ProductContext';
-import useDeleteProductModal from '../../hooks/useDeleteModal';
+import useDeleteProductModal from '../../hooks/products/useDeleteProductModal';
 
 const style = {
   position: 'absolute',

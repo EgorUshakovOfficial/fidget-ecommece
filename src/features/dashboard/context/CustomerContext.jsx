@@ -1,5 +1,5 @@
 import {createContext} from 'react';
-import useCustomerService from '../hooks/useCustomerService';
+import useCustomerService from '../hooks/customers/useCustomerService';
 
 // Customer Context
 const CustomerContext = createContext({});

@@ -1,7 +1,7 @@
 import {useContext} from 'react';
-import {ProductContext } from '../context/ProductContext';
-import {StateContext} from '../../../context/StateContext';
-import {deleteProduct} from '../services/deleteProduct';
+import {ProductContext } from '../../context/ProductContext';
+import {StateContext} from '../../../../context/StateContext';
+import {deleteProduct} from '../../services/products/deleteProduct';
 
 export default function useDeleteProductModal(){
     const {setProductsForSale, loading, setLoading} = useContext(StateContext);

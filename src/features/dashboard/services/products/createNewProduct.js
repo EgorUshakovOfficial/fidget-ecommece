@@ -1,4 +1,4 @@
-import {api} from '../../../lib/api';
+import {api} from '../../../../lib/api';
 
 // Creates new product
 export const createNewProduct = async (formData, configOptions) => {

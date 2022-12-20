@@ -10,7 +10,7 @@ import {TableCell,
     IconButton
 } from '@mui/material';
 import {Check, Close} from '@mui/icons-material';
-import useCustomerRowEdit from '../../../hooks/useCustomerRowEdit';
+import useCustomerRowEdit from '../../../hooks/customers/useCustomerRowEdit';
 export default function TableRowEdit({
     firstName,
     lastName,

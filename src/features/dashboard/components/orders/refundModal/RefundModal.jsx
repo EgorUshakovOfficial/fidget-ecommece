@@ -4,7 +4,7 @@ import HeadCells from './HeadCells';
 import OrderItems from './OrderItems';
 import RefundSummary from './RefundSummary';
 import RefundControls from './RefundControls';
-import useOrderRefundModal from '../../../hooks/useOrderRefundModal';
+import useOrderRefundModal from '../../../hooks/orders/useOrderRefundModal';
 
 // Styles
 const style = {

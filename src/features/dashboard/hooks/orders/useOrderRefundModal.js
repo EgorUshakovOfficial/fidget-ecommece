@@ -1,7 +1,7 @@
 import {useState, useMemo, useContext} from 'react';
-import { refundOrder } from '../services/refundOrder';
-import { DashboardContext } from '../context/DashboardContext';
-import {OrderContext} from '../context/OrderContext';
+import { refundOrder } from '../../services/orders/refundOrder';
+import { DashboardContext } from '../../context/DashboardContext';
+import {OrderContext} from '../../context/OrderContext';
 
 export default function useOrderRefundModal(){
     // Order selected and order items

@@ -1,8 +1,8 @@
 import {useState, useContext} from 'react';
-import { createNewUser } from '../services/createNewUser';
-import { StateContext } from '../../../context/StateContext';
-import { DashboardContext } from '../context/DashboardContext';
-import { CustomerContext } from '../context/CustomerContext';
+import { createNewUser } from '../../services/customers/createNewUser';
+import { StateContext } from '../../../../context/StateContext';
+import { DashboardContext } from '../../context/DashboardContext';
+import { CustomerContext } from '../../context/CustomerContext';
 
 export default function useNewUserModal(){
     // Loading state

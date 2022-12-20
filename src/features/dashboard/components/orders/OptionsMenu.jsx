@@ -3,7 +3,7 @@ import { styled, alpha } from '@mui/material/styles';
 import {Menu, MenuItem} from '@mui/material';
 import {Paid, LocalShipping, AllInbox, PriceCheck} from '@mui/icons-material';
 import { OrderContext } from '../../context/OrderContext';
-import useOrderRowEdit from '../../hooks/useOrderRowEdit';
+import useOrderRowEdit from '../../hooks/orders/useOrderRowEdit';
 
 const StyledMenu = styled((props) => (
   <Menu

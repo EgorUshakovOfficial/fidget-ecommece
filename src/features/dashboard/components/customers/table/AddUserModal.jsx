@@ -14,7 +14,7 @@ import {
 } from '@mui/material';
 import { Public, EmailRounded, Home, Apartment, Send, Close} from '@mui/icons-material';
 import { CustomerContext } from '../../../context/CustomerContext';
-import useNewUserModal from '../../../hooks/useNewUserModal';
+import useNewUserModal from '../../../hooks/customers/useNewUserModal';
 
 const style = {
     position: 'absolute',

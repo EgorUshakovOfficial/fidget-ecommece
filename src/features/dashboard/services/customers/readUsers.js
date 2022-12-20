@@ -1,4 +1,4 @@
-import {api} from '../../../lib/api';
+import {api} from '../../../../lib/api';
 
 export const readUsers = () => {
     return new Promise((resolve, reject) => {

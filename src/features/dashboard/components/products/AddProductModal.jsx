@@ -11,7 +11,7 @@ import {
     IconButton
 } from '@mui/material';
 import {CameraAlt, Close} from '@mui/icons-material';
-import useAddProductModal from '../../hooks/useAddProductModal';
+import useAddProductModal from '../../hooks/products/useAddProductModal';
 import {validateNumericalInput} from '../../../../utils/validators';
 import { ProductContext } from '../../context/ProductContext';
 

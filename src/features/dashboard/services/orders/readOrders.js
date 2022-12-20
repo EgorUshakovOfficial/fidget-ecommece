@@ -1,4 +1,4 @@
-import {api} from '../../../lib/api';
+import {api} from '../../../../lib/api';
 export const readOrders = () => {
     return new Promise((resolve, reject) => {
         const headers = {headers:{'Content-Type': 'application/json'}};

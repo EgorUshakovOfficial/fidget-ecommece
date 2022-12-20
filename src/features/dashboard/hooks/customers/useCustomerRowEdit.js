@@ -1,8 +1,8 @@
 import {useContext, useState} from 'react';
-import {StateContext} from '../../../context/StateContext';
-import { DashboardContext } from '../context/DashboardContext';
-import {CustomerContext} from '../context/CustomerContext';
-import { editUser } from '../services/editUser';
+import {StateContext} from '../../../../context/StateContext';
+import { DashboardContext } from '../../context/DashboardContext';
+import {CustomerContext} from '../../context/CustomerContext';
+import { editUser } from '../../services/customers/editUser';
 
 export default function useCustomerRowEdit(initialValues){
     // Loading

@@ -1,6 +1,6 @@
 import {createContext} from 'react';
-import useOrderServices from '../hooks/useOrderServices';
-import useOrderRefundModal from '../hooks/useOrderRefundModal';
+import useOrderServices from '../hooks/orders/useOrderServices';
+import useOrderRefundModal from '../hooks/orders/useOrderRefundModal';
 
 // Order context
 const OrderContext = createContext({});

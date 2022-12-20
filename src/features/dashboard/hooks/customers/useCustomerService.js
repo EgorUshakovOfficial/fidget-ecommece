@@ -1,9 +1,9 @@
 import {useState, useContext} from 'react';
-import { deleteUsers } from '../services/deleteUsers';
-import { deleteUser } from '../services/deleteUser';
-import { StateContext } from '../../../context/StateContext';
-import {DashboardContext} from '../context/DashboardContext';
-import {createShippingAddress} from '../../../utils/createShippingAddress';
+import { deleteUsers } from '../../services/customers/deleteUsers';
+import { deleteUser } from '../../services/customers/deleteUser';
+import { StateContext } from '../../../../context/StateContext';
+import {DashboardContext} from '../../context/DashboardContext';
+import {createShippingAddress} from '../../../../utils/createShippingAddress';
 
 export default function useCustomerService(){
     // Loading

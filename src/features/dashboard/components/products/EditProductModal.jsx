@@ -13,7 +13,7 @@ import {
 } from '@mui/material';
 import {Close, CameraAlt} from '@mui/icons-material';
 import ConfirmEditProductModal from './ConfirmEditProductModal';
-import useEditProductModal from '../../hooks/useEditProductModal';
+import useEditProductModal from '../../hooks/products/useEditProductModal';
 import { validateNumericalInput } from '../../../../utils/validators';
 
 const style = {
