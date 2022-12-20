@@ -24,9 +24,12 @@ export default function useCartService(){
     }, [cart])
 
     // Subtotal
-    const subtotal = useMemo(() => {
+    let subtotal = useMemo(() => {
         return cart.reduce((totalCost, {cost, quantity}) => totalCost + cost*quantity, 0)
     }, [JSON.stringify(cart)]);
+
+    // Rounds only to two decimal places
+    subtotal = Number(subtotal.toFixed(2));
 
     // Handle shopping cart slider
     const handleShoppingCartSlider = () => {

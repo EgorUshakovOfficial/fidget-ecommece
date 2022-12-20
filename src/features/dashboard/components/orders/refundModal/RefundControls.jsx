@@ -2,7 +2,11 @@ import {useContext} from 'react';
 import {Box, Button} from '@mui/material';
 import { OrderContext } from '../../../context/OrderContext';
 
-export default function RefundControls({orderItemsSelected, cancelOrderRefund}){
+export default function RefundControls({
+    orderItemsSelected,
+    refundOrderOnClick,
+    cancelOrderRefund
+}){
     return (
         <Box
             display="flex"
@@ -24,7 +28,7 @@ export default function RefundControls({orderItemsSelected, cancelOrderRefund}){
                 size="medium"
                 disableRipple
                 disabled={orderItemsSelected.length === 0}
-                onClick={() => {}}
+                onClick={refundOrderOnClick}
             >
                 Refund
             </Button>

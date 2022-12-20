@@ -1,15 +1,7 @@
-import {useContext, Fragment} from 'react';
+import {Fragment} from 'react';
 import {TableRow, TableCell, Typography} from '@mui/material';
-import { DashboardContext } from '../../../context/DashboardContext';
-import {OrderContext} from '../../../context/OrderContext';
 
-export default function RefundSummary({subtotal}){
-    const {orders} = useContext(DashboardContext);
-    const {orderSelected} = useContext(OrderContext);
-
-    // Selected order details
-    let orderDetails = orders.filter(order => order._id === orderSelected.id)[0];
-
+export default function RefundSummary({subtotal, shippingCost, refundAmount}){
     return (
         <Fragment>
             <TableRow>
@@ -38,7 +30,7 @@ export default function RefundSummary({subtotal}){
                 <TableCell sx={{borderBottom:"none"}} />
                 <TableCell align="center" sx={{borderBottom:"none"}}>
                     <Typography fontWeight="bold">
-                        ${orderDetails.shippingCost}
+                        ${shippingCost}
                     </Typography>
                 </TableCell>
             </TableRow>
@@ -53,7 +45,7 @@ export default function RefundSummary({subtotal}){
                 <TableCell sx={{borderBottom:"none"}} />
                 <TableCell align="center" sx={{borderBottom:"none"}}>
                     <Typography fontWeight="bold">
-                        ${subtotal + orderDetails.shippingCost}
+                        ${refundAmount}
                     </Typography>
                 </TableCell>
             </TableRow>

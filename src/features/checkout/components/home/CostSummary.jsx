@@ -13,7 +13,8 @@ export default function CostSummary(){
         TRACKED_SHIPPING_COST : 0
 
     // Total amount
-    const total = (shippingCost + subtotal).toFixed(2);
+    const total = shippingCost + subtotal;
+
 
     return (
         <Grid item style={{

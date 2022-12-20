@@ -35,7 +35,8 @@ export default function EnhancedTableRow({order}){
             <TableCell align="center">{order.shippingCost}</TableCell>
             <TableCell align="center">{order.total}</TableCell>
             <TableCell align="center">{moment(order.createdAt).format('MM/DD/YYYY')}</TableCell>
-            <TableCell align="center">{order.status}</TableCell>
+            <TableCell align="center">{order.status === 'partial-refund' ? 'Partially Refunded' :
+             order.status === 'complete-refund' ? 'Completely refunded' : order.status}</TableCell>
             <TableCell align="center" onClick={e => handleOrderOptionsClick(e, order._id)}>
                 <Tooltip title="Edit status">
                     <IconButton disableRipple>

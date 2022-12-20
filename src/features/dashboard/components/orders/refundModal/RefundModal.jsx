@@ -40,6 +40,8 @@ export default function RefundModal(){
                                 orderItemsSelected={orderRefundProps.orderItemsSelected}
                             />
                             <RefundSummary
+                                shippingCost={orderRefundProps.orderDetails.shippingCost}
+                                refundAmount={orderRefundProps.refundAmount}
                                 subtotal={orderRefundProps.subtotal}
                             />
                         </TableBody>
@@ -48,6 +50,7 @@ export default function RefundModal(){
                 <RefundControls
                     orderItemsSelected={orderRefundProps.orderItemsSelected}
                     cancelOrderRefund={orderRefundProps.cancelOrderRefund}
+                    refundOrderOnClick={orderRefundProps.refundOrderOnClick}
                 />
             </Box>
         </Modal>
