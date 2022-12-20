@@ -17,8 +17,11 @@ export default function useOrderRefundModal(){
 
     // Calculates subtotal when the list of selected order items is updated
     let subtotal = useMemo(() => {
-        return orderItemsSelected
-        .reduce((subtotal, item) => subtotal + item.product.price, 0);
+        let initialValue = 0;
+        return orderItemsSelected.reduce((subtotal, item) => {
+            let cost = item.quantity*item.product.price;
+            return subtotal + cost;
+        }, initialValue);
     }, [orderItemsSelected]);
 
     // Rounds to two decimal places
